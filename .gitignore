@@ -21,3 +21,11 @@ core
 *.pem
 *.key
 artifacts/**/build/
+# Generated outputs not intended for new commits
+regressions/
+artifacts/candidate-evaluations/
+artifacts/blind-patches/candidates/
+artifacts/blind-patches/configs/
+artifacts/blind-patches/results/
+artifacts/ci/build/
+artifacts/blind-patches/**/build/
