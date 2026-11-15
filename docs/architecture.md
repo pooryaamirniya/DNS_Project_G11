@@ -1,24 +1,35 @@
-# Architecture and threat model
+# PatchGuard architecture, evidence, and security boundary
 
-1. `configs/*.json` describe each before/after source pair, attack payloads, build libraries, and independent reference outputs. No source function names or variant name are used to choose outcomes.
-2. `runner.build` produces matching GCC `release` and `sanitized` binaries for each version; hashes and exact command lines are recorded.
-3. `runner.run` starts real ELF processes with controlled stdin. The tool parses ASan/UBSan reports and separately records OS signals, exit status, timeout, stdout and stderr.
-4. Security attacks run three times for each version; only matching sanitizer type + application function count as confirmed. Mixed observations cause INCONCLUSIVE.
-5. Valid functional tests compare both versions with a reference contract independent of patched output. Valid baseline pass + patched mismatch => REGRESSION.
-6. `correlation` runs `git diff --no-index -U0` and maps sanitizer application stack frames onto changed hunk functions/lines. Unknown correlation is explicit, not fabricated. It provides empirical relationship, not causality proof.
-7. `minimize` performs byte-level delta debugging, preserving both vulnerability class and application function. `repro` stores input, minimum, 3 replays, compiler args, git hash, binary and source SHA-256 and exact environment. Regression input files are generated from minimized reproductions both in run artifacts and in a canonical `regressions/<target>/` directory. This directory is automatically scanned in subsequent evaluation runs, so learned inputs become dynamic regression tests. Check it into Git or restore it from the CI cache to retain cases across clean checkouts.
-8. `hardening` reads release ELF file headers, program headers, dynamic tags and symbol table via readelf to report NX/PIE/RELRO/canary. Canaries indicated by symbol do not guarantee all functions protected. PIE does not prove runtime ASLR.
-9. CI treats 10 and 20 of intentional negative fixtures as expected *test outcomes*. The separate assertion script checks the matrix, failing CI for unexpected behavior.
+## End-to-end evaluation
+
+1. A JSON configuration identifies the baseline C/C++ source, candidate source, input mode, build options, attack inputs, functional cases, and **independent** expected outputs.
+2. `runner.build` compiles comparable **release** and **sanitized** ELF binaries (pre-patch and post-patch), retaining commands, compiler status and SHA-256 evidence.
+3. `runner.run` executes the binaries with controlled inputs. `detection` records ASan/UBSan findings separately from OS signals, return codes, stdout/stderr, resource limits and timeouts.
+4. Attack cases are replayed **three times per version**. Stable matching sanitizer signatures are confirmed; unstable and unclassified outcomes become `INCONCLUSIVE`, not invented vulnerabilities.
+5. Sanitizer source frames are selected from application C/C++ code where the traceback supports them; paths do **not** need to contain `/targets/`. For a confirmed persisted defect, type/function evidence is compared across versions. This is a heuristic and is limited by traceback quality.
+6. Functional tests compare baseline and patched *release* builds with the independent expected behavior. If baseline passes but candidate fails, the result is `FUNC_REGRESSION`.
+7. `correlation` compares changed source hunks and actual runtime evidence. Function overlap is a useful supporting signal; it is **not** proof that the changed line caused a crash.
+8. `minimize` performs delta debugging while preserving the selected crash signature. Reproducer bundles include the input, minimization trials, replays, source and binary hashes, build commands, environment and revision; automatically learned cases are stored under `regressions/<target>/`.
+9. `hardening` uses ELF inspection to evaluate NX, PIE, RELRO and stack-canary indicators. These are indicators, not guarantees of complete exploit protection.
+10. GitHub Actions run the six-case expected-result matrix, unit tests, nine generated blind variants and strict Quality Gate. Since one unit test checks persisted regression cases, **the six-case run precedes the unit suite on a fresh checkout**.
+
+## Current target matrix
+
+- `frame`: original educational C frame parser.
+- `cjsonreal`: genuine cJSON upstream v1.7.17 / v1.7.18 source for CVE-2024-31755, tested through a local stdin adapter. Incomplete and regression variants are purpose-made negative fixtures, **not** upstream releases.
+- `targets/jsonc/`: older integration demonstration kept for reference, not graded in the official matrix.
+
+Source provenance and SHA-256 details for the upstream cJSON target are in `targets/cjsonreal/source_manifest.json`. Input/output specifications are `docs/oracle-frame.md` and `docs/oracle-cjsonreal.md`. Approval of these target choices and oracles remains an **instructor/TA decision**; do not claim approval unless recorded in `docs/instructor-approval.md`.
 
 ## Security boundary
 
-Untrusted compiled executables must run in an isolated, restricted container or disposable VM. `tools/docker_run.sh` disables networking, drops Linux capabilities, sets no-new-privileges, CPU/memory/PID limits and read-only container image, with only the checkout writable. The command-line tool refuses local execution unless `--allow-local` is deliberately provided. Do not use `--allow-local` on a host containing sensitive data. Asan may require more memory than the suggested limits for some targets; changing limits should be documented.
+Intentionally vulnerable native binaries should run **only in a restricted container or disposable VM**. The Docker runner disables networking, drops capabilities, enables no-new-privileges, and applies resource limits and a read-only image. The checkout bind mount is writable for evidence outputs. Local unrestricted execution requires explicitly opting into `--allow-local`; do not run it on an everyday workstation holding sensitive data.
 
-## Known scope limitations
+## Known limitations
 
-- The provided runner currently targets Linux x86-64, GCC and stdin mode with a single `.c` file per variant; for external tools the build and input adapters should be expanded. The JSON payload keeps test configuration distinct from core classification logic.
-- Correlation by shared function is supporting evidence only. The code intentionally does not assert that new issues are necessarily caused by the patch.
-- Requires instructor approval for the target choice and oracles. A real upstream release and public patch is not bundled; the json-c integration demonstrates a real library but the intentional bug was introduced in test integration code. The rubric may demand a different genuine upstream target.
-- An all-green report means scoped test success, not global security proof.
-
-The runner also supports JSON-selected `input_mode` values `argv` and `file`, and optional arrays of `target.build_commands` (with `{source}`, `{binary}`, `{root}` placeholders) to handle other C/C++ build systems without changing the classification logic. Matching pre/post release and sanitized commands should be provided. A per-version compiler-flag override can demonstrate ELF hardening degradation and is transparently reported.
+- Results apply to the particular test corpus, toolchain, source files, runner configuration and observed execution only.
+- The bundled target adapters are intentionally small and use a known stdin contract. Support for arbitrary upstream projects, multi-target build systems and differing interfaces may require configuration/build-adapter work; do not promise arbitrary C/C++ builds work without adaptation.
+- Stack-trace function resolution and diff correlation are imperfect, especially with stripped binaries, inlining, optimized code or frames lacking debug symbols.
+- Successful ASan/UBSan checks do not prove a program is globally free of vulnerabilities.
+- Generated blind variants test classification independence from known filenames, **not** every possible unseen patch supplied by an instructor.
+- Persisted regressions created during a run may need to be committed or restored between clean runners; CI uses an appropriate ordering/cache strategy.

@@ -1,7 +1,7 @@
 # PatchGuard: Independent Release Quality Gate
 
 **Status:** PASS | Errors: 0 | Warnings: 0
-Checked: 2026-11-15T18:46:47.590219+00:00
+Checked: 2026-11-15T18:58:24.441799+00:00
 
 This checker verifies evidence; it does not reproduce untrusted binaries itself.
 
