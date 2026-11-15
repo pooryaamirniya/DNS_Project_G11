@@ -1,0 +1,23 @@
+# PatchGuard generated build outputs / transient files
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+.idea/
+.vscode/
+*.bak
+*.swp
+*.tmp
+*.o
+*.so
+*.a
+*.core
+core
+.env
+.env.*
+*.pem
+*.key
+artifacts/**/build/

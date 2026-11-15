@@ -1,0 +1,120 @@
+{
+  "scenario": "frame-regression",
+  "case": "bypass-input",
+  "original_length": 29,
+  "minimized_length": 20,
+  "minimization_executions": 48,
+  "error_type": "stack-buffer-overflow",
+  "reference_function": "process_message",
+  "replay_consensus": "confirmed",
+  "replays": [
+    {
+      "process": {
+        "argv": [
+          "/work/artifacts/ci/build/frame-regression/base-sanitized"
+        ],
+        "returncode": -6,
+        "stdout": "",
+        "stderr": "=================================================================\n==536==ERROR: AddressSanitizer: stack-buffer-overflow on address 0x7f7c85100030 at pc 0x7f7c87a8c303 bp 0x7ffc118736f0 sp 0x7ffc11872e98\nWRITE of size 17 at 0x7f7c85100030 thread T0\n    #0 0x7f7c87a8c302 in memcpy ../../../../src/libsanitizer/sanitizer_common/sanitizer_common_interceptors_memintrinsics.inc:115\n    #1 0x5633ea12a61b in process_message /work/targets/frame/base.c:12\n    #2 0x5633ea12a61b in main /work/targets/frame/base.c:22\n    #3 0x7f7c871921c9  (/lib/x86_64-linux-gnu/libc.so.6+0x2a1c9) (BuildId: 8cebda42d140fc2b09639f8b13a5d5f2e617ef09)\n    #4 0x7f7c8719228a in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x2a28a) (BuildId: 8cebda42d140fc2b09639f8b13a5d5f2e617ef09)\n    #5 0x5633ea12a2c4 in _start (/work/artifacts/ci/build/frame-regression/base-sanitized+0x22c4) (BuildId: 922ff091c2b4d285f03dd5c7f224d3e353949e2b)\n\nAddress 0x7f7c85100030 is located in stack of thread T0 at offset 48 in frame\n    #0 0x5633ea12a398 in main /work/targets/frame/base.c:16\n\n  This frame has 2 object(s):\n    [32, 48) 'normalized' (line 9)\n    [64, 320) 'line' (line 17) <== Memory access at offset 48 partially underflows this variable\nHINT: this may be a false positive if your program uses some custom stack unwind mechanism, swapcontext or vfork\n      (longjmp and C++ exceptions *are* supported)\nSUMMARY: AddressSanitizer: stack-buffer-overflow ../../../../src/libsanitizer/sanitizer_common/sanitizer_common_interceptors_memintrinsics.inc:115 in memcpy\nShadow bytes around the buggy address:\n  0x7f7c850ffd80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7f7c850ffe00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7f7c850ffe80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7f7c850fff00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7f7c850fff80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n=>0x7f7c85100000: f1 f1 f1 f1 00 00[f2]f2 00 00 00 00 00 00 00 00\n  0x7f7c85100080: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7f7c85100100: 00 00 00 00 00 00 00 00 f3 f3 f3 f3 f3 f3 f3 f3\n  0x7f7c85100180: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7f7c85100200: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7f7c85100280: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\nShadow byte legend (one shadow byte represents 8 application bytes):\n  Addressable:           00\n  Partially addressable: 01 02 03 04 05 06 07 \n  Heap left redzone:       fa\n  Freed heap region:       fd\n  Stack left redzone:      f1\n  Stack mid redzone:       f2\n  Stack right redzone:     f3\n  Stack after return:      f5\n  Stack use after scope:   f8\n  Global redzone:          f9\n  Global init order:       f6\n  Poisoned by user:        f7\n  Container overflow:      fc\n  Array cookie:            ac\n  Intra object redzone:    bb\n  ASan internal:           fe\n  Left alloca redzone:     ca\n  Right alloca redzone:    cb\n==536==ABORTING\n",
+        "elapsed_ms": 403,
+        "timeout": false
+      },
+      "finding": {
+        "mechanism": "ASan",
+        "error_type": "stack-buffer-overflow",
+        "function": "process_message",
+        "location": "/work/targets/frame/base.c:12",
+        "confirmed": true,
+        "termination": {
+          "exit_code": -6,
+          "signal": 6,
+          "signal_name": "SIGABRT",
+          "timeout": false
+        }
+      }
+    },
+    {
+      "process": {
+        "argv": [
+          "/work/artifacts/ci/build/frame-regression/base-sanitized"
+        ],
+        "returncode": -6,
+        "stdout": "",
+        "stderr": "=================================================================\n==537==ERROR: AddressSanitizer: stack-buffer-overflow on address 0x7fbb74900030 at pc 0x7fbb772b3303 bp 0x7ffeb5b92b80 sp 0x7ffeb5b92328\nWRITE of size 17 at 0x7fbb74900030 thread T0\n    #0 0x7fbb772b3302 in memcpy ../../../../src/libsanitizer/sanitizer_common/sanitizer_common_interceptors_memintrinsics.inc:115\n    #1 0x55fa70fc761b in process_message /work/targets/frame/base.c:12\n    #2 0x55fa70fc761b in main /work/targets/frame/base.c:22\n    #3 0x7fbb769b91c9  (/lib/x86_64-linux-gnu/libc.so.6+0x2a1c9) (BuildId: 8cebda42d140fc2b09639f8b13a5d5f2e617ef09)\n    #4 0x7fbb769b928a in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x2a28a) (BuildId: 8cebda42d140fc2b09639f8b13a5d5f2e617ef09)\n    #5 0x55fa70fc72c4 in _start (/work/artifacts/ci/build/frame-regression/base-sanitized+0x22c4) (BuildId: 922ff091c2b4d285f03dd5c7f224d3e353949e2b)\n\nAddress 0x7fbb74900030 is located in stack of thread T0 at offset 48 in frame\n    #0 0x55fa70fc7398 in main /work/targets/frame/base.c:16\n\n  This frame has 2 object(s):\n    [32, 48) 'normalized' (line 9)\n    [64, 320) 'line' (line 17) <== Memory access at offset 48 partially underflows this variable\nHINT: this may be a false positive if your program uses some custom stack unwind mechanism, swapcontext or vfork\n      (longjmp and C++ exceptions *are* supported)\nSUMMARY: AddressSanitizer: stack-buffer-overflow ../../../../src/libsanitizer/sanitizer_common/sanitizer_common_interceptors_memintrinsics.inc:115 in memcpy\nShadow bytes around the buggy address:\n  0x7fbb748ffd80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7fbb748ffe00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7fbb748ffe80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7fbb748fff00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7fbb748fff80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n=>0x7fbb74900000: f1 f1 f1 f1 00 00[f2]f2 00 00 00 00 00 00 00 00\n  0x7fbb74900080: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7fbb74900100: 00 00 00 00 00 00 00 00 f3 f3 f3 f3 f3 f3 f3 f3\n  0x7fbb74900180: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7fbb74900200: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7fbb74900280: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\nShadow byte legend (one shadow byte represents 8 application bytes):\n  Addressable:           00\n  Partially addressable: 01 02 03 04 05 06 07 \n  Heap left redzone:       fa\n  Freed heap region:       fd\n  Stack left redzone:      f1\n  Stack mid redzone:       f2\n  Stack right redzone:     f3\n  Stack after return:      f5\n  Stack use after scope:   f8\n  Global redzone:          f9\n  Global init order:       f6\n  Poisoned by user:        f7\n  Container overflow:      fc\n  Array cookie:            ac\n  Intra object redzone:    bb\n  ASan internal:           fe\n  Left alloca redzone:     ca\n  Right alloca redzone:    cb\n==537==ABORTING\n",
+        "elapsed_ms": 345,
+        "timeout": false
+      },
+      "finding": {
+        "mechanism": "ASan",
+        "error_type": "stack-buffer-overflow",
+        "function": "process_message",
+        "location": "/work/targets/frame/base.c:12",
+        "confirmed": true,
+        "termination": {
+          "exit_code": -6,
+          "signal": 6,
+          "signal_name": "SIGABRT",
+          "timeout": false
+        }
+      }
+    },
+    {
+      "process": {
+        "argv": [
+          "/work/artifacts/ci/build/frame-regression/base-sanitized"
+        ],
+        "returncode": -6,
+        "stdout": "",
+        "stderr": "=================================================================\n==538==ERROR: AddressSanitizer: stack-buffer-overflow on address 0x7fc651000030 at pc 0x7fc653a4f303 bp 0x7ffd78336240 sp 0x7ffd783359e8\nWRITE of size 17 at 0x7fc651000030 thread T0\n    #0 0x7fc653a4f302 in memcpy ../../../../src/libsanitizer/sanitizer_common/sanitizer_common_interceptors_memintrinsics.inc:115\n    #1 0x5640d122961b in process_message /work/targets/frame/base.c:12\n    #2 0x5640d122961b in main /work/targets/frame/base.c:22\n    #3 0x7fc6531551c9  (/lib/x86_64-linux-gnu/libc.so.6+0x2a1c9) (BuildId: 8cebda42d140fc2b09639f8b13a5d5f2e617ef09)\n    #4 0x7fc65315528a in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x2a28a) (BuildId: 8cebda42d140fc2b09639f8b13a5d5f2e617ef09)\n    #5 0x5640d12292c4 in _start (/work/artifacts/ci/build/frame-regression/base-sanitized+0x22c4) (BuildId: 922ff091c2b4d285f03dd5c7f224d3e353949e2b)\n\nAddress 0x7fc651000030 is located in stack of thread T0 at offset 48 in frame\n    #0 0x5640d1229398 in main /work/targets/frame/base.c:16\n\n  This frame has 2 object(s):\n    [32, 48) 'normalized' (line 9)\n    [64, 320) 'line' (line 17) <== Memory access at offset 48 partially underflows this variable\nHINT: this may be a false positive if your program uses some custom stack unwind mechanism, swapcontext or vfork\n      (longjmp and C++ exceptions *are* supported)\nSUMMARY: AddressSanitizer: stack-buffer-overflow ../../../../src/libsanitizer/sanitizer_common/sanitizer_common_interceptors_memintrinsics.inc:115 in memcpy\nShadow bytes around the buggy address:\n  0x7fc650fffd80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7fc650fffe00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7fc650fffe80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7fc650ffff00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7fc650ffff80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n=>0x7fc651000000: f1 f1 f1 f1 00 00[f2]f2 00 00 00 00 00 00 00 00\n  0x7fc651000080: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7fc651000100: 00 00 00 00 00 00 00 00 f3 f3 f3 f3 f3 f3 f3 f3\n  0x7fc651000180: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7fc651000200: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7fc651000280: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\nShadow byte legend (one shadow byte represents 8 application bytes):\n  Addressable:           00\n  Partially addressable: 01 02 03 04 05 06 07 \n  Heap left redzone:       fa\n  Freed heap region:       fd\n  Stack left redzone:      f1\n  Stack mid redzone:       f2\n  Stack right redzone:     f3\n  Stack after return:      f5\n  Stack use after scope:   f8\n  Global redzone:          f9\n  Global init order:       f6\n  Poisoned by user:        f7\n  Container overflow:      fc\n  Array cookie:            ac\n  Intra object redzone:    bb\n  ASan internal:           fe\n  Left alloca redzone:     ca\n  Right alloca redzone:    cb\n==538==ABORTING\n",
+        "elapsed_ms": 365,
+        "timeout": false
+      },
+      "finding": {
+        "mechanism": "ASan",
+        "error_type": "stack-buffer-overflow",
+        "function": "process_message",
+        "location": "/work/targets/frame/base.c:12",
+        "confirmed": true,
+        "termination": {
+          "exit_code": -6,
+          "signal": 6,
+          "signal_name": "SIGABRT",
+          "timeout": false
+        }
+      }
+    }
+  ],
+  "git_commit": "dee1cbfa0e86e3e902e84283b1707e55cb19cd0e",
+  "source": "targets/frame/base.c",
+  "source_sha256": "7338f2fab098e5ca4c6ae578eebcfd35fafda0b34645a9d6b77e028f2451859d",
+  "sanitized_binary_sha256": "c046d78330a124dcadb999691ce12309a521a3880c632164822b0a56930d4b97",
+  "compile_command": [
+    "gcc",
+    "-std=c11",
+    "-Wall",
+    "-Wextra",
+    "-Wno-unused-parameter",
+    "-fno-omit-frame-pointer",
+    "-g",
+    "-O1",
+    "-U_FORTIFY_SOURCE",
+    "-D_FORTIFY_SOURCE=0",
+    "-fsanitize=address,undefined",
+    "-fno-sanitize-recover=all",
+    "/work/targets/frame/base.c",
+    "-o",
+    "/work/artifacts/ci/build/frame-regression/base-sanitized"
+  ],
+  "environment": {
+    "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1:print_stacktrace=1",
+    "UBSAN_OPTIONS": "print_stacktrace=1:halt_on_error=1"
+  },
+  "execution": {
+    "argv": [
+      "/work/artifacts/ci/build/frame-regression/base-sanitized"
+    ],
+    "stdin_file": "minimized.bin",
+    "cwd": "/work/artifacts/ci/build/frame-regression",
+    "mode": "stdin"
+  }
+}

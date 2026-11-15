@@ -1,0 +1,31 @@
+{
+  "upstream_repository": "https://github.com/DaveGamble/cJSON",
+  "upstream_issue": "https://github.com/DaveGamble/cJSON/issues/839",
+  "cve": "CVE-2024-31755",
+  "original_release": {
+    "tag": "v1.7.17",
+    "git_commit": "87d8f0961a01bf09bef98ff89bae9fdec42181ee",
+    "retrieval": "shallow-clone",
+    "files_sha256": {
+      "cJSON.c": "de63e951ce3bc9b6938c7635575a6c90c3b364595b0b0f4c5ae8f9c83a43c17d",
+      "cJSON.h": "c01a8ca5609bb2c956dd1ae836d5d926ec68153ecebc5a75ea0febc2e076da8d",
+      "LICENSE": "a36dda207c36db5818729c54e7ad4e8b0c6fba847491ba64f372c1a2037b6d5c"
+    }
+  },
+  "patched_release": {
+    "tag": "v1.7.18",
+    "git_commit": "acc76239bee01d8e9c858ae2cab296704e52d916",
+    "retrieval": "shallow-clone",
+    "files_sha256": {
+      "cJSON.c": "75c51de8fa40ac9d7a99319c6330719bd692eb81c0a869265f3d4c682533f9b9",
+      "cJSON.h": "0578cc29132912edbc88f83207a8fc76e5db3db0605497e909a9384ef3cc474b",
+      "LICENSE": "a36dda207c36db5818729c54e7ad4e8b0c6fba847491ba64f372c1a2037b6d5c"
+    }
+  },
+  "variants": {
+    "base": "upstream vulnerable",
+    "correct": "upstream fixed",
+    "incomplete": "our intentionally incomplete guard",
+    "regression": "our intentionally broken valid behavior"
+  }
+}

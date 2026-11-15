@@ -1,0 +1,1206 @@
+{
+  "tool": "Independent PatchGuard Quality Gate",
+  "checked_at_utc": "2026-11-15T18:29:27.546472+00:00",
+  "project_root": "/mnt/c/Users/poory/Downloads/PatchGuard_Project1",
+  "checks_total": 199,
+  "errors": 0,
+  "warnings": 0,
+  "status": "PASS",
+  "strict_mode": true,
+  "checks": [
+    {
+      "id": "upstream:cve",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "cJSON target must identify independently documented CVE"
+    },
+    {
+      "id": "upstream:original_release",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Expected real upstream tag v1.7.17"
+    },
+    {
+      "id": "upstream-hash:targets/cjsonreal/upstream/v1.7.17/cJSON.c",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Source hash from report must match current file: targets/cjsonreal/upstream/v1.7.17/cJSON.c"
+    },
+    {
+      "id": "upstream-hash:targets/cjsonreal/upstream/v1.7.17/cJSON.h",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Source hash from report must match current file: targets/cjsonreal/upstream/v1.7.17/cJSON.h"
+    },
+    {
+      "id": "upstream-hash:targets/cjsonreal/upstream/v1.7.17/LICENSE",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Source hash from report must match current file: targets/cjsonreal/upstream/v1.7.17/LICENSE"
+    },
+    {
+      "id": "upstream:patched_release",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Expected real upstream tag v1.7.18"
+    },
+    {
+      "id": "upstream-hash:targets/cjsonreal/upstream/v1.7.18/cJSON.c",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Source hash from report must match current file: targets/cjsonreal/upstream/v1.7.18/cJSON.c"
+    },
+    {
+      "id": "upstream-hash:targets/cjsonreal/upstream/v1.7.18/cJSON.h",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Source hash from report must match current file: targets/cjsonreal/upstream/v1.7.18/cJSON.h"
+    },
+    {
+      "id": "upstream-hash:targets/cjsonreal/upstream/v1.7.18/LICENSE",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Source hash from report must match current file: targets/cjsonreal/upstream/v1.7.18/LICENSE"
+    },
+    {
+      "id": "upstream:oracle",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Independent oracle description for real upstream target must exist"
+    },
+    {
+      "id": "config:frame-correct",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Config must reference security cases, functional cases and an independent oracle"
+    },
+    {
+      "id": "config:frame-incomplete",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Config must reference security cases, functional cases and an independent oracle"
+    },
+    {
+      "id": "config:frame-regression",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Config must reference security cases, functional cases and an independent oracle"
+    },
+    {
+      "id": "config:cjsonreal-correct",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Config must reference security cases, functional cases and an independent oracle"
+    },
+    {
+      "id": "config:cjsonreal-incomplete",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Config must reference security cases, functional cases and an independent oracle"
+    },
+    {
+      "id": "config:cjsonreal-regression",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Config must reference security cases, functional cases and an independent oracle"
+    },
+    {
+      "id": "ci:existing",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Existing CI workflow must be present"
+    },
+    {
+      "id": "ci:full",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Quality-gate workflow must run official matrix and 9 blind tests"
+    },
+    {
+      "id": "matrix:names",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Exactly six current targets expected; found ['frame-correct', 'frame-incomplete', 'frame-regression', 'cjsonreal-correct', 'cjsonreal-incomplete', 'cjsonreal-regression']"
+    },
+    {
+      "id": "matrix:overall",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Aggregate six-variant run should report FUNC_REGRESSION=20"
+    },
+    {
+      "id": "matrix:frame-correct:exit",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Expected code 0, actual 0"
+    },
+    {
+      "id": "matrix:frame-correct:complete",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Official matrix should have complete analysis"
+    },
+    {
+      "id": "matrix:frame-correct:source:base",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Source hash from report must match current file: targets/frame/base.c"
+    },
+    {
+      "id": "matrix:frame-correct:source:patch",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Source hash from report must match current file: targets/frame/correct.c"
+    },
+    {
+      "id": "matrix:frame-correct:builds",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "All four release/sanitized builds must succeed"
+    },
+    {
+      "id": "matrix:frame-correct:hardening:base",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Hardening measurements must contain four ELF properties"
+    },
+    {
+      "id": "matrix:frame-correct:hardening:patched",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Hardening measurements must contain four ELF properties"
+    },
+    {
+      "id": "matrix:frame-correct:hardening-drops",
+      "ok": true,
+      "level": "WARNING",
+      "detail": "Potential weakened binary protections: []"
+    },
+    {
+      "id": "matrix:frame-correct:correlation",
+      "ok": true,
+      "level": "WARNING",
+      "detail": "Patch-to-finding correlation should have runtime source evidence"
+    },
+    {
+      "id": "matrix:frame-correct:attack-count",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "At least 2 security attacks per scenario"
+    },
+    {
+      "id": "matrix:frame-correct:function-count",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "At least 4 functional tests per scenario"
+    },
+    {
+      "id": "matrix:frame-correct:base-confirmed",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Every declared security testcase must reproduce on base"
+    },
+    {
+      "id": "matrix:frame-correct:3-runs:0:base_sanitized",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Three recorded sanitizer replays per security case"
+    },
+    {
+      "id": "matrix:frame-correct:3-runs:0:patched_sanitized",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Three recorded sanitizer replays per security case"
+    },
+    {
+      "id": "matrix:frame-correct:reproducer:0",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Reproducer bundle expected at artifacts/ci/repro/frame-correct/initial-exploit/manifest.json"
+    },
+    {
+      "id": "matrix:frame-correct:3-runs:1:base_sanitized",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Three recorded sanitizer replays per security case"
+    },
+    {
+      "id": "matrix:frame-correct:3-runs:1:patched_sanitized",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Three recorded sanitizer replays per security case"
+    },
+    {
+      "id": "matrix:frame-correct:reproducer:1",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Reproducer bundle expected at artifacts/ci/repro/frame-correct/bypass-input/manifest.json"
+    },
+    {
+      "id": "matrix:frame-correct:3-runs:2:base_sanitized",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Three recorded sanitizer replays per security case"
+    },
+    {
+      "id": "matrix:frame-correct:3-runs:2:patched_sanitized",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Three recorded sanitizer replays per security case"
+    },
+    {
+      "id": "matrix:frame-correct:3-runs:3:base_sanitized",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Three recorded sanitizer replays per security case"
+    },
+    {
+      "id": "matrix:frame-correct:3-runs:3:patched_sanitized",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Three recorded sanitizer replays per security case"
+    },
+    {
+      "id": "matrix:frame-correct:reproducer-any",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Automatically minimized reproducer bundles should exist"
+    },
+    {
+      "id": "matrix:frame-correct:security",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "All correct-patch security tests must be fixed and match independent oracle"
+    },
+    {
+      "id": "matrix:frame-correct:function",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Correct patch must preserve every functional reference case"
+    },
+    {
+      "id": "matrix:frame-incomplete:exit",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Expected code 10, actual 10"
+    },
+    {
+      "id": "matrix:frame-incomplete:complete",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Official matrix should have complete analysis"
+    },
+    {
+      "id": "matrix:frame-incomplete:source:base",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Source hash from report must match current file: targets/frame/base.c"
+    },
+    {
+      "id": "matrix:frame-incomplete:source:patch",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Source hash from report must match current file: targets/frame/incomplete.c"
+    },
+    {
+      "id": "matrix:frame-incomplete:builds",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "All four release/sanitized builds must succeed"
+    },
+    {
+      "id": "matrix:frame-incomplete:hardening:base",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Hardening measurements must contain four ELF properties"
+    },
+    {
+      "id": "matrix:frame-incomplete:hardening:patched",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Hardening measurements must contain four ELF properties"
+    },
+    {
+      "id": "matrix:frame-incomplete:hardening-drops",
+      "ok": true,
+      "level": "WARNING",
+      "detail": "Potential weakened binary protections: []"
+    },
+    {
+      "id": "matrix:frame-incomplete:correlation",
+      "ok": true,
+      "level": "WARNING",
+      "detail": "Patch-to-finding correlation should have runtime source evidence"
+    },
+    {
+      "id": "matrix:frame-incomplete:attack-count",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "At least 2 security attacks per scenario"
+    },
+    {
+      "id": "matrix:frame-incomplete:function-count",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "At least 4 functional tests per scenario"
+    },
+    {
+      "id": "matrix:frame-incomplete:base-confirmed",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Every declared security testcase must reproduce on base"
+    },
+    {
+      "id": "matrix:frame-incomplete:3-runs:0:base_sanitized",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Three recorded sanitizer replays per security case"
+    },
+    {
+      "id": "matrix:frame-incomplete:3-runs:0:patched_sanitized",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Three recorded sanitizer replays per security case"
+    },
+    {
+      "id": "matrix:frame-incomplete:reproducer:0",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Reproducer bundle expected at artifacts/ci/repro/frame-incomplete/initial-exploit/manifest.json"
+    },
+    {
+      "id": "matrix:frame-incomplete:3-runs:1:base_sanitized",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Three recorded sanitizer replays per security case"
+    },
+    {
+      "id": "matrix:frame-incomplete:3-runs:1:patched_sanitized",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Three recorded sanitizer replays per security case"
+    },
+    {
+      "id": "matrix:frame-incomplete:reproducer:1",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Reproducer bundle expected at artifacts/ci/repro/frame-incomplete/bypass-input/manifest.json"
+    },
+    {
+      "id": "matrix:frame-incomplete:3-runs:2:base_sanitized",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Three recorded sanitizer replays per security case"
+    },
+    {
+      "id": "matrix:frame-incomplete:3-runs:2:patched_sanitized",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Three recorded sanitizer replays per security case"
+    },
+    {
+      "id": "matrix:frame-incomplete:3-runs:3:base_sanitized",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Three recorded sanitizer replays per security case"
+    },
+    {
+      "id": "matrix:frame-incomplete:3-runs:3:patched_sanitized",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Three recorded sanitizer replays per security case"
+    },
+    {
+      "id": "matrix:frame-incomplete:reproducer-any",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Automatically minimized reproducer bundles should exist"
+    },
+    {
+      "id": "matrix:frame-incomplete:incomplete",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Incomplete patch must retain *confirmed* original vulnerability"
+    },
+    {
+      "id": "matrix:frame-regression:exit",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Expected code 20, actual 20"
+    },
+    {
+      "id": "matrix:frame-regression:complete",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Official matrix should have complete analysis"
+    },
+    {
+      "id": "matrix:frame-regression:source:base",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Source hash from report must match current file: targets/frame/base.c"
+    },
+    {
+      "id": "matrix:frame-regression:source:patch",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Source hash from report must match current file: targets/frame/regression.c"
+    },
+    {
+      "id": "matrix:frame-regression:builds",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "All four release/sanitized builds must succeed"
+    },
+    {
+      "id": "matrix:frame-regression:hardening:base",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Hardening measurements must contain four ELF properties"
+    },
+    {
+      "id": "matrix:frame-regression:hardening:patched",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Hardening measurements must contain four ELF properties"
+    },
+    {
+      "id": "matrix:frame-regression:hardening-drops",
+      "ok": true,
+      "level": "WARNING",
+      "detail": "Potential weakened binary protections: []"
+    },
+    {
+      "id": "matrix:frame-regression:correlation",
+      "ok": true,
+      "level": "WARNING",
+      "detail": "Patch-to-finding correlation should have runtime source evidence"
+    },
+    {
+      "id": "matrix:frame-regression:attack-count",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "At least 2 security attacks per scenario"
+    },
+    {
+      "id": "matrix:frame-regression:function-count",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "At least 4 functional tests per scenario"
+    },
+    {
+      "id": "matrix:frame-regression:base-confirmed",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Every declared security testcase must reproduce on base"
+    },
+    {
+      "id": "matrix:frame-regression:3-runs:0:base_sanitized",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Three recorded sanitizer replays per security case"
+    },
+    {
+      "id": "matrix:frame-regression:3-runs:0:patched_sanitized",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Three recorded sanitizer replays per security case"
+    },
+    {
+      "id": "matrix:frame-regression:reproducer:0",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Reproducer bundle expected at artifacts/ci/repro/frame-regression/initial-exploit/manifest.json"
+    },
+    {
+      "id": "matrix:frame-regression:3-runs:1:base_sanitized",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Three recorded sanitizer replays per security case"
+    },
+    {
+      "id": "matrix:frame-regression:3-runs:1:patched_sanitized",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Three recorded sanitizer replays per security case"
+    },
+    {
+      "id": "matrix:frame-regression:reproducer:1",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Reproducer bundle expected at artifacts/ci/repro/frame-regression/bypass-input/manifest.json"
+    },
+    {
+      "id": "matrix:frame-regression:3-runs:2:base_sanitized",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Three recorded sanitizer replays per security case"
+    },
+    {
+      "id": "matrix:frame-regression:3-runs:2:patched_sanitized",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Three recorded sanitizer replays per security case"
+    },
+    {
+      "id": "matrix:frame-regression:3-runs:3:base_sanitized",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Three recorded sanitizer replays per security case"
+    },
+    {
+      "id": "matrix:frame-regression:3-runs:3:patched_sanitized",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Three recorded sanitizer replays per security case"
+    },
+    {
+      "id": "matrix:frame-regression:reproducer-any",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Automatically minimized reproducer bundles should exist"
+    },
+    {
+      "id": "matrix:frame-regression:regression",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Regression patch must break a valid baseline-passing reference"
+    },
+    {
+      "id": "matrix:cjsonreal-correct:exit",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Expected code 0, actual 0"
+    },
+    {
+      "id": "matrix:cjsonreal-correct:complete",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Official matrix should have complete analysis"
+    },
+    {
+      "id": "matrix:cjsonreal-correct:source:base",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Source hash from report must match current file: targets/cjsonreal/base.c"
+    },
+    {
+      "id": "matrix:cjsonreal-correct:source:patch",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Source hash from report must match current file: targets/cjsonreal/correct.c"
+    },
+    {
+      "id": "matrix:cjsonreal-correct:builds",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "All four release/sanitized builds must succeed"
+    },
+    {
+      "id": "matrix:cjsonreal-correct:hardening:base",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Hardening measurements must contain four ELF properties"
+    },
+    {
+      "id": "matrix:cjsonreal-correct:hardening:patched",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Hardening measurements must contain four ELF properties"
+    },
+    {
+      "id": "matrix:cjsonreal-correct:hardening-drops",
+      "ok": true,
+      "level": "WARNING",
+      "detail": "Potential weakened binary protections: []"
+    },
+    {
+      "id": "matrix:cjsonreal-correct:correlation",
+      "ok": true,
+      "level": "WARNING",
+      "detail": "Patch-to-finding correlation should have runtime source evidence"
+    },
+    {
+      "id": "matrix:cjsonreal-correct:attack-count",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "At least 2 security attacks per scenario"
+    },
+    {
+      "id": "matrix:cjsonreal-correct:function-count",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "At least 4 functional tests per scenario"
+    },
+    {
+      "id": "matrix:cjsonreal-correct:base-confirmed",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Every declared security testcase must reproduce on base"
+    },
+    {
+      "id": "matrix:cjsonreal-correct:3-runs:0:base_sanitized",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Three recorded sanitizer replays per security case"
+    },
+    {
+      "id": "matrix:cjsonreal-correct:3-runs:0:patched_sanitized",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Three recorded sanitizer replays per security case"
+    },
+    {
+      "id": "matrix:cjsonreal-correct:reproducer:0",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Reproducer bundle expected at artifacts/ci/repro/cjsonreal-correct/upstream-poc/manifest.json"
+    },
+    {
+      "id": "matrix:cjsonreal-correct:3-runs:1:base_sanitized",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Three recorded sanitizer replays per security case"
+    },
+    {
+      "id": "matrix:cjsonreal-correct:3-runs:1:patched_sanitized",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Three recorded sanitizer replays per security case"
+    },
+    {
+      "id": "matrix:cjsonreal-correct:reproducer:1",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Reproducer bundle expected at artifacts/ci/repro/cjsonreal-correct/alternate-input/manifest.json"
+    },
+    {
+      "id": "matrix:cjsonreal-correct:reproducer-any",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Automatically minimized reproducer bundles should exist"
+    },
+    {
+      "id": "matrix:cjsonreal-correct:security",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "All correct-patch security tests must be fixed and match independent oracle"
+    },
+    {
+      "id": "matrix:cjsonreal-correct:function",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Correct patch must preserve every functional reference case"
+    },
+    {
+      "id": "matrix:cjsonreal-incomplete:exit",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Expected code 10, actual 10"
+    },
+    {
+      "id": "matrix:cjsonreal-incomplete:complete",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Official matrix should have complete analysis"
+    },
+    {
+      "id": "matrix:cjsonreal-incomplete:source:base",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Source hash from report must match current file: targets/cjsonreal/base.c"
+    },
+    {
+      "id": "matrix:cjsonreal-incomplete:source:patch",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Source hash from report must match current file: targets/cjsonreal/incomplete.c"
+    },
+    {
+      "id": "matrix:cjsonreal-incomplete:builds",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "All four release/sanitized builds must succeed"
+    },
+    {
+      "id": "matrix:cjsonreal-incomplete:hardening:base",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Hardening measurements must contain four ELF properties"
+    },
+    {
+      "id": "matrix:cjsonreal-incomplete:hardening:patched",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Hardening measurements must contain four ELF properties"
+    },
+    {
+      "id": "matrix:cjsonreal-incomplete:hardening-drops",
+      "ok": true,
+      "level": "WARNING",
+      "detail": "Potential weakened binary protections: []"
+    },
+    {
+      "id": "matrix:cjsonreal-incomplete:correlation",
+      "ok": true,
+      "level": "WARNING",
+      "detail": "Patch-to-finding correlation should have runtime source evidence"
+    },
+    {
+      "id": "matrix:cjsonreal-incomplete:attack-count",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "At least 2 security attacks per scenario"
+    },
+    {
+      "id": "matrix:cjsonreal-incomplete:function-count",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "At least 4 functional tests per scenario"
+    },
+    {
+      "id": "matrix:cjsonreal-incomplete:base-confirmed",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Every declared security testcase must reproduce on base"
+    },
+    {
+      "id": "matrix:cjsonreal-incomplete:3-runs:0:base_sanitized",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Three recorded sanitizer replays per security case"
+    },
+    {
+      "id": "matrix:cjsonreal-incomplete:3-runs:0:patched_sanitized",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Three recorded sanitizer replays per security case"
+    },
+    {
+      "id": "matrix:cjsonreal-incomplete:reproducer:0",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Reproducer bundle expected at artifacts/ci/repro/cjsonreal-incomplete/upstream-poc/manifest.json"
+    },
+    {
+      "id": "matrix:cjsonreal-incomplete:3-runs:1:base_sanitized",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Three recorded sanitizer replays per security case"
+    },
+    {
+      "id": "matrix:cjsonreal-incomplete:3-runs:1:patched_sanitized",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Three recorded sanitizer replays per security case"
+    },
+    {
+      "id": "matrix:cjsonreal-incomplete:reproducer:1",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Reproducer bundle expected at artifacts/ci/repro/cjsonreal-incomplete/alternate-input/manifest.json"
+    },
+    {
+      "id": "matrix:cjsonreal-incomplete:3-runs:2:base_sanitized",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Three recorded sanitizer replays per security case"
+    },
+    {
+      "id": "matrix:cjsonreal-incomplete:3-runs:2:patched_sanitized",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Three recorded sanitizer replays per security case"
+    },
+    {
+      "id": "matrix:cjsonreal-incomplete:3-runs:3:base_sanitized",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Three recorded sanitizer replays per security case"
+    },
+    {
+      "id": "matrix:cjsonreal-incomplete:3-runs:3:patched_sanitized",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Three recorded sanitizer replays per security case"
+    },
+    {
+      "id": "matrix:cjsonreal-incomplete:reproducer-any",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Automatically minimized reproducer bundles should exist"
+    },
+    {
+      "id": "matrix:cjsonreal-incomplete:incomplete",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Incomplete patch must retain *confirmed* original vulnerability"
+    },
+    {
+      "id": "matrix:cjsonreal-regression:exit",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Expected code 20, actual 20"
+    },
+    {
+      "id": "matrix:cjsonreal-regression:complete",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Official matrix should have complete analysis"
+    },
+    {
+      "id": "matrix:cjsonreal-regression:source:base",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Source hash from report must match current file: targets/cjsonreal/base.c"
+    },
+    {
+      "id": "matrix:cjsonreal-regression:source:patch",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Source hash from report must match current file: targets/cjsonreal/regression.c"
+    },
+    {
+      "id": "matrix:cjsonreal-regression:builds",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "All four release/sanitized builds must succeed"
+    },
+    {
+      "id": "matrix:cjsonreal-regression:hardening:base",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Hardening measurements must contain four ELF properties"
+    },
+    {
+      "id": "matrix:cjsonreal-regression:hardening:patched",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Hardening measurements must contain four ELF properties"
+    },
+    {
+      "id": "matrix:cjsonreal-regression:hardening-drops",
+      "ok": true,
+      "level": "WARNING",
+      "detail": "Potential weakened binary protections: []"
+    },
+    {
+      "id": "matrix:cjsonreal-regression:correlation",
+      "ok": true,
+      "level": "WARNING",
+      "detail": "Patch-to-finding correlation should have runtime source evidence"
+    },
+    {
+      "id": "matrix:cjsonreal-regression:attack-count",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "At least 2 security attacks per scenario"
+    },
+    {
+      "id": "matrix:cjsonreal-regression:function-count",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "At least 4 functional tests per scenario"
+    },
+    {
+      "id": "matrix:cjsonreal-regression:base-confirmed",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Every declared security testcase must reproduce on base"
+    },
+    {
+      "id": "matrix:cjsonreal-regression:3-runs:0:base_sanitized",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Three recorded sanitizer replays per security case"
+    },
+    {
+      "id": "matrix:cjsonreal-regression:3-runs:0:patched_sanitized",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Three recorded sanitizer replays per security case"
+    },
+    {
+      "id": "matrix:cjsonreal-regression:reproducer:0",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Reproducer bundle expected at artifacts/ci/repro/cjsonreal-regression/upstream-poc/manifest.json"
+    },
+    {
+      "id": "matrix:cjsonreal-regression:3-runs:1:base_sanitized",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Three recorded sanitizer replays per security case"
+    },
+    {
+      "id": "matrix:cjsonreal-regression:3-runs:1:patched_sanitized",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Three recorded sanitizer replays per security case"
+    },
+    {
+      "id": "matrix:cjsonreal-regression:reproducer:1",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Reproducer bundle expected at artifacts/ci/repro/cjsonreal-regression/alternate-input/manifest.json"
+    },
+    {
+      "id": "matrix:cjsonreal-regression:3-runs:2:base_sanitized",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Three recorded sanitizer replays per security case"
+    },
+    {
+      "id": "matrix:cjsonreal-regression:3-runs:2:patched_sanitized",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Three recorded sanitizer replays per security case"
+    },
+    {
+      "id": "matrix:cjsonreal-regression:3-runs:3:base_sanitized",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Three recorded sanitizer replays per security case"
+    },
+    {
+      "id": "matrix:cjsonreal-regression:3-runs:3:patched_sanitized",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Three recorded sanitizer replays per security case"
+    },
+    {
+      "id": "matrix:cjsonreal-regression:reproducer-any",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Automatically minimized reproducer bundles should exist"
+    },
+    {
+      "id": "matrix:cjsonreal-regression:regression",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Regression patch must break a valid baseline-passing reference"
+    },
+    {
+      "id": "blind:run-id",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Summary and suite manifest must describe same run"
+    },
+    {
+      "id": "blind:unique",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Nine uniquely named unknown candidates"
+    },
+    {
+      "id": "blind:modes",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Nine distinct case roles and target coverage"
+    },
+    {
+      "id": "blind:summary",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "The independent nine-case harness expects 9/9 successful comparisons"
+    },
+    {
+      "id": "blind:summary-cases",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Summary must match manifest candidate IDs exactly"
+    },
+    {
+      "id": "blind:candidate_70df6869c389:result",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Expected pass to produce code 0"
+    },
+    {
+      "id": "blind:candidate_70df6869c389:reported-exit",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Independent engine report must agree with harness expectation"
+    },
+    {
+      "id": "blind:candidate_70df6869c389:security",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Expected security_status=fixed, observed fixed"
+    },
+    {
+      "id": "blind:candidate_70df6869c389:complete",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "New correct patch needs complete analysis and preserved behavior"
+    },
+    {
+      "id": "blind:candidate_4fcc0b5e4592:result",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Expected incomplete to produce code 10"
+    },
+    {
+      "id": "blind:candidate_4fcc0b5e4592:reported-exit",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Independent engine report must agree with harness expectation"
+    },
+    {
+      "id": "blind:candidate_4fcc0b5e4592:security",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Expected security_status=incomplete, observed incomplete"
+    },
+    {
+      "id": "blind:candidate_fe6bedf70f8a:result",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Expected regression to produce code 20"
+    },
+    {
+      "id": "blind:candidate_fe6bedf70f8a:reported-exit",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Independent engine report must agree with harness expectation"
+    },
+    {
+      "id": "blind:candidate_fe6bedf70f8a:security",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Expected security_status=fixed, observed fixed"
+    },
+    {
+      "id": "blind:candidate_fe6bedf70f8a:regression",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Observed behavioral regression must be independently recorded"
+    },
+    {
+      "id": "blind:candidate_77a58dc375cf:result",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Expected new_issue to produce code 10"
+    },
+    {
+      "id": "blind:candidate_77a58dc375cf:reported-exit",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Independent engine report must agree with harness expectation"
+    },
+    {
+      "id": "blind:candidate_77a58dc375cf:security",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Expected security_status=new_issue, observed new_issue"
+    },
+    {
+      "id": "blind:candidate_3554eeb55e83:result",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Expected inconclusive to produce code 40"
+    },
+    {
+      "id": "blind:candidate_3554eeb55e83:reported-exit",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Independent engine report must agree with harness expectation"
+    },
+    {
+      "id": "blind:candidate_3554eeb55e83:security",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Expected security_status=inconclusive, observed inconclusive"
+    },
+    {
+      "id": "blind:candidate_3554eeb55e83:inconclusive",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Missing precondition must remain inconclusive"
+    },
+    {
+      "id": "blind:candidate_ff91e8f53169:result",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Expected build_error to produce code 30"
+    },
+    {
+      "id": "blind:candidate_ff91e8f53169:reported-exit",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Independent engine report must agree with harness expectation"
+    },
+    {
+      "id": "blind:candidate_ff91e8f53169:build-error",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Build error must be an actual recorded exception"
+    },
+    {
+      "id": "blind:candidate_b42bca0d6d9b:result",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Expected pass to produce code 0"
+    },
+    {
+      "id": "blind:candidate_b42bca0d6d9b:reported-exit",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Independent engine report must agree with harness expectation"
+    },
+    {
+      "id": "blind:candidate_b42bca0d6d9b:security",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Expected security_status=fixed, observed fixed"
+    },
+    {
+      "id": "blind:candidate_b42bca0d6d9b:complete",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "New correct patch needs complete analysis and preserved behavior"
+    },
+    {
+      "id": "blind:candidate_9799f53f2293:result",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Expected incomplete to produce code 10"
+    },
+    {
+      "id": "blind:candidate_9799f53f2293:reported-exit",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Independent engine report must agree with harness expectation"
+    },
+    {
+      "id": "blind:candidate_9799f53f2293:security",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Expected security_status=incomplete, observed incomplete"
+    },
+    {
+      "id": "blind:candidate_a6f4a482a4ea:result",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Expected regression to produce code 20"
+    },
+    {
+      "id": "blind:candidate_a6f4a482a4ea:reported-exit",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Independent engine report must agree with harness expectation"
+    },
+    {
+      "id": "blind:candidate_a6f4a482a4ea:security",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Expected security_status=fixed, observed fixed"
+    },
+    {
+      "id": "blind:candidate_a6f4a482a4ea:regression",
+      "ok": true,
+      "level": "ERROR",
+      "detail": "Observed behavioral regression must be independently recorded"
+    }
+  ]
+}

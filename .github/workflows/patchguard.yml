@@ -1,0 +1,37 @@
+name: PatchGuard CI
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - name: Restore dynamically learned regression inputs
+        uses: actions/cache/restore@v4
+        with:
+          path: regressions
+          key: patchguard-regressions-${{ github.ref }}-${{ github.run_id }}
+          restore-keys: |
+            patchguard-regressions-${{ github.ref }}-
+      - name: Run tests and scenario evaluation in isolated Docker container
+        run: |
+          python3 -m unittest discover -s tests -v
+          chmod +x tools/docker_run.sh
+          tools/docker_run.sh
+      - name: Cache automatically learned regression inputs
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: regressions
+          key: patchguard-regressions-${{ github.ref }}-${{ github.run_id }}
+      - name: Upload reproducible evidence (even on validation failures)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: patchguard-evidence
+          path: artifacts/ci/
+          if-no-files-found: warn

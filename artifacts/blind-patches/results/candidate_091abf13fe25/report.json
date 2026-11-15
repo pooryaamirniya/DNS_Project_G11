@@ -1,0 +1,1307 @@
+{
+  "tool": "PatchGuard 1.0.0",
+  "compiler": "gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+  "json_c_version": "0.17",
+  "git_commit": "dee1cbfa0e86e3e902e84283b1707e55cb19cd0e",
+  "platform": "Linux-5.15.167.4-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+  "python": "3.12.3",
+  "scenarios": [
+    {
+      "scenario": "candidate_091abf13fe25",
+      "target": "Frame message parser (original teaching target)",
+      "versions": {
+        "base": {
+          "source": "targets/frame/base.c",
+          "source_sha256": "7338f2fab098e5ca4c6ae578eebcfd35fafda0b34645a9d6b77e028f2451859d"
+        },
+        "patch": {
+          "source": "artifacts/blind-patches/candidates/candidate_091abf13fe25.c",
+          "source_sha256": "bd0e1f8da12107424a4d0893fdc4b8bb2b10cc88d6043602f3318b21569a2a5b"
+        }
+      },
+      "builds": {
+        "base_release": {
+          "argv": [
+            "gcc",
+            "-std=c11",
+            "-Wall",
+            "-Wextra",
+            "-Wno-unused-parameter",
+            "-fno-omit-frame-pointer",
+            "-g",
+            "-O1",
+            "-fstack-protector-strong",
+            "-fPIE",
+            "-pie",
+            "-Wl,-z,relro,-z,now",
+            "/work/targets/frame/base.c",
+            "-o",
+            "/work/artifacts/blind-patches/results/candidate_091abf13fe25/build/candidate_091abf13fe25/base-release"
+          ],
+          "returncode": 0,
+          "stdout": "",
+          "stderr": "",
+          "elapsed_ms": 99,
+          "timeout": false,
+          "source": "targets/frame/base.c",
+          "binary_sha256": "0bdd6ea324b812a0317f779aa7f19cc17e85a98b750775c5ae39f49924cfc9b4"
+        },
+        "base_sanitized": {
+          "argv": [
+            "gcc",
+            "-std=c11",
+            "-Wall",
+            "-Wextra",
+            "-Wno-unused-parameter",
+            "-fno-omit-frame-pointer",
+            "-g",
+            "-O1",
+            "-U_FORTIFY_SOURCE",
+            "-D_FORTIFY_SOURCE=0",
+            "-fsanitize=address,undefined",
+            "-fno-sanitize-recover=all",
+            "/work/targets/frame/base.c",
+            "-o",
+            "/work/artifacts/blind-patches/results/candidate_091abf13fe25/build/candidate_091abf13fe25/base-sanitized"
+          ],
+          "returncode": 0,
+          "stdout": "",
+          "stderr": "",
+          "elapsed_ms": 121,
+          "timeout": false,
+          "source": "targets/frame/base.c",
+          "binary_sha256": "c046d78330a124dcadb999691ce12309a521a3880c632164822b0a56930d4b97"
+        },
+        "patch_release": {
+          "argv": [
+            "gcc",
+            "-std=c11",
+            "-Wall",
+            "-Wextra",
+            "-Wno-unused-parameter",
+            "-fno-omit-frame-pointer",
+            "-g",
+            "-O1",
+            "-fstack-protector-strong",
+            "-fPIE",
+            "-pie",
+            "-Wl,-z,relro,-z,now",
+            "/work/artifacts/blind-patches/candidates/candidate_091abf13fe25.c",
+            "-o",
+            "/work/artifacts/blind-patches/results/candidate_091abf13fe25/build/candidate_091abf13fe25/patch-release"
+          ],
+          "returncode": 0,
+          "stdout": "",
+          "stderr": "",
+          "elapsed_ms": 122,
+          "timeout": false,
+          "source": "artifacts/blind-patches/candidates/candidate_091abf13fe25.c",
+          "binary_sha256": "fb10f36ce6daaef60e03b00651b8f2da6d45a215772432536393260765245fe5"
+        },
+        "patch_sanitized": {
+          "argv": [
+            "gcc",
+            "-std=c11",
+            "-Wall",
+            "-Wextra",
+            "-Wno-unused-parameter",
+            "-fno-omit-frame-pointer",
+            "-g",
+            "-O1",
+            "-U_FORTIFY_SOURCE",
+            "-D_FORTIFY_SOURCE=0",
+            "-fsanitize=address,undefined",
+            "-fno-sanitize-recover=all",
+            "/work/artifacts/blind-patches/candidates/candidate_091abf13fe25.c",
+            "-o",
+            "/work/artifacts/blind-patches/results/candidate_091abf13fe25/build/candidate_091abf13fe25/patch-sanitized"
+          ],
+          "returncode": 0,
+          "stdout": "",
+          "stderr": "",
+          "elapsed_ms": 139,
+          "timeout": false,
+          "source": "artifacts/blind-patches/candidates/candidate_091abf13fe25.c",
+          "binary_sha256": "b11e74b0ea09ce46fa43330244906d8b0ee9e3124abaf0aa9f6482061dc877a6"
+        }
+      },
+      "hardening": {
+        "base": {
+          "NX": true,
+          "PIE": true,
+          "RELRO": "Full",
+          "Canary_symbol": true,
+          "evidence": {
+            "GNU_STACK": [
+              "GNU_STACK      0x000000 0x0000000000000000 0x0000000000000000 0x000000 0x000000 RW  0x10"
+            ],
+            "GNU_RELRO": [
+              "GNU_RELRO      0x002d88 0x0000000000003d88 0x0000000000003d88 0x000278 0x000278 R   0x1"
+            ],
+            "ELF_Type": [
+              "Type:                              DYN (Position-Independent Executable file)"
+            ],
+            "BIND_NOW": [
+              "0x000000000000001e (FLAGS)              BIND_NOW",
+              "0x000000006ffffffb (FLAGS_1)            Flags: NOW PIE"
+            ],
+            "Canary_symbol": [
+              "6: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __stack_chk_fail@GLIBC_2.4 (4)",
+              "27: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __stack_chk_fail@GLIBC_2.4"
+            ]
+          }
+        },
+        "patched": {
+          "NX": true,
+          "PIE": true,
+          "RELRO": "Full",
+          "Canary_symbol": true,
+          "evidence": {
+            "GNU_STACK": [
+              "GNU_STACK      0x000000 0x0000000000000000 0x0000000000000000 0x000000 0x000000 RW  0x10"
+            ],
+            "GNU_RELRO": [
+              "GNU_RELRO      0x002d90 0x0000000000003d90 0x0000000000003d90 0x000270 0x000270 R   0x1"
+            ],
+            "ELF_Type": [
+              "Type:                              DYN (Position-Independent Executable file)"
+            ],
+            "BIND_NOW": [
+              "0x000000000000001e (FLAGS)              BIND_NOW",
+              "0x000000006ffffffb (FLAGS_1)            Flags: NOW PIE"
+            ],
+            "Canary_symbol": [
+              "6: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __stack_chk_fail@GLIBC_2.4 (4)",
+              "27: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __stack_chk_fail@GLIBC_2.4"
+            ]
+          }
+        },
+        "warnings": []
+      },
+      "security_tests": [
+        {
+          "case_id": "initial-exploit",
+          "category": "attack",
+          "input_hex": "4d53473a41414141414141414141414141414141414141414141414141414141414141410a",
+          "expected_patched": {
+            "exit_code": 2,
+            "stdout": "INVALID\n"
+          },
+          "base_sanitized": [
+            {
+              "process": {
+                "argv": [
+                  "/work/artifacts/blind-patches/results/candidate_091abf13fe25/build/candidate_091abf13fe25/base-sanitized"
+                ],
+                "returncode": -6,
+                "stdout": "",
+                "stderr": "=================================================================\n==40==ERROR: AddressSanitizer: stack-buffer-overflow on address 0x7f1055d00030 at pc 0x7f1058754303 bp 0x7ffcd20fb640 sp 0x7ffcd20fade8\nWRITE of size 33 at 0x7f1055d00030 thread T0\n    #0 0x7f1058754302 in memcpy ../../../../src/libsanitizer/sanitizer_common/sanitizer_common_interceptors_memintrinsics.inc:115\n    #1 0x563cb6cb761b in process_message /work/targets/frame/base.c:12\n    #2 0x563cb6cb761b in main /work/targets/frame/base.c:22\n    #3 0x7f1057e5a1c9  (/lib/x86_64-linux-gnu/libc.so.6+0x2a1c9) (BuildId: 8cebda42d140fc2b09639f8b13a5d5f2e617ef09)\n    #4 0x7f1057e5a28a in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x2a28a) (BuildId: 8cebda42d140fc2b09639f8b13a5d5f2e617ef09)\n    #5 0x563cb6cb72c4 in _start (/work/artifacts/blind-patches/results/candidate_091abf13fe25/build/candidate_091abf13fe25/base-sanitized+0x22c4) (BuildId: 922ff091c2b4d285f03dd5c7f224d3e353949e2b)\n\nAddress 0x7f1055d00030 is located in stack of thread T0 at offset 48 in frame\n    #0 0x563cb6cb7398 in main /work/targets/frame/base.c:16\n\n  This frame has 2 object(s):\n    [32, 48) 'normalized' (line 9)\n    [64, 320) 'line' (line 17) <== Memory access at offset 48 partially underflows this variable\nHINT: this may be a false positive if your program uses some custom stack unwind mechanism, swapcontext or vfork\n      (longjmp and C++ exceptions *are* supported)\nSUMMARY: AddressSanitizer: stack-buffer-overflow ../../../../src/libsanitizer/sanitizer_common/sanitizer_common_interceptors_memintrinsics.inc:115 in memcpy\nShadow bytes around the buggy address:\n  0x7f1055cffd80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7f1055cffe00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7f1055cffe80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7f1055cfff00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7f1055cfff80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n=>0x7f1055d00000: f1 f1 f1 f1 00 00[f2]f2 00 00 00 00 00 00 00 00\n  0x7f1055d00080: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7f1055d00100: 00 00 00 00 00 00 00 00 f3 f3 f3 f3 f3 f3 f3 f3\n  0x7f1055d00180: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7f1055d00200: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7f1055d00280: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\nShadow byte legend (one shadow byte represents 8 application bytes):\n  Addressable:           00\n  Partially addressable: 01 02 03 04 05 06 07 \n  Heap left redzone:       fa\n  Freed heap region:       fd\n  Stack left redzone:      f1\n  Stack mid redzone:       f2\n  Stack right redzone:     f3\n  Stack after return:      f5\n  Stack use after scope:   f8\n  Global redzone:          f9\n  Global init order:       f6\n  Poisoned by user:        f7\n  Container overflow:      fc\n  Array cookie:            ac\n  Intra object redzone:    bb\n  ASan internal:           fe\n  Left alloca redzone:     ca\n  Right alloca redzone:    cb\n==40==ABORTING\n",
+                "elapsed_ms": 301,
+                "timeout": false
+              },
+              "finding": {
+                "mechanism": "ASan",
+                "error_type": "stack-buffer-overflow",
+                "function": "process_message",
+                "location": "/work/targets/frame/base.c:12",
+                "confirmed": true,
+                "termination": {
+                  "exit_code": -6,
+                  "signal": 6,
+                  "signal_name": "SIGABRT",
+                  "timeout": false
+                }
+              }
+            },
+            {
+              "process": {
+                "argv": [
+                  "/work/artifacts/blind-patches/results/candidate_091abf13fe25/build/candidate_091abf13fe25/base-sanitized"
+                ],
+                "returncode": -6,
+                "stdout": "",
+                "stderr": "=================================================================\n==41==ERROR: AddressSanitizer: stack-buffer-overflow on address 0x7fb7ec100030 at pc 0x7fb7eeb13303 bp 0x7fff5677ffb0 sp 0x7fff5677f758\nWRITE of size 33 at 0x7fb7ec100030 thread T0\n    #0 0x7fb7eeb13302 in memcpy ../../../../src/libsanitizer/sanitizer_common/sanitizer_common_interceptors_memintrinsics.inc:115\n    #1 0x561aa4f8061b in process_message /work/targets/frame/base.c:12\n    #2 0x561aa4f8061b in main /work/targets/frame/base.c:22\n    #3 0x7fb7ee2191c9  (/lib/x86_64-linux-gnu/libc.so.6+0x2a1c9) (BuildId: 8cebda42d140fc2b09639f8b13a5d5f2e617ef09)\n    #4 0x7fb7ee21928a in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x2a28a) (BuildId: 8cebda42d140fc2b09639f8b13a5d5f2e617ef09)\n    #5 0x561aa4f802c4 in _start (/work/artifacts/blind-patches/results/candidate_091abf13fe25/build/candidate_091abf13fe25/base-sanitized+0x22c4) (BuildId: 922ff091c2b4d285f03dd5c7f224d3e353949e2b)\n\nAddress 0x7fb7ec100030 is located in stack of thread T0 at offset 48 in frame\n    #0 0x561aa4f80398 in main /work/targets/frame/base.c:16\n\n  This frame has 2 object(s):\n    [32, 48) 'normalized' (line 9)\n    [64, 320) 'line' (line 17) <== Memory access at offset 48 partially underflows this variable\nHINT: this may be a false positive if your program uses some custom stack unwind mechanism, swapcontext or vfork\n      (longjmp and C++ exceptions *are* supported)\nSUMMARY: AddressSanitizer: stack-buffer-overflow ../../../../src/libsanitizer/sanitizer_common/sanitizer_common_interceptors_memintrinsics.inc:115 in memcpy\nShadow bytes around the buggy address:\n  0x7fb7ec0ffd80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7fb7ec0ffe00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7fb7ec0ffe80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7fb7ec0fff00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7fb7ec0fff80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n=>0x7fb7ec100000: f1 f1 f1 f1 00 00[f2]f2 00 00 00 00 00 00 00 00\n  0x7fb7ec100080: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7fb7ec100100: 00 00 00 00 00 00 00 00 f3 f3 f3 f3 f3 f3 f3 f3\n  0x7fb7ec100180: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7fb7ec100200: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7fb7ec100280: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\nShadow byte legend (one shadow byte represents 8 application bytes):\n  Addressable:           00\n  Partially addressable: 01 02 03 04 05 06 07 \n  Heap left redzone:       fa\n  Freed heap region:       fd\n  Stack left redzone:      f1\n  Stack mid redzone:       f2\n  Stack right redzone:     f3\n  Stack after return:      f5\n  Stack use after scope:   f8\n  Global redzone:          f9\n  Global init order:       f6\n  Poisoned by user:        f7\n  Container overflow:      fc\n  Array cookie:            ac\n  Intra object redzone:    bb\n  ASan internal:           fe\n  Left alloca redzone:     ca\n  Right alloca redzone:    cb\n==41==ABORTING\n",
+                "elapsed_ms": 221,
+                "timeout": false
+              },
+              "finding": {
+                "mechanism": "ASan",
+                "error_type": "stack-buffer-overflow",
+                "function": "process_message",
+                "location": "/work/targets/frame/base.c:12",
+                "confirmed": true,
+                "termination": {
+                  "exit_code": -6,
+                  "signal": 6,
+                  "signal_name": "SIGABRT",
+                  "timeout": false
+                }
+              }
+            },
+            {
+              "process": {
+                "argv": [
+                  "/work/artifacts/blind-patches/results/candidate_091abf13fe25/build/candidate_091abf13fe25/base-sanitized"
+                ],
+                "returncode": -6,
+                "stdout": "",
+                "stderr": "=================================================================\n==42==ERROR: AddressSanitizer: stack-buffer-overflow on address 0x7ffbe3500030 at pc 0x7ffbe5ec3303 bp 0x7fff353e8f40 sp 0x7fff353e86e8\nWRITE of size 33 at 0x7ffbe3500030 thread T0\n    #0 0x7ffbe5ec3302 in memcpy ../../../../src/libsanitizer/sanitizer_common/sanitizer_common_interceptors_memintrinsics.inc:115\n    #1 0x565323ec261b in process_message /work/targets/frame/base.c:12\n    #2 0x565323ec261b in main /work/targets/frame/base.c:22\n    #3 0x7ffbe55c91c9  (/lib/x86_64-linux-gnu/libc.so.6+0x2a1c9) (BuildId: 8cebda42d140fc2b09639f8b13a5d5f2e617ef09)\n    #4 0x7ffbe55c928a in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x2a28a) (BuildId: 8cebda42d140fc2b09639f8b13a5d5f2e617ef09)\n    #5 0x565323ec22c4 in _start (/work/artifacts/blind-patches/results/candidate_091abf13fe25/build/candidate_091abf13fe25/base-sanitized+0x22c4) (BuildId: 922ff091c2b4d285f03dd5c7f224d3e353949e2b)\n\nAddress 0x7ffbe3500030 is located in stack of thread T0 at offset 48 in frame\n    #0 0x565323ec2398 in main /work/targets/frame/base.c:16\n\n  This frame has 2 object(s):\n    [32, 48) 'normalized' (line 9)\n    [64, 320) 'line' (line 17) <== Memory access at offset 48 partially underflows this variable\nHINT: this may be a false positive if your program uses some custom stack unwind mechanism, swapcontext or vfork\n      (longjmp and C++ exceptions *are* supported)\nSUMMARY: AddressSanitizer: stack-buffer-overflow ../../../../src/libsanitizer/sanitizer_common/sanitizer_common_interceptors_memintrinsics.inc:115 in memcpy\nShadow bytes around the buggy address:\n  0x7ffbe34ffd80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7ffbe34ffe00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7ffbe34ffe80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7ffbe34fff00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7ffbe34fff80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n=>0x7ffbe3500000: f1 f1 f1 f1 00 00[f2]f2 00 00 00 00 00 00 00 00\n  0x7ffbe3500080: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7ffbe3500100: 00 00 00 00 00 00 00 00 f3 f3 f3 f3 f3 f3 f3 f3\n  0x7ffbe3500180: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7ffbe3500200: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7ffbe3500280: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\nShadow byte legend (one shadow byte represents 8 application bytes):\n  Addressable:           00\n  Partially addressable: 01 02 03 04 05 06 07 \n  Heap left redzone:       fa\n  Freed heap region:       fd\n  Stack left redzone:      f1\n  Stack mid redzone:       f2\n  Stack right redzone:     f3\n  Stack after return:      f5\n  Stack use after scope:   f8\n  Global redzone:          f9\n  Global init order:       f6\n  Poisoned by user:        f7\n  Container overflow:      fc\n  Array cookie:            ac\n  Intra object redzone:    bb\n  ASan internal:           fe\n  Left alloca redzone:     ca\n  Right alloca redzone:    cb\n==42==ABORTING\n",
+                "elapsed_ms": 426,
+                "timeout": false
+              },
+              "finding": {
+                "mechanism": "ASan",
+                "error_type": "stack-buffer-overflow",
+                "function": "process_message",
+                "location": "/work/targets/frame/base.c:12",
+                "confirmed": true,
+                "termination": {
+                  "exit_code": -6,
+                  "signal": 6,
+                  "signal_name": "SIGABRT",
+                  "timeout": false
+                }
+              }
+            }
+          ],
+          "patched_sanitized": [
+            {
+              "process": {
+                "argv": [
+                  "/work/artifacts/blind-patches/results/candidate_091abf13fe25/build/candidate_091abf13fe25/patch-sanitized"
+                ],
+                "returncode": 2,
+                "stdout": "INVALID\n",
+                "stderr": "",
+                "elapsed_ms": 11,
+                "timeout": false
+              },
+              "finding": {
+                "mechanism": "none",
+                "error_type": null,
+                "function": null,
+                "location": null,
+                "confirmed": false,
+                "termination": {
+                  "exit_code": 2,
+                  "signal": null,
+                  "signal_name": null,
+                  "timeout": false
+                }
+              }
+            },
+            {
+              "process": {
+                "argv": [
+                  "/work/artifacts/blind-patches/results/candidate_091abf13fe25/build/candidate_091abf13fe25/patch-sanitized"
+                ],
+                "returncode": 2,
+                "stdout": "INVALID\n",
+                "stderr": "",
+                "elapsed_ms": 12,
+                "timeout": false
+              },
+              "finding": {
+                "mechanism": "none",
+                "error_type": null,
+                "function": null,
+                "location": null,
+                "confirmed": false,
+                "termination": {
+                  "exit_code": 2,
+                  "signal": null,
+                  "signal_name": null,
+                  "timeout": false
+                }
+              }
+            },
+            {
+              "process": {
+                "argv": [
+                  "/work/artifacts/blind-patches/results/candidate_091abf13fe25/build/candidate_091abf13fe25/patch-sanitized"
+                ],
+                "returncode": 2,
+                "stdout": "INVALID\n",
+                "stderr": "",
+                "elapsed_ms": 16,
+                "timeout": false
+              },
+              "finding": {
+                "mechanism": "none",
+                "error_type": null,
+                "function": null,
+                "location": null,
+                "confirmed": false,
+                "termination": {
+                  "exit_code": 2,
+                  "signal": null,
+                  "signal_name": null,
+                  "timeout": false
+                }
+              }
+            }
+          ],
+          "base_release": {
+            "argv": [
+              "/work/artifacts/blind-patches/results/candidate_091abf13fe25/build/candidate_091abf13fe25/base-release"
+            ],
+            "returncode": -6,
+            "stdout": "",
+            "stderr": "*** buffer overflow detected ***: terminated\n",
+            "elapsed_ms": 20,
+            "timeout": false
+          },
+          "patched_release": {
+            "argv": [
+              "/work/artifacts/blind-patches/results/candidate_091abf13fe25/build/candidate_091abf13fe25/patch-release"
+            ],
+            "returncode": 2,
+            "stdout": "INVALID\n",
+            "stderr": "",
+            "elapsed_ms": 8,
+            "timeout": false
+          },
+          "base_state": "confirmed",
+          "patched_state": "absent",
+          "patched_oracle_pass": true
+        },
+        {
+          "case_id": "bypass-input",
+          "category": "boundary",
+          "input_hex": "4d53473a4242424242424242424242424242424242424242424242420a",
+          "expected_patched": {
+            "exit_code": 2,
+            "stdout": "INVALID\n"
+          },
+          "base_sanitized": [
+            {
+              "process": {
+                "argv": [
+                  "/work/artifacts/blind-patches/results/candidate_091abf13fe25/build/candidate_091abf13fe25/base-sanitized"
+                ],
+                "returncode": -6,
+                "stdout": "",
+                "stderr": "=================================================================\n==48==ERROR: AddressSanitizer: stack-buffer-overflow on address 0x7fda8ba00030 at pc 0x7fda8e426303 bp 0x7ffddf57e400 sp 0x7ffddf57dba8\nWRITE of size 25 at 0x7fda8ba00030 thread T0\n    #0 0x7fda8e426302 in memcpy ../../../../src/libsanitizer/sanitizer_common/sanitizer_common_interceptors_memintrinsics.inc:115\n    #1 0x55d28dcdf61b in process_message /work/targets/frame/base.c:12\n    #2 0x55d28dcdf61b in main /work/targets/frame/base.c:22\n    #3 0x7fda8db2c1c9  (/lib/x86_64-linux-gnu/libc.so.6+0x2a1c9) (BuildId: 8cebda42d140fc2b09639f8b13a5d5f2e617ef09)\n    #4 0x7fda8db2c28a in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x2a28a) (BuildId: 8cebda42d140fc2b09639f8b13a5d5f2e617ef09)\n    #5 0x55d28dcdf2c4 in _start (/work/artifacts/blind-patches/results/candidate_091abf13fe25/build/candidate_091abf13fe25/base-sanitized+0x22c4) (BuildId: 922ff091c2b4d285f03dd5c7f224d3e353949e2b)\n\nAddress 0x7fda8ba00030 is located in stack of thread T0 at offset 48 in frame\n    #0 0x55d28dcdf398 in main /work/targets/frame/base.c:16\n\n  This frame has 2 object(s):\n    [32, 48) 'normalized' (line 9)\n    [64, 320) 'line' (line 17) <== Memory access at offset 48 partially underflows this variable\nHINT: this may be a false positive if your program uses some custom stack unwind mechanism, swapcontext or vfork\n      (longjmp and C++ exceptions *are* supported)\nSUMMARY: AddressSanitizer: stack-buffer-overflow ../../../../src/libsanitizer/sanitizer_common/sanitizer_common_interceptors_memintrinsics.inc:115 in memcpy\nShadow bytes around the buggy address:\n  0x7fda8b9ffd80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7fda8b9ffe00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7fda8b9ffe80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7fda8b9fff00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7fda8b9fff80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n=>0x7fda8ba00000: f1 f1 f1 f1 00 00[f2]f2 00 00 00 00 00 00 00 00\n  0x7fda8ba00080: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7fda8ba00100: 00 00 00 00 00 00 00 00 f3 f3 f3 f3 f3 f3 f3 f3\n  0x7fda8ba00180: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7fda8ba00200: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7fda8ba00280: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\nShadow byte legend (one shadow byte represents 8 application bytes):\n  Addressable:           00\n  Partially addressable: 01 02 03 04 05 06 07 \n  Heap left redzone:       fa\n  Freed heap region:       fd\n  Stack left redzone:      f1\n  Stack mid redzone:       f2\n  Stack right redzone:     f3\n  Stack after return:      f5\n  Stack use after scope:   f8\n  Global redzone:          f9\n  Global init order:       f6\n  Poisoned by user:        f7\n  Container overflow:      fc\n  Array cookie:            ac\n  Intra object redzone:    bb\n  ASan internal:           fe\n  Left alloca redzone:     ca\n  Right alloca redzone:    cb\n==48==ABORTING\n",
+                "elapsed_ms": 580,
+                "timeout": false
+              },
+              "finding": {
+                "mechanism": "ASan",
+                "error_type": "stack-buffer-overflow",
+                "function": "process_message",
+                "location": "/work/targets/frame/base.c:12",
+                "confirmed": true,
+                "termination": {
+                  "exit_code": -6,
+                  "signal": 6,
+                  "signal_name": "SIGABRT",
+                  "timeout": false
+                }
+              }
+            },
+            {
+              "process": {
+                "argv": [
+                  "/work/artifacts/blind-patches/results/candidate_091abf13fe25/build/candidate_091abf13fe25/base-sanitized"
+                ],
+                "returncode": -6,
+                "stdout": "",
+                "stderr": "=================================================================\n==49==ERROR: AddressSanitizer: stack-buffer-overflow on address 0x7f722aa00030 at pc 0x7f722d436303 bp 0x7ffd1b7c8520 sp 0x7ffd1b7c7cc8\nWRITE of size 25 at 0x7f722aa00030 thread T0\n    #0 0x7f722d436302 in memcpy ../../../../src/libsanitizer/sanitizer_common/sanitizer_common_interceptors_memintrinsics.inc:115\n    #1 0x55570f70761b in process_message /work/targets/frame/base.c:12\n    #2 0x55570f70761b in main /work/targets/frame/base.c:22\n    #3 0x7f722cb3c1c9  (/lib/x86_64-linux-gnu/libc.so.6+0x2a1c9) (BuildId: 8cebda42d140fc2b09639f8b13a5d5f2e617ef09)\n    #4 0x7f722cb3c28a in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x2a28a) (BuildId: 8cebda42d140fc2b09639f8b13a5d5f2e617ef09)\n    #5 0x55570f7072c4 in _start (/work/artifacts/blind-patches/results/candidate_091abf13fe25/build/candidate_091abf13fe25/base-sanitized+0x22c4) (BuildId: 922ff091c2b4d285f03dd5c7f224d3e353949e2b)\n\nAddress 0x7f722aa00030 is located in stack of thread T0 at offset 48 in frame\n    #0 0x55570f707398 in main /work/targets/frame/base.c:16\n\n  This frame has 2 object(s):\n    [32, 48) 'normalized' (line 9)\n    [64, 320) 'line' (line 17) <== Memory access at offset 48 partially underflows this variable\nHINT: this may be a false positive if your program uses some custom stack unwind mechanism, swapcontext or vfork\n      (longjmp and C++ exceptions *are* supported)\nSUMMARY: AddressSanitizer: stack-buffer-overflow ../../../../src/libsanitizer/sanitizer_common/sanitizer_common_interceptors_memintrinsics.inc:115 in memcpy\nShadow bytes around the buggy address:\n  0x7f722a9ffd80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7f722a9ffe00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7f722a9ffe80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7f722a9fff00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7f722a9fff80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n=>0x7f722aa00000: f1 f1 f1 f1 00 00[f2]f2 00 00 00 00 00 00 00 00\n  0x7f722aa00080: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7f722aa00100: 00 00 00 00 00 00 00 00 f3 f3 f3 f3 f3 f3 f3 f3\n  0x7f722aa00180: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7f722aa00200: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7f722aa00280: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\nShadow byte legend (one shadow byte represents 8 application bytes):\n  Addressable:           00\n  Partially addressable: 01 02 03 04 05 06 07 \n  Heap left redzone:       fa\n  Freed heap region:       fd\n  Stack left redzone:      f1\n  Stack mid redzone:       f2\n  Stack right redzone:     f3\n  Stack after return:      f5\n  Stack use after scope:   f8\n  Global redzone:          f9\n  Global init order:       f6\n  Poisoned by user:        f7\n  Container overflow:      fc\n  Array cookie:            ac\n  Intra object redzone:    bb\n  ASan internal:           fe\n  Left alloca redzone:     ca\n  Right alloca redzone:    cb\n==49==ABORTING\n",
+                "elapsed_ms": 382,
+                "timeout": false
+              },
+              "finding": {
+                "mechanism": "ASan",
+                "error_type": "stack-buffer-overflow",
+                "function": "process_message",
+                "location": "/work/targets/frame/base.c:12",
+                "confirmed": true,
+                "termination": {
+                  "exit_code": -6,
+                  "signal": 6,
+                  "signal_name": "SIGABRT",
+                  "timeout": false
+                }
+              }
+            },
+            {
+              "process": {
+                "argv": [
+                  "/work/artifacts/blind-patches/results/candidate_091abf13fe25/build/candidate_091abf13fe25/base-sanitized"
+                ],
+                "returncode": -6,
+                "stdout": "",
+                "stderr": "=================================================================\n==50==ERROR: AddressSanitizer: stack-buffer-overflow on address 0x7f312d900030 at pc 0x7f3130282303 bp 0x7ffe7694cc10 sp 0x7ffe7694c3b8\nWRITE of size 25 at 0x7f312d900030 thread T0\n    #0 0x7f3130282302 in memcpy ../../../../src/libsanitizer/sanitizer_common/sanitizer_common_interceptors_memintrinsics.inc:115\n    #1 0x56245fada61b in process_message /work/targets/frame/base.c:12\n    #2 0x56245fada61b in main /work/targets/frame/base.c:22\n    #3 0x7f312f9881c9  (/lib/x86_64-linux-gnu/libc.so.6+0x2a1c9) (BuildId: 8cebda42d140fc2b09639f8b13a5d5f2e617ef09)\n    #4 0x7f312f98828a in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x2a28a) (BuildId: 8cebda42d140fc2b09639f8b13a5d5f2e617ef09)\n    #5 0x56245fada2c4 in _start (/work/artifacts/blind-patches/results/candidate_091abf13fe25/build/candidate_091abf13fe25/base-sanitized+0x22c4) (BuildId: 922ff091c2b4d285f03dd5c7f224d3e353949e2b)\n\nAddress 0x7f312d900030 is located in stack of thread T0 at offset 48 in frame\n    #0 0x56245fada398 in main /work/targets/frame/base.c:16\n\n  This frame has 2 object(s):\n    [32, 48) 'normalized' (line 9)\n    [64, 320) 'line' (line 17) <== Memory access at offset 48 partially underflows this variable\nHINT: this may be a false positive if your program uses some custom stack unwind mechanism, swapcontext or vfork\n      (longjmp and C++ exceptions *are* supported)\nSUMMARY: AddressSanitizer: stack-buffer-overflow ../../../../src/libsanitizer/sanitizer_common/sanitizer_common_interceptors_memintrinsics.inc:115 in memcpy\nShadow bytes around the buggy address:\n  0x7f312d8ffd80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7f312d8ffe00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7f312d8ffe80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7f312d8fff00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7f312d8fff80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n=>0x7f312d900000: f1 f1 f1 f1 00 00[f2]f2 00 00 00 00 00 00 00 00\n  0x7f312d900080: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7f312d900100: 00 00 00 00 00 00 00 00 f3 f3 f3 f3 f3 f3 f3 f3\n  0x7f312d900180: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7f312d900200: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7f312d900280: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\nShadow byte legend (one shadow byte represents 8 application bytes):\n  Addressable:           00\n  Partially addressable: 01 02 03 04 05 06 07 \n  Heap left redzone:       fa\n  Freed heap region:       fd\n  Stack left redzone:      f1\n  Stack mid redzone:       f2\n  Stack right redzone:     f3\n  Stack after return:      f5\n  Stack use after scope:   f8\n  Global redzone:          f9\n  Global init order:       f6\n  Poisoned by user:        f7\n  Container overflow:      fc\n  Array cookie:            ac\n  Intra object redzone:    bb\n  ASan internal:           fe\n  Left alloca redzone:     ca\n  Right alloca redzone:    cb\n==50==ABORTING\n",
+                "elapsed_ms": 459,
+                "timeout": false
+              },
+              "finding": {
+                "mechanism": "ASan",
+                "error_type": "stack-buffer-overflow",
+                "function": "process_message",
+                "location": "/work/targets/frame/base.c:12",
+                "confirmed": true,
+                "termination": {
+                  "exit_code": -6,
+                  "signal": 6,
+                  "signal_name": "SIGABRT",
+                  "timeout": false
+                }
+              }
+            }
+          ],
+          "patched_sanitized": [
+            {
+              "process": {
+                "argv": [
+                  "/work/artifacts/blind-patches/results/candidate_091abf13fe25/build/candidate_091abf13fe25/patch-sanitized"
+                ],
+                "returncode": 2,
+                "stdout": "INVALID\n",
+                "stderr": "",
+                "elapsed_ms": 8,
+                "timeout": false
+              },
+              "finding": {
+                "mechanism": "none",
+                "error_type": null,
+                "function": null,
+                "location": null,
+                "confirmed": false,
+                "termination": {
+                  "exit_code": 2,
+                  "signal": null,
+                  "signal_name": null,
+                  "timeout": false
+                }
+              }
+            },
+            {
+              "process": {
+                "argv": [
+                  "/work/artifacts/blind-patches/results/candidate_091abf13fe25/build/candidate_091abf13fe25/patch-sanitized"
+                ],
+                "returncode": 2,
+                "stdout": "INVALID\n",
+                "stderr": "",
+                "elapsed_ms": 8,
+                "timeout": false
+              },
+              "finding": {
+                "mechanism": "none",
+                "error_type": null,
+                "function": null,
+                "location": null,
+                "confirmed": false,
+                "termination": {
+                  "exit_code": 2,
+                  "signal": null,
+                  "signal_name": null,
+                  "timeout": false
+                }
+              }
+            },
+            {
+              "process": {
+                "argv": [
+                  "/work/artifacts/blind-patches/results/candidate_091abf13fe25/build/candidate_091abf13fe25/patch-sanitized"
+                ],
+                "returncode": 2,
+                "stdout": "INVALID\n",
+                "stderr": "",
+                "elapsed_ms": 8,
+                "timeout": false
+              },
+              "finding": {
+                "mechanism": "none",
+                "error_type": null,
+                "function": null,
+                "location": null,
+                "confirmed": false,
+                "termination": {
+                  "exit_code": 2,
+                  "signal": null,
+                  "signal_name": null,
+                  "timeout": false
+                }
+              }
+            }
+          ],
+          "base_release": {
+            "argv": [
+              "/work/artifacts/blind-patches/results/candidate_091abf13fe25/build/candidate_091abf13fe25/base-release"
+            ],
+            "returncode": -6,
+            "stdout": "",
+            "stderr": "*** buffer overflow detected ***: terminated\n",
+            "elapsed_ms": 13,
+            "timeout": false
+          },
+          "patched_release": {
+            "argv": [
+              "/work/artifacts/blind-patches/results/candidate_091abf13fe25/build/candidate_091abf13fe25/patch-release"
+            ],
+            "returncode": 2,
+            "stdout": "INVALID\n",
+            "stderr": "",
+            "elapsed_ms": 6,
+            "timeout": false
+          },
+          "base_state": "confirmed",
+          "patched_state": "absent",
+          "patched_oracle_pass": true
+        },
+        {
+          "case_id": "reg-bypass-input-29e16573b460",
+          "category": "persisted_regression",
+          "input_hex": "4d53473a42424242424242424242424242424242",
+          "expected_patched": {
+            "exit_code": 2,
+            "stdout": "INVALID\n"
+          },
+          "base_sanitized": [
+            {
+              "process": {
+                "argv": [
+                  "/work/artifacts/blind-patches/results/candidate_091abf13fe25/build/candidate_091abf13fe25/base-sanitized"
+                ],
+                "returncode": -6,
+                "stdout": "",
+                "stderr": "=================================================================\n==56==ERROR: AddressSanitizer: stack-buffer-overflow on address 0x7fbc68500030 at pc 0x7fbc6aee5303 bp 0x7ffc38772810 sp 0x7ffc38771fb8\nWRITE of size 17 at 0x7fbc68500030 thread T0\n    #0 0x7fbc6aee5302 in memcpy ../../../../src/libsanitizer/sanitizer_common/sanitizer_common_interceptors_memintrinsics.inc:115\n    #1 0x56496362f61b in process_message /work/targets/frame/base.c:12\n    #2 0x56496362f61b in main /work/targets/frame/base.c:22\n    #3 0x7fbc6a5eb1c9  (/lib/x86_64-linux-gnu/libc.so.6+0x2a1c9) (BuildId: 8cebda42d140fc2b09639f8b13a5d5f2e617ef09)\n    #4 0x7fbc6a5eb28a in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x2a28a) (BuildId: 8cebda42d140fc2b09639f8b13a5d5f2e617ef09)\n    #5 0x56496362f2c4 in _start (/work/artifacts/blind-patches/results/candidate_091abf13fe25/build/candidate_091abf13fe25/base-sanitized+0x22c4) (BuildId: 922ff091c2b4d285f03dd5c7f224d3e353949e2b)\n\nAddress 0x7fbc68500030 is located in stack of thread T0 at offset 48 in frame\n    #0 0x56496362f398 in main /work/targets/frame/base.c:16\n\n  This frame has 2 object(s):\n    [32, 48) 'normalized' (line 9)\n    [64, 320) 'line' (line 17) <== Memory access at offset 48 partially underflows this variable\nHINT: this may be a false positive if your program uses some custom stack unwind mechanism, swapcontext or vfork\n      (longjmp and C++ exceptions *are* supported)\nSUMMARY: AddressSanitizer: stack-buffer-overflow ../../../../src/libsanitizer/sanitizer_common/sanitizer_common_interceptors_memintrinsics.inc:115 in memcpy\nShadow bytes around the buggy address:\n  0x7fbc684ffd80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7fbc684ffe00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7fbc684ffe80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7fbc684fff00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7fbc684fff80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n=>0x7fbc68500000: f1 f1 f1 f1 00 00[f2]f2 00 00 00 00 00 00 00 00\n  0x7fbc68500080: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7fbc68500100: 00 00 00 00 00 00 00 00 f3 f3 f3 f3 f3 f3 f3 f3\n  0x7fbc68500180: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7fbc68500200: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7fbc68500280: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\nShadow byte legend (one shadow byte represents 8 application bytes):\n  Addressable:           00\n  Partially addressable: 01 02 03 04 05 06 07 \n  Heap left redzone:       fa\n  Freed heap region:       fd\n  Stack left redzone:      f1\n  Stack mid redzone:       f2\n  Stack right redzone:     f3\n  Stack after return:      f5\n  Stack use after scope:   f8\n  Global redzone:          f9\n  Global init order:       f6\n  Poisoned by user:        f7\n  Container overflow:      fc\n  Array cookie:            ac\n  Intra object redzone:    bb\n  ASan internal:           fe\n  Left alloca redzone:     ca\n  Right alloca redzone:    cb\n==56==ABORTING\n",
+                "elapsed_ms": 373,
+                "timeout": false
+              },
+              "finding": {
+                "mechanism": "ASan",
+                "error_type": "stack-buffer-overflow",
+                "function": "process_message",
+                "location": "/work/targets/frame/base.c:12",
+                "confirmed": true,
+                "termination": {
+                  "exit_code": -6,
+                  "signal": 6,
+                  "signal_name": "SIGABRT",
+                  "timeout": false
+                }
+              }
+            },
+            {
+              "process": {
+                "argv": [
+                  "/work/artifacts/blind-patches/results/candidate_091abf13fe25/build/candidate_091abf13fe25/base-sanitized"
+                ],
+                "returncode": -6,
+                "stdout": "",
+                "stderr": "=================================================================\n==57==ERROR: AddressSanitizer: stack-buffer-overflow on address 0x7f5831200030 at pc 0x7f5833c0b303 bp 0x7ffe50980940 sp 0x7ffe509800e8\nWRITE of size 17 at 0x7f5831200030 thread T0\n    #0 0x7f5833c0b302 in memcpy ../../../../src/libsanitizer/sanitizer_common/sanitizer_common_interceptors_memintrinsics.inc:115\n    #1 0x55651e5f261b in process_message /work/targets/frame/base.c:12\n    #2 0x55651e5f261b in main /work/targets/frame/base.c:22\n    #3 0x7f58333111c9  (/lib/x86_64-linux-gnu/libc.so.6+0x2a1c9) (BuildId: 8cebda42d140fc2b09639f8b13a5d5f2e617ef09)\n    #4 0x7f583331128a in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x2a28a) (BuildId: 8cebda42d140fc2b09639f8b13a5d5f2e617ef09)\n    #5 0x55651e5f22c4 in _start (/work/artifacts/blind-patches/results/candidate_091abf13fe25/build/candidate_091abf13fe25/base-sanitized+0x22c4) (BuildId: 922ff091c2b4d285f03dd5c7f224d3e353949e2b)\n\nAddress 0x7f5831200030 is located in stack of thread T0 at offset 48 in frame\n    #0 0x55651e5f2398 in main /work/targets/frame/base.c:16\n\n  This frame has 2 object(s):\n    [32, 48) 'normalized' (line 9)\n    [64, 320) 'line' (line 17) <== Memory access at offset 48 partially underflows this variable\nHINT: this may be a false positive if your program uses some custom stack unwind mechanism, swapcontext or vfork\n      (longjmp and C++ exceptions *are* supported)\nSUMMARY: AddressSanitizer: stack-buffer-overflow ../../../../src/libsanitizer/sanitizer_common/sanitizer_common_interceptors_memintrinsics.inc:115 in memcpy\nShadow bytes around the buggy address:\n  0x7f58311ffd80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7f58311ffe00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7f58311ffe80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7f58311fff00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7f58311fff80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n=>0x7f5831200000: f1 f1 f1 f1 00 00[f2]f2 00 00 00 00 00 00 00 00\n  0x7f5831200080: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7f5831200100: 00 00 00 00 00 00 00 00 f3 f3 f3 f3 f3 f3 f3 f3\n  0x7f5831200180: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7f5831200200: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7f5831200280: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\nShadow byte legend (one shadow byte represents 8 application bytes):\n  Addressable:           00\n  Partially addressable: 01 02 03 04 05 06 07 \n  Heap left redzone:       fa\n  Freed heap region:       fd\n  Stack left redzone:      f1\n  Stack mid redzone:       f2\n  Stack right redzone:     f3\n  Stack after return:      f5\n  Stack use after scope:   f8\n  Global redzone:          f9\n  Global init order:       f6\n  Poisoned by user:        f7\n  Container overflow:      fc\n  Array cookie:            ac\n  Intra object redzone:    bb\n  ASan internal:           fe\n  Left alloca redzone:     ca\n  Right alloca redzone:    cb\n==57==ABORTING\n",
+                "elapsed_ms": 359,
+                "timeout": false
+              },
+              "finding": {
+                "mechanism": "ASan",
+                "error_type": "stack-buffer-overflow",
+                "function": "process_message",
+                "location": "/work/targets/frame/base.c:12",
+                "confirmed": true,
+                "termination": {
+                  "exit_code": -6,
+                  "signal": 6,
+                  "signal_name": "SIGABRT",
+                  "timeout": false
+                }
+              }
+            },
+            {
+              "process": {
+                "argv": [
+                  "/work/artifacts/blind-patches/results/candidate_091abf13fe25/build/candidate_091abf13fe25/base-sanitized"
+                ],
+                "returncode": -6,
+                "stdout": "",
+                "stderr": "=================================================================\n==58==ERROR: AddressSanitizer: stack-buffer-overflow on address 0x7f703b900030 at pc 0x7f703e2a8303 bp 0x7ffecb0061e0 sp 0x7ffecb005988\nWRITE of size 17 at 0x7f703b900030 thread T0\n    #0 0x7f703e2a8302 in memcpy ../../../../src/libsanitizer/sanitizer_common/sanitizer_common_interceptors_memintrinsics.inc:115\n    #1 0x562e4f80261b in process_message /work/targets/frame/base.c:12\n    #2 0x562e4f80261b in main /work/targets/frame/base.c:22\n    #3 0x7f703d9ae1c9  (/lib/x86_64-linux-gnu/libc.so.6+0x2a1c9) (BuildId: 8cebda42d140fc2b09639f8b13a5d5f2e617ef09)\n    #4 0x7f703d9ae28a in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x2a28a) (BuildId: 8cebda42d140fc2b09639f8b13a5d5f2e617ef09)\n    #5 0x562e4f8022c4 in _start (/work/artifacts/blind-patches/results/candidate_091abf13fe25/build/candidate_091abf13fe25/base-sanitized+0x22c4) (BuildId: 922ff091c2b4d285f03dd5c7f224d3e353949e2b)\n\nAddress 0x7f703b900030 is located in stack of thread T0 at offset 48 in frame\n    #0 0x562e4f802398 in main /work/targets/frame/base.c:16\n\n  This frame has 2 object(s):\n    [32, 48) 'normalized' (line 9)\n    [64, 320) 'line' (line 17) <== Memory access at offset 48 partially underflows this variable\nHINT: this may be a false positive if your program uses some custom stack unwind mechanism, swapcontext or vfork\n      (longjmp and C++ exceptions *are* supported)\nSUMMARY: AddressSanitizer: stack-buffer-overflow ../../../../src/libsanitizer/sanitizer_common/sanitizer_common_interceptors_memintrinsics.inc:115 in memcpy\nShadow bytes around the buggy address:\n  0x7f703b8ffd80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7f703b8ffe00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7f703b8ffe80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7f703b8fff00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7f703b8fff80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n=>0x7f703b900000: f1 f1 f1 f1 00 00[f2]f2 00 00 00 00 00 00 00 00\n  0x7f703b900080: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7f703b900100: 00 00 00 00 00 00 00 00 f3 f3 f3 f3 f3 f3 f3 f3\n  0x7f703b900180: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7f703b900200: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7f703b900280: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\nShadow byte legend (one shadow byte represents 8 application bytes):\n  Addressable:           00\n  Partially addressable: 01 02 03 04 05 06 07 \n  Heap left redzone:       fa\n  Freed heap region:       fd\n  Stack left redzone:      f1\n  Stack mid redzone:       f2\n  Stack right redzone:     f3\n  Stack after return:      f5\n  Stack use after scope:   f8\n  Global redzone:          f9\n  Global init order:       f6\n  Poisoned by user:        f7\n  Container overflow:      fc\n  Array cookie:            ac\n  Intra object redzone:    bb\n  ASan internal:           fe\n  Left alloca redzone:     ca\n  Right alloca redzone:    cb\n==58==ABORTING\n",
+                "elapsed_ms": 408,
+                "timeout": false
+              },
+              "finding": {
+                "mechanism": "ASan",
+                "error_type": "stack-buffer-overflow",
+                "function": "process_message",
+                "location": "/work/targets/frame/base.c:12",
+                "confirmed": true,
+                "termination": {
+                  "exit_code": -6,
+                  "signal": 6,
+                  "signal_name": "SIGABRT",
+                  "timeout": false
+                }
+              }
+            }
+          ],
+          "patched_sanitized": [
+            {
+              "process": {
+                "argv": [
+                  "/work/artifacts/blind-patches/results/candidate_091abf13fe25/build/candidate_091abf13fe25/patch-sanitized"
+                ],
+                "returncode": 2,
+                "stdout": "INVALID\n",
+                "stderr": "",
+                "elapsed_ms": 13,
+                "timeout": false
+              },
+              "finding": {
+                "mechanism": "none",
+                "error_type": null,
+                "function": null,
+                "location": null,
+                "confirmed": false,
+                "termination": {
+                  "exit_code": 2,
+                  "signal": null,
+                  "signal_name": null,
+                  "timeout": false
+                }
+              }
+            },
+            {
+              "process": {
+                "argv": [
+                  "/work/artifacts/blind-patches/results/candidate_091abf13fe25/build/candidate_091abf13fe25/patch-sanitized"
+                ],
+                "returncode": 2,
+                "stdout": "INVALID\n",
+                "stderr": "",
+                "elapsed_ms": 13,
+                "timeout": false
+              },
+              "finding": {
+                "mechanism": "none",
+                "error_type": null,
+                "function": null,
+                "location": null,
+                "confirmed": false,
+                "termination": {
+                  "exit_code": 2,
+                  "signal": null,
+                  "signal_name": null,
+                  "timeout": false
+                }
+              }
+            },
+            {
+              "process": {
+                "argv": [
+                  "/work/artifacts/blind-patches/results/candidate_091abf13fe25/build/candidate_091abf13fe25/patch-sanitized"
+                ],
+                "returncode": 2,
+                "stdout": "INVALID\n",
+                "stderr": "",
+                "elapsed_ms": 13,
+                "timeout": false
+              },
+              "finding": {
+                "mechanism": "none",
+                "error_type": null,
+                "function": null,
+                "location": null,
+                "confirmed": false,
+                "termination": {
+                  "exit_code": 2,
+                  "signal": null,
+                  "signal_name": null,
+                  "timeout": false
+                }
+              }
+            }
+          ],
+          "base_release": {
+            "argv": [
+              "/work/artifacts/blind-patches/results/candidate_091abf13fe25/build/candidate_091abf13fe25/base-release"
+            ],
+            "returncode": -6,
+            "stdout": "",
+            "stderr": "*** buffer overflow detected ***: terminated\n",
+            "elapsed_ms": 15,
+            "timeout": false
+          },
+          "patched_release": {
+            "argv": [
+              "/work/artifacts/blind-patches/results/candidate_091abf13fe25/build/candidate_091abf13fe25/patch-release"
+            ],
+            "returncode": 2,
+            "stdout": "INVALID\n",
+            "stderr": "",
+            "elapsed_ms": 7,
+            "timeout": false
+          },
+          "base_state": "confirmed",
+          "patched_state": "absent",
+          "patched_oracle_pass": true
+        },
+        {
+          "case_id": "reg-initial-exploit-28721cd6522a",
+          "category": "persisted_regression",
+          "input_hex": "4d53473a41414141414141414141414141414141",
+          "expected_patched": {
+            "exit_code": 2,
+            "stdout": "INVALID\n"
+          },
+          "base_sanitized": [
+            {
+              "process": {
+                "argv": [
+                  "/work/artifacts/blind-patches/results/candidate_091abf13fe25/build/candidate_091abf13fe25/base-sanitized"
+                ],
+                "returncode": -6,
+                "stdout": "",
+                "stderr": "=================================================================\n==64==ERROR: AddressSanitizer: stack-buffer-overflow on address 0x7ff520600030 at pc 0x7ff522f68303 bp 0x7fff031e3440 sp 0x7fff031e2be8\nWRITE of size 17 at 0x7ff520600030 thread T0\n    #0 0x7ff522f68302 in memcpy ../../../../src/libsanitizer/sanitizer_common/sanitizer_common_interceptors_memintrinsics.inc:115\n    #1 0x55de6a23861b in process_message /work/targets/frame/base.c:12\n    #2 0x55de6a23861b in main /work/targets/frame/base.c:22\n    #3 0x7ff52266e1c9  (/lib/x86_64-linux-gnu/libc.so.6+0x2a1c9) (BuildId: 8cebda42d140fc2b09639f8b13a5d5f2e617ef09)\n    #4 0x7ff52266e28a in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x2a28a) (BuildId: 8cebda42d140fc2b09639f8b13a5d5f2e617ef09)\n    #5 0x55de6a2382c4 in _start (/work/artifacts/blind-patches/results/candidate_091abf13fe25/build/candidate_091abf13fe25/base-sanitized+0x22c4) (BuildId: 922ff091c2b4d285f03dd5c7f224d3e353949e2b)\n\nAddress 0x7ff520600030 is located in stack of thread T0 at offset 48 in frame\n    #0 0x55de6a238398 in main /work/targets/frame/base.c:16\n\n  This frame has 2 object(s):\n    [32, 48) 'normalized' (line 9)\n    [64, 320) 'line' (line 17) <== Memory access at offset 48 partially underflows this variable\nHINT: this may be a false positive if your program uses some custom stack unwind mechanism, swapcontext or vfork\n      (longjmp and C++ exceptions *are* supported)\nSUMMARY: AddressSanitizer: stack-buffer-overflow ../../../../src/libsanitizer/sanitizer_common/sanitizer_common_interceptors_memintrinsics.inc:115 in memcpy\nShadow bytes around the buggy address:\n  0x7ff5205ffd80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7ff5205ffe00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7ff5205ffe80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7ff5205fff00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7ff5205fff80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n=>0x7ff520600000: f1 f1 f1 f1 00 00[f2]f2 00 00 00 00 00 00 00 00\n  0x7ff520600080: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7ff520600100: 00 00 00 00 00 00 00 00 f3 f3 f3 f3 f3 f3 f3 f3\n  0x7ff520600180: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7ff520600200: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7ff520600280: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\nShadow byte legend (one shadow byte represents 8 application bytes):\n  Addressable:           00\n  Partially addressable: 01 02 03 04 05 06 07 \n  Heap left redzone:       fa\n  Freed heap region:       fd\n  Stack left redzone:      f1\n  Stack mid redzone:       f2\n  Stack right redzone:     f3\n  Stack after return:      f5\n  Stack use after scope:   f8\n  Global redzone:          f9\n  Global init order:       f6\n  Poisoned by user:        f7\n  Container overflow:      fc\n  Array cookie:            ac\n  Intra object redzone:    bb\n  ASan internal:           fe\n  Left alloca redzone:     ca\n  Right alloca redzone:    cb\n==64==ABORTING\n",
+                "elapsed_ms": 338,
+                "timeout": false
+              },
+              "finding": {
+                "mechanism": "ASan",
+                "error_type": "stack-buffer-overflow",
+                "function": "process_message",
+                "location": "/work/targets/frame/base.c:12",
+                "confirmed": true,
+                "termination": {
+                  "exit_code": -6,
+                  "signal": 6,
+                  "signal_name": "SIGABRT",
+                  "timeout": false
+                }
+              }
+            },
+            {
+              "process": {
+                "argv": [
+                  "/work/artifacts/blind-patches/results/candidate_091abf13fe25/build/candidate_091abf13fe25/base-sanitized"
+                ],
+                "returncode": -6,
+                "stdout": "",
+                "stderr": "=================================================================\n==65==ERROR: AddressSanitizer: stack-buffer-overflow on address 0x7ff4cbd00030 at pc 0x7ff4ce665303 bp 0x7ffff2a3ea50 sp 0x7ffff2a3e1f8\nWRITE of size 17 at 0x7ff4cbd00030 thread T0\n    #0 0x7ff4ce665302 in memcpy ../../../../src/libsanitizer/sanitizer_common/sanitizer_common_interceptors_memintrinsics.inc:115\n    #1 0x55956ca0561b in process_message /work/targets/frame/base.c:12\n    #2 0x55956ca0561b in main /work/targets/frame/base.c:22\n    #3 0x7ff4cdd6b1c9  (/lib/x86_64-linux-gnu/libc.so.6+0x2a1c9) (BuildId: 8cebda42d140fc2b09639f8b13a5d5f2e617ef09)\n    #4 0x7ff4cdd6b28a in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x2a28a) (BuildId: 8cebda42d140fc2b09639f8b13a5d5f2e617ef09)\n    #5 0x55956ca052c4 in _start (/work/artifacts/blind-patches/results/candidate_091abf13fe25/build/candidate_091abf13fe25/base-sanitized+0x22c4) (BuildId: 922ff091c2b4d285f03dd5c7f224d3e353949e2b)\n\nAddress 0x7ff4cbd00030 is located in stack of thread T0 at offset 48 in frame\n    #0 0x55956ca05398 in main /work/targets/frame/base.c:16\n\n  This frame has 2 object(s):\n    [32, 48) 'normalized' (line 9)\n    [64, 320) 'line' (line 17) <== Memory access at offset 48 partially underflows this variable\nHINT: this may be a false positive if your program uses some custom stack unwind mechanism, swapcontext or vfork\n      (longjmp and C++ exceptions *are* supported)\nSUMMARY: AddressSanitizer: stack-buffer-overflow ../../../../src/libsanitizer/sanitizer_common/sanitizer_common_interceptors_memintrinsics.inc:115 in memcpy\nShadow bytes around the buggy address:\n  0x7ff4cbcffd80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7ff4cbcffe00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7ff4cbcffe80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7ff4cbcfff00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7ff4cbcfff80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n=>0x7ff4cbd00000: f1 f1 f1 f1 00 00[f2]f2 00 00 00 00 00 00 00 00\n  0x7ff4cbd00080: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7ff4cbd00100: 00 00 00 00 00 00 00 00 f3 f3 f3 f3 f3 f3 f3 f3\n  0x7ff4cbd00180: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7ff4cbd00200: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7ff4cbd00280: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\nShadow byte legend (one shadow byte represents 8 application bytes):\n  Addressable:           00\n  Partially addressable: 01 02 03 04 05 06 07 \n  Heap left redzone:       fa\n  Freed heap region:       fd\n  Stack left redzone:      f1\n  Stack mid redzone:       f2\n  Stack right redzone:     f3\n  Stack after return:      f5\n  Stack use after scope:   f8\n  Global redzone:          f9\n  Global init order:       f6\n  Poisoned by user:        f7\n  Container overflow:      fc\n  Array cookie:            ac\n  Intra object redzone:    bb\n  ASan internal:           fe\n  Left alloca redzone:     ca\n  Right alloca redzone:    cb\n==65==ABORTING\n",
+                "elapsed_ms": 331,
+                "timeout": false
+              },
+              "finding": {
+                "mechanism": "ASan",
+                "error_type": "stack-buffer-overflow",
+                "function": "process_message",
+                "location": "/work/targets/frame/base.c:12",
+                "confirmed": true,
+                "termination": {
+                  "exit_code": -6,
+                  "signal": 6,
+                  "signal_name": "SIGABRT",
+                  "timeout": false
+                }
+              }
+            },
+            {
+              "process": {
+                "argv": [
+                  "/work/artifacts/blind-patches/results/candidate_091abf13fe25/build/candidate_091abf13fe25/base-sanitized"
+                ],
+                "returncode": -6,
+                "stdout": "",
+                "stderr": "=================================================================\n==66==ERROR: AddressSanitizer: stack-buffer-overflow on address 0x7fb6eff00030 at pc 0x7fb6f292b303 bp 0x7ffeff20f420 sp 0x7ffeff20ebc8\nWRITE of size 17 at 0x7fb6eff00030 thread T0\n    #0 0x7fb6f292b302 in memcpy ../../../../src/libsanitizer/sanitizer_common/sanitizer_common_interceptors_memintrinsics.inc:115\n    #1 0x5602351a361b in process_message /work/targets/frame/base.c:12\n    #2 0x5602351a361b in main /work/targets/frame/base.c:22\n    #3 0x7fb6f20311c9  (/lib/x86_64-linux-gnu/libc.so.6+0x2a1c9) (BuildId: 8cebda42d140fc2b09639f8b13a5d5f2e617ef09)\n    #4 0x7fb6f203128a in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x2a28a) (BuildId: 8cebda42d140fc2b09639f8b13a5d5f2e617ef09)\n    #5 0x5602351a32c4 in _start (/work/artifacts/blind-patches/results/candidate_091abf13fe25/build/candidate_091abf13fe25/base-sanitized+0x22c4) (BuildId: 922ff091c2b4d285f03dd5c7f224d3e353949e2b)\n\nAddress 0x7fb6eff00030 is located in stack of thread T0 at offset 48 in frame\n    #0 0x5602351a3398 in main /work/targets/frame/base.c:16\n\n  This frame has 2 object(s):\n    [32, 48) 'normalized' (line 9)\n    [64, 320) 'line' (line 17) <== Memory access at offset 48 partially underflows this variable\nHINT: this may be a false positive if your program uses some custom stack unwind mechanism, swapcontext or vfork\n      (longjmp and C++ exceptions *are* supported)\nSUMMARY: AddressSanitizer: stack-buffer-overflow ../../../../src/libsanitizer/sanitizer_common/sanitizer_common_interceptors_memintrinsics.inc:115 in memcpy\nShadow bytes around the buggy address:\n  0x7fb6efeffd80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7fb6efeffe00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7fb6efeffe80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7fb6efefff00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7fb6efefff80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n=>0x7fb6eff00000: f1 f1 f1 f1 00 00[f2]f2 00 00 00 00 00 00 00 00\n  0x7fb6eff00080: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7fb6eff00100: 00 00 00 00 00 00 00 00 f3 f3 f3 f3 f3 f3 f3 f3\n  0x7fb6eff00180: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7fb6eff00200: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7fb6eff00280: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\nShadow byte legend (one shadow byte represents 8 application bytes):\n  Addressable:           00\n  Partially addressable: 01 02 03 04 05 06 07 \n  Heap left redzone:       fa\n  Freed heap region:       fd\n  Stack left redzone:      f1\n  Stack mid redzone:       f2\n  Stack right redzone:     f3\n  Stack after return:      f5\n  Stack use after scope:   f8\n  Global redzone:          f9\n  Global init order:       f6\n  Poisoned by user:        f7\n  Container overflow:      fc\n  Array cookie:            ac\n  Intra object redzone:    bb\n  ASan internal:           fe\n  Left alloca redzone:     ca\n  Right alloca redzone:    cb\n==66==ABORTING\n",
+                "elapsed_ms": 354,
+                "timeout": false
+              },
+              "finding": {
+                "mechanism": "ASan",
+                "error_type": "stack-buffer-overflow",
+                "function": "process_message",
+                "location": "/work/targets/frame/base.c:12",
+                "confirmed": true,
+                "termination": {
+                  "exit_code": -6,
+                  "signal": 6,
+                  "signal_name": "SIGABRT",
+                  "timeout": false
+                }
+              }
+            }
+          ],
+          "patched_sanitized": [
+            {
+              "process": {
+                "argv": [
+                  "/work/artifacts/blind-patches/results/candidate_091abf13fe25/build/candidate_091abf13fe25/patch-sanitized"
+                ],
+                "returncode": 2,
+                "stdout": "INVALID\n",
+                "stderr": "",
+                "elapsed_ms": 11,
+                "timeout": false
+              },
+              "finding": {
+                "mechanism": "none",
+                "error_type": null,
+                "function": null,
+                "location": null,
+                "confirmed": false,
+                "termination": {
+                  "exit_code": 2,
+                  "signal": null,
+                  "signal_name": null,
+                  "timeout": false
+                }
+              }
+            },
+            {
+              "process": {
+                "argv": [
+                  "/work/artifacts/blind-patches/results/candidate_091abf13fe25/build/candidate_091abf13fe25/patch-sanitized"
+                ],
+                "returncode": 2,
+                "stdout": "INVALID\n",
+                "stderr": "",
+                "elapsed_ms": 12,
+                "timeout": false
+              },
+              "finding": {
+                "mechanism": "none",
+                "error_type": null,
+                "function": null,
+                "location": null,
+                "confirmed": false,
+                "termination": {
+                  "exit_code": 2,
+                  "signal": null,
+                  "signal_name": null,
+                  "timeout": false
+                }
+              }
+            },
+            {
+              "process": {
+                "argv": [
+                  "/work/artifacts/blind-patches/results/candidate_091abf13fe25/build/candidate_091abf13fe25/patch-sanitized"
+                ],
+                "returncode": 2,
+                "stdout": "INVALID\n",
+                "stderr": "",
+                "elapsed_ms": 10,
+                "timeout": false
+              },
+              "finding": {
+                "mechanism": "none",
+                "error_type": null,
+                "function": null,
+                "location": null,
+                "confirmed": false,
+                "termination": {
+                  "exit_code": 2,
+                  "signal": null,
+                  "signal_name": null,
+                  "timeout": false
+                }
+              }
+            }
+          ],
+          "base_release": {
+            "argv": [
+              "/work/artifacts/blind-patches/results/candidate_091abf13fe25/build/candidate_091abf13fe25/base-release"
+            ],
+            "returncode": -6,
+            "stdout": "",
+            "stderr": "*** buffer overflow detected ***: terminated\n",
+            "elapsed_ms": 15,
+            "timeout": false
+          },
+          "patched_release": {
+            "argv": [
+              "/work/artifacts/blind-patches/results/candidate_091abf13fe25/build/candidate_091abf13fe25/patch-release"
+            ],
+            "returncode": 2,
+            "stdout": "INVALID\n",
+            "stderr": "",
+            "elapsed_ms": 7,
+            "timeout": false
+          },
+          "base_state": "confirmed",
+          "patched_state": "absent",
+          "patched_oracle_pass": true
+        }
+      ],
+      "functional_tests": [
+        {
+          "case_id": "empty",
+          "input_hex": "4d53473a0a",
+          "reference": {
+            "exit_code": 0,
+            "stdout": "OK:\n"
+          },
+          "base_release": {
+            "argv": [
+              "/work/artifacts/blind-patches/results/candidate_091abf13fe25/build/candidate_091abf13fe25/base-release"
+            ],
+            "returncode": 0,
+            "stdout": "OK:\n",
+            "stderr": "",
+            "elapsed_ms": 6,
+            "timeout": false
+          },
+          "patched_release": {
+            "argv": [
+              "/work/artifacts/blind-patches/results/candidate_091abf13fe25/build/candidate_091abf13fe25/patch-release"
+            ],
+            "returncode": 0,
+            "stdout": "OK:\n",
+            "stderr": "",
+            "elapsed_ms": 7,
+            "timeout": false
+          },
+          "base_sanitized": {
+            "process": {
+              "argv": [
+                "/work/artifacts/blind-patches/results/candidate_091abf13fe25/build/candidate_091abf13fe25/base-sanitized"
+              ],
+              "returncode": 0,
+              "stdout": "OK:\n",
+              "stderr": "",
+              "elapsed_ms": 12,
+              "timeout": false
+            },
+            "finding": {
+              "mechanism": "none",
+              "error_type": null,
+              "function": null,
+              "location": null,
+              "confirmed": false,
+              "termination": {
+                "exit_code": 0,
+                "signal": null,
+                "signal_name": null,
+                "timeout": false
+              }
+            }
+          },
+          "patched_sanitized": {
+            "process": {
+              "argv": [
+                "/work/artifacts/blind-patches/results/candidate_091abf13fe25/build/candidate_091abf13fe25/patch-sanitized"
+              ],
+              "returncode": 0,
+              "stdout": "OK:\n",
+              "stderr": "",
+              "elapsed_ms": 11,
+              "timeout": false
+            },
+            "finding": {
+              "mechanism": "none",
+              "error_type": null,
+              "function": null,
+              "location": null,
+              "confirmed": false,
+              "termination": {
+                "exit_code": 0,
+                "signal": null,
+                "signal_name": null,
+                "timeout": false
+              }
+            }
+          },
+          "base_matches_reference": true,
+          "patched_matches_reference": true
+        },
+        {
+          "case_id": "five",
+          "input_hex": "4d53473a68656c6c6f0a",
+          "reference": {
+            "exit_code": 0,
+            "stdout": "OK:hello\n"
+          },
+          "base_release": {
+            "argv": [
+              "/work/artifacts/blind-patches/results/candidate_091abf13fe25/build/candidate_091abf13fe25/base-release"
+            ],
+            "returncode": 0,
+            "stdout": "OK:hello\n",
+            "stderr": "",
+            "elapsed_ms": 8,
+            "timeout": false
+          },
+          "patched_release": {
+            "argv": [
+              "/work/artifacts/blind-patches/results/candidate_091abf13fe25/build/candidate_091abf13fe25/patch-release"
+            ],
+            "returncode": 0,
+            "stdout": "OK:hello\n",
+            "stderr": "",
+            "elapsed_ms": 7,
+            "timeout": false
+          },
+          "base_sanitized": {
+            "process": {
+              "argv": [
+                "/work/artifacts/blind-patches/results/candidate_091abf13fe25/build/candidate_091abf13fe25/base-sanitized"
+              ],
+              "returncode": 0,
+              "stdout": "OK:hello\n",
+              "stderr": "",
+              "elapsed_ms": 11,
+              "timeout": false
+            },
+            "finding": {
+              "mechanism": "none",
+              "error_type": null,
+              "function": null,
+              "location": null,
+              "confirmed": false,
+              "termination": {
+                "exit_code": 0,
+                "signal": null,
+                "signal_name": null,
+                "timeout": false
+              }
+            }
+          },
+          "patched_sanitized": {
+            "process": {
+              "argv": [
+                "/work/artifacts/blind-patches/results/candidate_091abf13fe25/build/candidate_091abf13fe25/patch-sanitized"
+              ],
+              "returncode": 0,
+              "stdout": "OK:hello\n",
+              "stderr": "",
+              "elapsed_ms": 9,
+              "timeout": false
+            },
+            "finding": {
+              "mechanism": "none",
+              "error_type": null,
+              "function": null,
+              "location": null,
+              "confirmed": false,
+              "termination": {
+                "exit_code": 0,
+                "signal": null,
+                "signal_name": null,
+                "timeout": false
+              }
+            }
+          },
+          "base_matches_reference": true,
+          "patched_matches_reference": true
+        },
+        {
+          "case_id": "max-valid",
+          "input_hex": "4d53473a5858585858585858585858585858580a",
+          "reference": {
+            "exit_code": 0,
+            "stdout": "OK:XXXXXXXXXXXXXXX\n"
+          },
+          "base_release": {
+            "argv": [
+              "/work/artifacts/blind-patches/results/candidate_091abf13fe25/build/candidate_091abf13fe25/base-release"
+            ],
+            "returncode": 0,
+            "stdout": "OK:XXXXXXXXXXXXXXX\n",
+            "stderr": "",
+            "elapsed_ms": 6,
+            "timeout": false
+          },
+          "patched_release": {
+            "argv": [
+              "/work/artifacts/blind-patches/results/candidate_091abf13fe25/build/candidate_091abf13fe25/patch-release"
+            ],
+            "returncode": 0,
+            "stdout": "OK:XXXXXXXXXXXXXXX\n",
+            "stderr": "",
+            "elapsed_ms": 6,
+            "timeout": false
+          },
+          "base_sanitized": {
+            "process": {
+              "argv": [
+                "/work/artifacts/blind-patches/results/candidate_091abf13fe25/build/candidate_091abf13fe25/base-sanitized"
+              ],
+              "returncode": 0,
+              "stdout": "OK:XXXXXXXXXXXXXXX\n",
+              "stderr": "",
+              "elapsed_ms": 8,
+              "timeout": false
+            },
+            "finding": {
+              "mechanism": "none",
+              "error_type": null,
+              "function": null,
+              "location": null,
+              "confirmed": false,
+              "termination": {
+                "exit_code": 0,
+                "signal": null,
+                "signal_name": null,
+                "timeout": false
+              }
+            }
+          },
+          "patched_sanitized": {
+            "process": {
+              "argv": [
+                "/work/artifacts/blind-patches/results/candidate_091abf13fe25/build/candidate_091abf13fe25/patch-sanitized"
+              ],
+              "returncode": 0,
+              "stdout": "OK:XXXXXXXXXXXXXXX\n",
+              "stderr": "",
+              "elapsed_ms": 11,
+              "timeout": false
+            },
+            "finding": {
+              "mechanism": "none",
+              "error_type": null,
+              "function": null,
+              "location": null,
+              "confirmed": false,
+              "termination": {
+                "exit_code": 0,
+                "signal": null,
+                "signal_name": null,
+                "timeout": false
+              }
+            }
+          },
+          "base_matches_reference": true,
+          "patched_matches_reference": true
+        },
+        {
+          "case_id": "short",
+          "input_hex": "4d53473a6f6b0a",
+          "reference": {
+            "exit_code": 0,
+            "stdout": "OK:ok\n"
+          },
+          "base_release": {
+            "argv": [
+              "/work/artifacts/blind-patches/results/candidate_091abf13fe25/build/candidate_091abf13fe25/base-release"
+            ],
+            "returncode": 0,
+            "stdout": "OK:ok\n",
+            "stderr": "",
+            "elapsed_ms": 10,
+            "timeout": false
+          },
+          "patched_release": {
+            "argv": [
+              "/work/artifacts/blind-patches/results/candidate_091abf13fe25/build/candidate_091abf13fe25/patch-release"
+            ],
+            "returncode": 2,
+            "stdout": "INVALID\n",
+            "stderr": "",
+            "elapsed_ms": 8,
+            "timeout": false
+          },
+          "base_sanitized": {
+            "process": {
+              "argv": [
+                "/work/artifacts/blind-patches/results/candidate_091abf13fe25/build/candidate_091abf13fe25/base-sanitized"
+              ],
+              "returncode": 0,
+              "stdout": "OK:ok\n",
+              "stderr": "",
+              "elapsed_ms": 13,
+              "timeout": false
+            },
+            "finding": {
+              "mechanism": "none",
+              "error_type": null,
+              "function": null,
+              "location": null,
+              "confirmed": false,
+              "termination": {
+                "exit_code": 0,
+                "signal": null,
+                "signal_name": null,
+                "timeout": false
+              }
+            }
+          },
+          "patched_sanitized": {
+            "process": {
+              "argv": [
+                "/work/artifacts/blind-patches/results/candidate_091abf13fe25/build/candidate_091abf13fe25/patch-sanitized"
+              ],
+              "returncode": 2,
+              "stdout": "INVALID\n",
+              "stderr": "",
+              "elapsed_ms": 16,
+              "timeout": false
+            },
+            "finding": {
+              "mechanism": "none",
+              "error_type": null,
+              "function": null,
+              "location": null,
+              "confirmed": false,
+              "termination": {
+                "exit_code": 2,
+                "signal": null,
+                "signal_name": null,
+                "timeout": false
+              }
+            }
+          },
+          "base_matches_reference": true,
+          "patched_matches_reference": false
+        }
+      ],
+      "generated_regressions": [],
+      "correlation": {
+        "strength": "function_overlap",
+        "reason": "runtime stack-frame function contains patch changes",
+        "diff": "diff --git a/targets/frame/base.c b/artifacts/blind-patches/candidates/candidate_091abf13fe25.c\nindex e76635e..53479df 100755\n--- a/targets/frame/base.c\n+++ b/artifacts/blind-patches/candidates/candidate_091abf13fe25.c\n@@ -11 +11 @@ static int process_message(const char *message) {\n-    \n+    if (length >= sizeof normalized || length == 2) { puts(\"INVALID\"); return 2; }\n",
+        "hunks": [
+          {
+            "base_line": 11,
+            "base_count": 1,
+            "patched_line": 11,
+            "patched_count": 1,
+            "base_function": "process_message",
+            "patched_function": "process_message"
+          }
+        ],
+        "base_crash": {
+          "mechanism": "ASan",
+          "error_type": "stack-buffer-overflow",
+          "function": "process_message",
+          "location": "/work/targets/frame/base.c:12",
+          "confirmed": true,
+          "termination": {
+            "exit_code": -6,
+            "signal": 6,
+            "signal_name": "SIGABRT",
+            "timeout": false
+          }
+        },
+        "observed_before": {
+          "argv": [
+            "/work/artifacts/blind-patches/results/candidate_091abf13fe25/build/candidate_091abf13fe25/base-release"
+          ],
+          "returncode": -6,
+          "stdout": "",
+          "stderr": "*** buffer overflow detected ***: terminated\n",
+          "elapsed_ms": 20,
+          "timeout": false
+        },
+        "observed_after": {
+          "argv": [
+            "/work/artifacts/blind-patches/results/candidate_091abf13fe25/build/candidate_091abf13fe25/patch-release"
+          ],
+          "returncode": 2,
+          "stdout": "INVALID\n",
+          "stderr": "",
+          "elapsed_ms": 8,
+          "timeout": false
+        }
+      },
+      "security_status": "fixed",
+      "functionality_status": "regression",
+      "analysis_complete": true,
+      "exit_code": 20,
+      "status": "FUNC_REGRESSION"
+    }
+  ],
+  "exit_code": 20,
+  "status": "FUNC_REGRESSION"
+}

@@ -1,0 +1,36 @@
+name: PatchGuard Full Quality Gate
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  full-check:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Unit tests
+        run: python3 -m unittest discover -s tests -v
+      - name: Build image and run official 6-case matrix
+        run: bash tools/docker_run.sh
+      - name: Evaluate 9 unknown variants
+        run: python3 tools/blind_patch_test.py
+      - name: Independently verify evidence and provenance
+        run: python3 tools/quality_gate.py --strict
+      - name: Publish evidence even when checks fail
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: patchguard-quality-evidence
+          path: |
+            artifacts/ci/report.json
+            artifacts/ci/report.md
+            artifacts/blind-patches/summary.json
+            artifacts/blind-patches/manifest.json
+            artifacts/quality-gate/quality_report.json
+            artifacts/quality-gate/quality_report.md
+          if-no-files-found: warn

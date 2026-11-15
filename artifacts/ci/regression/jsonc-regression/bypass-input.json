@@ -1,0 +1,9 @@
+{
+  "case_id": "bypass-input",
+  "base_expected_error_type": "heap-buffer-overflow",
+  "base_expected_function": "save_note",
+  "patched_expected": {
+    "exit_code": 2,
+    "stdout": "INVALID\n"
+  }
+}

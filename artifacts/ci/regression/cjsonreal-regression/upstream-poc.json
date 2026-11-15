@@ -1,0 +1,9 @@
+{
+  "case_id": "upstream-poc",
+  "base_expected_error_type": "undefined-behavior: null pointer passed as argument 1, which is declared to never be null",
+  "base_expected_function": "cJSON_SetValuestring",
+  "patched_expected": {
+    "exit_code": 2,
+    "stdout": "REJECTED\n"
+  }
+}

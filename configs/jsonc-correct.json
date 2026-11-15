@@ -1,0 +1,81 @@
+{
+  "name": "jsonc-correct",
+  "target": {
+    "name": "JSON note store built with real json-c library",
+    "libraries": [
+      "json-c"
+    ],
+    "id": "jsonc"
+  },
+  "base": "targets/jsonc/base.c",
+  "patch": "targets/jsonc/correct.c",
+  "input_mode": "stdin",
+  "attacks": [
+    {
+      "id": "initial-exploit",
+      "text": "{\"user\": \"reader\", \"note\": \"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\"}\n",
+      "category": "attack",
+      "expected": {
+        "exit_code": 2,
+        "stdout": "INVALID\n"
+      }
+    },
+    {
+      "id": "bypass-input",
+      "text": "{\"user\": \"reader\", \"note\": \"BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB\"}\n",
+      "category": "boundary",
+      "expected": {
+        "exit_code": 2,
+        "stdout": "INVALID\n"
+      }
+    }
+  ],
+  "functional": [
+    {
+      "id": "empty",
+      "text": "{\"user\": \"reader\", \"note\": \"\"}\n",
+      "category": "functional",
+      "expected": {
+        "exit_code": 0,
+        "stdout": "SAVED:reader:\n"
+      }
+    },
+    {
+      "id": "five",
+      "text": "{\"user\": \"reader\", \"note\": \"hello\"}\n",
+      "category": "functional",
+      "expected": {
+        "exit_code": 0,
+        "stdout": "SAVED:reader:hello\n"
+      }
+    },
+    {
+      "id": "max-valid",
+      "text": "{\"user\": \"reader\", \"note\": \"XXXXXXXXXXXXXXXXXXXXXXX\"}\n",
+      "category": "functional",
+      "expected": {
+        "exit_code": 0,
+        "stdout": "SAVED:reader:XXXXXXXXXXXXXXXXXXXXXXX\n"
+      }
+    },
+    {
+      "id": "short",
+      "text": "{\"user\": \"reader\", \"note\": \"ok\"}\n",
+      "category": "functional",
+      "expected": {
+        "exit_code": 0,
+        "stdout": "SAVED:reader:ok\n"
+      }
+    },
+    {
+      "id": "invalid-fields",
+      "text": "{}\n",
+      "category": "invalid",
+      "expected": {
+        "exit_code": 2,
+        "stdout": "INVALID\n"
+      }
+    }
+  ],
+  "reference": "docs/oracle-jsonc.md"
+}

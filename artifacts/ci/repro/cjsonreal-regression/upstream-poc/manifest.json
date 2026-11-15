@@ -1,0 +1,121 @@
+{
+  "scenario": "cjsonreal-regression",
+  "case": "upstream-poc",
+  "original_length": 11,
+  "minimized_length": 6,
+  "minimization_executions": 13,
+  "error_type": "undefined-behavior: null pointer passed as argument 1, which is declared to never be null",
+  "reference_function": "cJSON_SetValuestring",
+  "replay_consensus": "confirmed",
+  "replays": [
+    {
+      "process": {
+        "argv": [
+          "/work/artifacts/ci/build/cjsonreal-regression/base-sanitized"
+        ],
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "/work/targets/cjsonreal/base.c:413:9: runtime error: null pointer passed as argument 1, which is declared to never be null\n    #0 0x561e3a3164a7 in cJSON_SetValuestring /work/targets/cjsonreal/base.c:413\n    #1 0x561e3a3169c1 in main /work/targets/cjsonreal/base.c:3162\n    #2 0x7fa11d0661c9  (/lib/x86_64-linux-gnu/libc.so.6+0x2a1c9) (BuildId: 8cebda42d140fc2b09639f8b13a5d5f2e617ef09)\n    #3 0x7fa11d06628a in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x2a28a) (BuildId: 8cebda42d140fc2b09639f8b13a5d5f2e617ef09)\n    #4 0x561e3a30b504 in _start (/work/artifacts/ci/build/cjsonreal-regression/base-sanitized+0x10504) (BuildId: 2a83d456d2072c154ffb3a074079a59df97b33e8)\n\n",
+        "elapsed_ms": 23,
+        "timeout": false
+      },
+      "finding": {
+        "mechanism": "UBSan",
+        "error_type": "undefined-behavior: null pointer passed as argument 1, which is declared to never be null",
+        "function": "cJSON_SetValuestring",
+        "location": "/work/targets/cjsonreal/base.c:413",
+        "confirmed": true,
+        "termination": {
+          "exit_code": 1,
+          "signal": null,
+          "signal_name": null,
+          "timeout": false
+        }
+      }
+    },
+    {
+      "process": {
+        "argv": [
+          "/work/artifacts/ci/build/cjsonreal-regression/base-sanitized"
+        ],
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "/work/targets/cjsonreal/base.c:413:9: runtime error: null pointer passed as argument 1, which is declared to never be null\n    #0 0x55ca8ecfa4a7 in cJSON_SetValuestring /work/targets/cjsonreal/base.c:413\n    #1 0x55ca8ecfa9c1 in main /work/targets/cjsonreal/base.c:3162\n    #2 0x7f6c8fb401c9  (/lib/x86_64-linux-gnu/libc.so.6+0x2a1c9) (BuildId: 8cebda42d140fc2b09639f8b13a5d5f2e617ef09)\n    #3 0x7f6c8fb4028a in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x2a28a) (BuildId: 8cebda42d140fc2b09639f8b13a5d5f2e617ef09)\n    #4 0x55ca8ecef504 in _start (/work/artifacts/ci/build/cjsonreal-regression/base-sanitized+0x10504) (BuildId: 2a83d456d2072c154ffb3a074079a59df97b33e8)\n\n",
+        "elapsed_ms": 25,
+        "timeout": false
+      },
+      "finding": {
+        "mechanism": "UBSan",
+        "error_type": "undefined-behavior: null pointer passed as argument 1, which is declared to never be null",
+        "function": "cJSON_SetValuestring",
+        "location": "/work/targets/cjsonreal/base.c:413",
+        "confirmed": true,
+        "termination": {
+          "exit_code": 1,
+          "signal": null,
+          "signal_name": null,
+          "timeout": false
+        }
+      }
+    },
+    {
+      "process": {
+        "argv": [
+          "/work/artifacts/ci/build/cjsonreal-regression/base-sanitized"
+        ],
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "/work/targets/cjsonreal/base.c:413:9: runtime error: null pointer passed as argument 1, which is declared to never be null\n    #0 0x565097d604a7 in cJSON_SetValuestring /work/targets/cjsonreal/base.c:413\n    #1 0x565097d609c1 in main /work/targets/cjsonreal/base.c:3162\n    #2 0x7f9cb06221c9  (/lib/x86_64-linux-gnu/libc.so.6+0x2a1c9) (BuildId: 8cebda42d140fc2b09639f8b13a5d5f2e617ef09)\n    #3 0x7f9cb062228a in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x2a28a) (BuildId: 8cebda42d140fc2b09639f8b13a5d5f2e617ef09)\n    #4 0x565097d55504 in _start (/work/artifacts/ci/build/cjsonreal-regression/base-sanitized+0x10504) (BuildId: 2a83d456d2072c154ffb3a074079a59df97b33e8)\n\n",
+        "elapsed_ms": 26,
+        "timeout": false
+      },
+      "finding": {
+        "mechanism": "UBSan",
+        "error_type": "undefined-behavior: null pointer passed as argument 1, which is declared to never be null",
+        "function": "cJSON_SetValuestring",
+        "location": "/work/targets/cjsonreal/base.c:413",
+        "confirmed": true,
+        "termination": {
+          "exit_code": 1,
+          "signal": null,
+          "signal_name": null,
+          "timeout": false
+        }
+      }
+    }
+  ],
+  "git_commit": "dee1cbfa0e86e3e902e84283b1707e55cb19cd0e",
+  "source": "targets/cjsonreal/base.c",
+  "source_sha256": "d6eb751cd1eb02fe86f31b5768536ef3f9d8f54363a5e8e5ddebb4eabad59d99",
+  "sanitized_binary_sha256": "b5d099e8b3297fcfef464a8773b1200d9dc50d2fae73348307302cc2e0199e94",
+  "compile_command": [
+    "gcc",
+    "-std=c11",
+    "-Wall",
+    "-Wextra",
+    "-Wno-unused-parameter",
+    "-fno-omit-frame-pointer",
+    "-g",
+    "-O1",
+    "-U_FORTIFY_SOURCE",
+    "-D_FORTIFY_SOURCE=0",
+    "-fsanitize=address,undefined",
+    "-fno-sanitize-recover=all",
+    "/work/targets/cjsonreal/base.c",
+    "-o",
+    "/work/artifacts/ci/build/cjsonreal-regression/base-sanitized",
+    "-lm"
+  ],
+  "environment": {
+    "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1:print_stacktrace=1",
+    "UBSAN_OPTIONS": "print_stacktrace=1:halt_on_error=1"
+  },
+  "execution": {
+    "argv": [
+      "/work/artifacts/ci/build/cjsonreal-regression/base-sanitized"
+    ],
+    "stdin_file": "minimized.bin",
+    "cwd": "/work/artifacts/ci/build/cjsonreal-regression",
+    "mode": "stdin"
+  }
+}

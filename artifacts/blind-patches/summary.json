@@ -1,0 +1,70 @@
+{
+  "suite_id": "88f24736",
+  "passed": 9,
+  "total": 9,
+  "cases": [
+    {
+      "candidate": "candidate_70df6869c389",
+      "target": "frame",
+      "expected": 0,
+      "observed": 0,
+      "passed": true
+    },
+    {
+      "candidate": "candidate_4fcc0b5e4592",
+      "target": "frame",
+      "expected": 10,
+      "observed": 10,
+      "passed": true
+    },
+    {
+      "candidate": "candidate_fe6bedf70f8a",
+      "target": "frame",
+      "expected": 20,
+      "observed": 20,
+      "passed": true
+    },
+    {
+      "candidate": "candidate_77a58dc375cf",
+      "target": "frame",
+      "expected": 10,
+      "observed": 10,
+      "passed": true
+    },
+    {
+      "candidate": "candidate_3554eeb55e83",
+      "target": "frame",
+      "expected": 40,
+      "observed": 40,
+      "passed": true
+    },
+    {
+      "candidate": "candidate_ff91e8f53169",
+      "target": "frame",
+      "expected": 30,
+      "observed": 30,
+      "passed": true
+    },
+    {
+      "candidate": "candidate_b42bca0d6d9b",
+      "target": "cjsonreal",
+      "expected": 0,
+      "observed": 0,
+      "passed": true
+    },
+    {
+      "candidate": "candidate_9799f53f2293",
+      "target": "cjsonreal",
+      "expected": 10,
+      "observed": 10,
+      "passed": true
+    },
+    {
+      "candidate": "candidate_a6f4a482a4ea",
+      "target": "cjsonreal",
+      "expected": 20,
+      "observed": 20,
+      "passed": true
+    }
+  ]
+}

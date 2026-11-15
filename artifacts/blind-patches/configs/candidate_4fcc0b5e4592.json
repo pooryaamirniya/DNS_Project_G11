@@ -1,0 +1,70 @@
+{
+  "name": "candidate_4fcc0b5e4592",
+  "target": {
+    "name": "Frame message parser (original teaching target)",
+    "libraries": [],
+    "id": "frame"
+  },
+  "base": "targets/frame/base.c",
+  "patch": "artifacts/blind-patches/candidates/candidate_4fcc0b5e4592.c",
+  "input_mode": "stdin",
+  "attacks": [
+    {
+      "id": "initial-exploit",
+      "text": "MSG:AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\n",
+      "category": "attack",
+      "expected": {
+        "exit_code": 2,
+        "stdout": "INVALID\n"
+      }
+    },
+    {
+      "id": "bypass-input",
+      "text": "MSG:BBBBBBBBBBBBBBBBBBBBBBBB\n",
+      "category": "boundary",
+      "expected": {
+        "exit_code": 2,
+        "stdout": "INVALID\n"
+      }
+    }
+  ],
+  "functional": [
+    {
+      "id": "empty",
+      "text": "MSG:\n",
+      "category": "functional",
+      "expected": {
+        "exit_code": 0,
+        "stdout": "OK:\n"
+      }
+    },
+    {
+      "id": "five",
+      "text": "MSG:hello\n",
+      "category": "functional",
+      "expected": {
+        "exit_code": 0,
+        "stdout": "OK:hello\n"
+      }
+    },
+    {
+      "id": "max-valid",
+      "text": "MSG:XXXXXXXXXXXXXXX\n",
+      "category": "functional",
+      "expected": {
+        "exit_code": 0,
+        "stdout": "OK:XXXXXXXXXXXXXXX\n"
+      }
+    },
+    {
+      "id": "short",
+      "text": "MSG:ok\n",
+      "category": "functional",
+      "expected": {
+        "exit_code": 0,
+        "stdout": "OK:ok\n"
+      }
+    }
+  ],
+  "reference": "docs/oracle-frame.md"
+}

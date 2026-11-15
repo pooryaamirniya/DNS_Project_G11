@@ -1,0 +1,1571 @@
+{
+  "tool": "PatchGuard 1.0.0",
+  "compiler": "gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+  "json_c_version": "0.17",
+  "git_commit": "dee1cbfa0e86e3e902e84283b1707e55cb19cd0e",
+  "platform": "Linux-5.15.167.4-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+  "python": "3.12.3",
+  "scenarios": [
+    {
+      "scenario": "candidate_10328122ce7c",
+      "target": "cJSON upstream v1.7.17/1.7.18 CVE-2024-31755",
+      "versions": {
+        "base": {
+          "source": "targets/cjsonreal/base.c",
+          "source_sha256": "d6eb751cd1eb02fe86f31b5768536ef3f9d8f54363a5e8e5ddebb4eabad59d99"
+        },
+        "patch": {
+          "source": "artifacts/blind-patches/candidates/candidate_10328122ce7c.c",
+          "source_sha256": "53e3732187c865dd41f4286679aef0c5c9a6d18c74c84199f94539978a60e79c"
+        }
+      },
+      "builds": {
+        "base_release": {
+          "argv": [
+            "gcc",
+            "-std=c11",
+            "-Wall",
+            "-Wextra",
+            "-Wno-unused-parameter",
+            "-fno-omit-frame-pointer",
+            "-g",
+            "-O1",
+            "-fstack-protector-strong",
+            "-fPIE",
+            "-pie",
+            "-Wl,-z,relro,-z,now",
+            "/work/targets/cjsonreal/base.c",
+            "-o",
+            "/work/artifacts/blind-patches/results/candidate_10328122ce7c/build/candidate_10328122ce7c/base-release",
+            "-Itargets/cjsonreal",
+            "-lm"
+          ],
+          "returncode": 0,
+          "stdout": "",
+          "stderr": "",
+          "elapsed_ms": 393,
+          "timeout": false,
+          "source": "targets/cjsonreal/base.c",
+          "binary_sha256": "8fae60ae800c1ed3cdf295a0d82cb3ba1f4776fe4e5e969acc7f095c2f1580af"
+        },
+        "base_sanitized": {
+          "argv": [
+            "gcc",
+            "-std=c11",
+            "-Wall",
+            "-Wextra",
+            "-Wno-unused-parameter",
+            "-fno-omit-frame-pointer",
+            "-g",
+            "-O1",
+            "-U_FORTIFY_SOURCE",
+            "-D_FORTIFY_SOURCE=0",
+            "-fsanitize=address,undefined",
+            "-fno-sanitize-recover=all",
+            "/work/targets/cjsonreal/base.c",
+            "-o",
+            "/work/artifacts/blind-patches/results/candidate_10328122ce7c/build/candidate_10328122ce7c/base-sanitized",
+            "-Itargets/cjsonreal",
+            "-lm"
+          ],
+          "returncode": 0,
+          "stdout": "",
+          "stderr": "",
+          "elapsed_ms": 667,
+          "timeout": false,
+          "source": "targets/cjsonreal/base.c",
+          "binary_sha256": "b5d099e8b3297fcfef464a8773b1200d9dc50d2fae73348307302cc2e0199e94"
+        },
+        "patch_release": {
+          "argv": [
+            "gcc",
+            "-std=c11",
+            "-Wall",
+            "-Wextra",
+            "-Wno-unused-parameter",
+            "-fno-omit-frame-pointer",
+            "-g",
+            "-O1",
+            "-fstack-protector-strong",
+            "-fPIE",
+            "-pie",
+            "-Wl,-z,relro,-z,now",
+            "/work/artifacts/blind-patches/candidates/candidate_10328122ce7c.c",
+            "-o",
+            "/work/artifacts/blind-patches/results/candidate_10328122ce7c/build/candidate_10328122ce7c/patch-release",
+            "-Itargets/cjsonreal",
+            "-lm"
+          ],
+          "returncode": 0,
+          "stdout": "",
+          "stderr": "",
+          "elapsed_ms": 357,
+          "timeout": false,
+          "source": "artifacts/blind-patches/candidates/candidate_10328122ce7c.c",
+          "binary_sha256": "e0336b67232284b5af343aa909591e80c9ae48a13527986ce412b1f42c1cad4e"
+        },
+        "patch_sanitized": {
+          "argv": [
+            "gcc",
+            "-std=c11",
+            "-Wall",
+            "-Wextra",
+            "-Wno-unused-parameter",
+            "-fno-omit-frame-pointer",
+            "-g",
+            "-O1",
+            "-U_FORTIFY_SOURCE",
+            "-D_FORTIFY_SOURCE=0",
+            "-fsanitize=address,undefined",
+            "-fno-sanitize-recover=all",
+            "/work/artifacts/blind-patches/candidates/candidate_10328122ce7c.c",
+            "-o",
+            "/work/artifacts/blind-patches/results/candidate_10328122ce7c/build/candidate_10328122ce7c/patch-sanitized",
+            "-Itargets/cjsonreal",
+            "-lm"
+          ],
+          "returncode": 0,
+          "stdout": "",
+          "stderr": "",
+          "elapsed_ms": 645,
+          "timeout": false,
+          "source": "artifacts/blind-patches/candidates/candidate_10328122ce7c.c",
+          "binary_sha256": "69e87e99c9852e75db4244b10154fdd61ca4fcb96e7069e3a0dfca63ef55352f"
+        }
+      },
+      "hardening": {
+        "base": {
+          "NX": true,
+          "PIE": true,
+          "RELRO": "Full",
+          "Canary_symbol": true,
+          "evidence": {
+            "GNU_STACK": [
+              "GNU_STACK      0x000000 0x0000000000000000 0x0000000000000000 0x000000 0x000000 RW  0x10"
+            ],
+            "GNU_RELRO": [
+              "GNU_RELRO      0x006d30 0x0000000000007d30 0x0000000000007d30 0x0002d0 0x0002d0 R   0x1"
+            ],
+            "ELF_Type": [
+              "Type:                              DYN (Position-Independent Executable file)"
+            ],
+            "BIND_NOW": [
+              "0x000000000000001e (FLAGS)              BIND_NOW",
+              "0x000000006ffffffb (FLAGS_1)            Flags: NOW PIE"
+            ],
+            "Canary_symbol": [
+              "9: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __stack_chk_fail@GLIBC_2.4 (4)",
+              "67: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __stack_chk_fail@GLIBC_2.4"
+            ]
+          }
+        },
+        "patched": {
+          "NX": true,
+          "PIE": true,
+          "RELRO": "Full",
+          "Canary_symbol": true,
+          "evidence": {
+            "GNU_STACK": [
+              "GNU_STACK      0x000000 0x0000000000000000 0x0000000000000000 0x000000 0x000000 RW  0x10"
+            ],
+            "GNU_RELRO": [
+              "GNU_RELRO      0x006d30 0x0000000000007d30 0x0000000000007d30 0x0002d0 0x0002d0 R   0x1"
+            ],
+            "ELF_Type": [
+              "Type:                              DYN (Position-Independent Executable file)"
+            ],
+            "BIND_NOW": [
+              "0x000000000000001e (FLAGS)              BIND_NOW",
+              "0x000000006ffffffb (FLAGS_1)            Flags: NOW PIE"
+            ],
+            "Canary_symbol": [
+              "9: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __stack_chk_fail@GLIBC_2.4 (4)",
+              "67: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __stack_chk_fail@GLIBC_2.4"
+            ]
+          }
+        },
+        "warnings": []
+      },
+      "security_tests": [
+        {
+          "case_id": "upstream-poc",
+          "category": "security",
+          "input_hex": "4e554c4c3a6170706c650a",
+          "expected_patched": {
+            "exit_code": 2,
+            "stdout": "REJECTED\n"
+          },
+          "base_sanitized": [
+            {
+              "process": {
+                "argv": [
+                  "/work/artifacts/blind-patches/results/candidate_10328122ce7c/build/candidate_10328122ce7c/base-sanitized"
+                ],
+                "returncode": 1,
+                "stdout": "",
+                "stderr": "/work/targets/cjsonreal/base.c:413:9: runtime error: null pointer passed as argument 1, which is declared to never be null\n    #0 0x55f0eead04a7 in cJSON_SetValuestring /work/targets/cjsonreal/base.c:413\n    #1 0x55f0eead09c1 in main /work/targets/cjsonreal/base.c:3162\n    #2 0x7fe6bb29e1c9  (/lib/x86_64-linux-gnu/libc.so.6+0x2a1c9) (BuildId: 8cebda42d140fc2b09639f8b13a5d5f2e617ef09)\n    #3 0x7fe6bb29e28a in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x2a28a) (BuildId: 8cebda42d140fc2b09639f8b13a5d5f2e617ef09)\n    #4 0x55f0eeac5504 in _start (/work/artifacts/blind-patches/results/candidate_10328122ce7c/build/candidate_10328122ce7c/base-sanitized+0x10504) (BuildId: 2a83d456d2072c154ffb3a074079a59df97b33e8)\n\n",
+                "elapsed_ms": 33,
+                "timeout": false
+              },
+              "finding": {
+                "mechanism": "UBSan",
+                "error_type": "undefined-behavior: null pointer passed as argument 1, which is declared to never be null",
+                "function": "cJSON_SetValuestring",
+                "location": "/work/targets/cjsonreal/base.c:413",
+                "confirmed": true,
+                "termination": {
+                  "exit_code": 1,
+                  "signal": null,
+                  "signal_name": null,
+                  "timeout": false
+                }
+              }
+            },
+            {
+              "process": {
+                "argv": [
+                  "/work/artifacts/blind-patches/results/candidate_10328122ce7c/build/candidate_10328122ce7c/base-sanitized"
+                ],
+                "returncode": 1,
+                "stdout": "",
+                "stderr": "/work/targets/cjsonreal/base.c:413:9: runtime error: null pointer passed as argument 1, which is declared to never be null\n    #0 0x564e3a3734a7 in cJSON_SetValuestring /work/targets/cjsonreal/base.c:413\n    #1 0x564e3a3739c1 in main /work/targets/cjsonreal/base.c:3162\n    #2 0x7f2e952841c9  (/lib/x86_64-linux-gnu/libc.so.6+0x2a1c9) (BuildId: 8cebda42d140fc2b09639f8b13a5d5f2e617ef09)\n    #3 0x7f2e9528428a in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x2a28a) (BuildId: 8cebda42d140fc2b09639f8b13a5d5f2e617ef09)\n    #4 0x564e3a368504 in _start (/work/artifacts/blind-patches/results/candidate_10328122ce7c/build/candidate_10328122ce7c/base-sanitized+0x10504) (BuildId: 2a83d456d2072c154ffb3a074079a59df97b33e8)\n\n",
+                "elapsed_ms": 33,
+                "timeout": false
+              },
+              "finding": {
+                "mechanism": "UBSan",
+                "error_type": "undefined-behavior: null pointer passed as argument 1, which is declared to never be null",
+                "function": "cJSON_SetValuestring",
+                "location": "/work/targets/cjsonreal/base.c:413",
+                "confirmed": true,
+                "termination": {
+                  "exit_code": 1,
+                  "signal": null,
+                  "signal_name": null,
+                  "timeout": false
+                }
+              }
+            },
+            {
+              "process": {
+                "argv": [
+                  "/work/artifacts/blind-patches/results/candidate_10328122ce7c/build/candidate_10328122ce7c/base-sanitized"
+                ],
+                "returncode": 1,
+                "stdout": "",
+                "stderr": "/work/targets/cjsonreal/base.c:413:9: runtime error: null pointer passed as argument 1, which is declared to never be null\n    #0 0x56485d8e84a7 in cJSON_SetValuestring /work/targets/cjsonreal/base.c:413\n    #1 0x56485d8e89c1 in main /work/targets/cjsonreal/base.c:3162\n    #2 0x7fd92f66a1c9  (/lib/x86_64-linux-gnu/libc.so.6+0x2a1c9) (BuildId: 8cebda42d140fc2b09639f8b13a5d5f2e617ef09)\n    #3 0x7fd92f66a28a in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x2a28a) (BuildId: 8cebda42d140fc2b09639f8b13a5d5f2e617ef09)\n    #4 0x56485d8dd504 in _start (/work/artifacts/blind-patches/results/candidate_10328122ce7c/build/candidate_10328122ce7c/base-sanitized+0x10504) (BuildId: 2a83d456d2072c154ffb3a074079a59df97b33e8)\n\n",
+                "elapsed_ms": 28,
+                "timeout": false
+              },
+              "finding": {
+                "mechanism": "UBSan",
+                "error_type": "undefined-behavior: null pointer passed as argument 1, which is declared to never be null",
+                "function": "cJSON_SetValuestring",
+                "location": "/work/targets/cjsonreal/base.c:413",
+                "confirmed": true,
+                "termination": {
+                  "exit_code": 1,
+                  "signal": null,
+                  "signal_name": null,
+                  "timeout": false
+                }
+              }
+            }
+          ],
+          "patched_sanitized": [
+            {
+              "process": {
+                "argv": [
+                  "/work/artifacts/blind-patches/results/candidate_10328122ce7c/build/candidate_10328122ce7c/patch-sanitized"
+                ],
+                "returncode": 2,
+                "stdout": "REJECTED\n",
+                "stderr": "",
+                "elapsed_ms": 14,
+                "timeout": false
+              },
+              "finding": {
+                "mechanism": "none",
+                "error_type": null,
+                "function": null,
+                "location": null,
+                "confirmed": false,
+                "termination": {
+                  "exit_code": 2,
+                  "signal": null,
+                  "signal_name": null,
+                  "timeout": false
+                }
+              }
+            },
+            {
+              "process": {
+                "argv": [
+                  "/work/artifacts/blind-patches/results/candidate_10328122ce7c/build/candidate_10328122ce7c/patch-sanitized"
+                ],
+                "returncode": 2,
+                "stdout": "REJECTED\n",
+                "stderr": "",
+                "elapsed_ms": 15,
+                "timeout": false
+              },
+              "finding": {
+                "mechanism": "none",
+                "error_type": null,
+                "function": null,
+                "location": null,
+                "confirmed": false,
+                "termination": {
+                  "exit_code": 2,
+                  "signal": null,
+                  "signal_name": null,
+                  "timeout": false
+                }
+              }
+            },
+            {
+              "process": {
+                "argv": [
+                  "/work/artifacts/blind-patches/results/candidate_10328122ce7c/build/candidate_10328122ce7c/patch-sanitized"
+                ],
+                "returncode": 2,
+                "stdout": "REJECTED\n",
+                "stderr": "",
+                "elapsed_ms": 15,
+                "timeout": false
+              },
+              "finding": {
+                "mechanism": "none",
+                "error_type": null,
+                "function": null,
+                "location": null,
+                "confirmed": false,
+                "termination": {
+                  "exit_code": 2,
+                  "signal": null,
+                  "signal_name": null,
+                  "timeout": false
+                }
+              }
+            }
+          ],
+          "base_release": {
+            "argv": [
+              "/work/artifacts/blind-patches/results/candidate_10328122ce7c/build/candidate_10328122ce7c/base-release"
+            ],
+            "returncode": -11,
+            "stdout": "",
+            "stderr": "",
+            "elapsed_ms": 14,
+            "timeout": false
+          },
+          "patched_release": {
+            "argv": [
+              "/work/artifacts/blind-patches/results/candidate_10328122ce7c/build/candidate_10328122ce7c/patch-release"
+            ],
+            "returncode": 2,
+            "stdout": "REJECTED\n",
+            "stderr": "",
+            "elapsed_ms": 7,
+            "timeout": false
+          },
+          "base_state": "confirmed",
+          "patched_state": "absent",
+          "patched_oracle_pass": true
+        },
+        {
+          "case_id": "alternate-input",
+          "category": "security",
+          "input_hex": "4e554c4c3a706561720a",
+          "expected_patched": {
+            "exit_code": 2,
+            "stdout": "REJECTED\n"
+          },
+          "base_sanitized": [
+            {
+              "process": {
+                "argv": [
+                  "/work/artifacts/blind-patches/results/candidate_10328122ce7c/build/candidate_10328122ce7c/base-sanitized"
+                ],
+                "returncode": 1,
+                "stdout": "",
+                "stderr": "/work/targets/cjsonreal/base.c:413:9: runtime error: null pointer passed as argument 1, which is declared to never be null\n    #0 0x561f033684a7 in cJSON_SetValuestring /work/targets/cjsonreal/base.c:413\n    #1 0x561f033689c1 in main /work/targets/cjsonreal/base.c:3162\n    #2 0x7f55b83fa1c9  (/lib/x86_64-linux-gnu/libc.so.6+0x2a1c9) (BuildId: 8cebda42d140fc2b09639f8b13a5d5f2e617ef09)\n    #3 0x7f55b83fa28a in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x2a28a) (BuildId: 8cebda42d140fc2b09639f8b13a5d5f2e617ef09)\n    #4 0x561f0335d504 in _start (/work/artifacts/blind-patches/results/candidate_10328122ce7c/build/candidate_10328122ce7c/base-sanitized+0x10504) (BuildId: 2a83d456d2072c154ffb3a074079a59df97b33e8)\n\n",
+                "elapsed_ms": 25,
+                "timeout": false
+              },
+              "finding": {
+                "mechanism": "UBSan",
+                "error_type": "undefined-behavior: null pointer passed as argument 1, which is declared to never be null",
+                "function": "cJSON_SetValuestring",
+                "location": "/work/targets/cjsonreal/base.c:413",
+                "confirmed": true,
+                "termination": {
+                  "exit_code": 1,
+                  "signal": null,
+                  "signal_name": null,
+                  "timeout": false
+                }
+              }
+            },
+            {
+              "process": {
+                "argv": [
+                  "/work/artifacts/blind-patches/results/candidate_10328122ce7c/build/candidate_10328122ce7c/base-sanitized"
+                ],
+                "returncode": 1,
+                "stdout": "",
+                "stderr": "/work/targets/cjsonreal/base.c:413:9: runtime error: null pointer passed as argument 1, which is declared to never be null\n    #0 0x562abc27f4a7 in cJSON_SetValuestring /work/targets/cjsonreal/base.c:413\n    #1 0x562abc27f9c1 in main /work/targets/cjsonreal/base.c:3162\n    #2 0x7f880e6991c9  (/lib/x86_64-linux-gnu/libc.so.6+0x2a1c9) (BuildId: 8cebda42d140fc2b09639f8b13a5d5f2e617ef09)\n    #3 0x7f880e69928a in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x2a28a) (BuildId: 8cebda42d140fc2b09639f8b13a5d5f2e617ef09)\n    #4 0x562abc274504 in _start (/work/artifacts/blind-patches/results/candidate_10328122ce7c/build/candidate_10328122ce7c/base-sanitized+0x10504) (BuildId: 2a83d456d2072c154ffb3a074079a59df97b33e8)\n\n",
+                "elapsed_ms": 25,
+                "timeout": false
+              },
+              "finding": {
+                "mechanism": "UBSan",
+                "error_type": "undefined-behavior: null pointer passed as argument 1, which is declared to never be null",
+                "function": "cJSON_SetValuestring",
+                "location": "/work/targets/cjsonreal/base.c:413",
+                "confirmed": true,
+                "termination": {
+                  "exit_code": 1,
+                  "signal": null,
+                  "signal_name": null,
+                  "timeout": false
+                }
+              }
+            },
+            {
+              "process": {
+                "argv": [
+                  "/work/artifacts/blind-patches/results/candidate_10328122ce7c/build/candidate_10328122ce7c/base-sanitized"
+                ],
+                "returncode": 1,
+                "stdout": "",
+                "stderr": "/work/targets/cjsonreal/base.c:413:9: runtime error: null pointer passed as argument 1, which is declared to never be null\n    #0 0x55dbad6da4a7 in cJSON_SetValuestring /work/targets/cjsonreal/base.c:413\n    #1 0x55dbad6da9c1 in main /work/targets/cjsonreal/base.c:3162\n    #2 0x7fe2c7e551c9  (/lib/x86_64-linux-gnu/libc.so.6+0x2a1c9) (BuildId: 8cebda42d140fc2b09639f8b13a5d5f2e617ef09)\n    #3 0x7fe2c7e5528a in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x2a28a) (BuildId: 8cebda42d140fc2b09639f8b13a5d5f2e617ef09)\n    #4 0x55dbad6cf504 in _start (/work/artifacts/blind-patches/results/candidate_10328122ce7c/build/candidate_10328122ce7c/base-sanitized+0x10504) (BuildId: 2a83d456d2072c154ffb3a074079a59df97b33e8)\n\n",
+                "elapsed_ms": 25,
+                "timeout": false
+              },
+              "finding": {
+                "mechanism": "UBSan",
+                "error_type": "undefined-behavior: null pointer passed as argument 1, which is declared to never be null",
+                "function": "cJSON_SetValuestring",
+                "location": "/work/targets/cjsonreal/base.c:413",
+                "confirmed": true,
+                "termination": {
+                  "exit_code": 1,
+                  "signal": null,
+                  "signal_name": null,
+                  "timeout": false
+                }
+              }
+            }
+          ],
+          "patched_sanitized": [
+            {
+              "process": {
+                "argv": [
+                  "/work/artifacts/blind-patches/results/candidate_10328122ce7c/build/candidate_10328122ce7c/patch-sanitized"
+                ],
+                "returncode": 2,
+                "stdout": "REJECTED\n",
+                "stderr": "",
+                "elapsed_ms": 15,
+                "timeout": false
+              },
+              "finding": {
+                "mechanism": "none",
+                "error_type": null,
+                "function": null,
+                "location": null,
+                "confirmed": false,
+                "termination": {
+                  "exit_code": 2,
+                  "signal": null,
+                  "signal_name": null,
+                  "timeout": false
+                }
+              }
+            },
+            {
+              "process": {
+                "argv": [
+                  "/work/artifacts/blind-patches/results/candidate_10328122ce7c/build/candidate_10328122ce7c/patch-sanitized"
+                ],
+                "returncode": 2,
+                "stdout": "REJECTED\n",
+                "stderr": "",
+                "elapsed_ms": 14,
+                "timeout": false
+              },
+              "finding": {
+                "mechanism": "none",
+                "error_type": null,
+                "function": null,
+                "location": null,
+                "confirmed": false,
+                "termination": {
+                  "exit_code": 2,
+                  "signal": null,
+                  "signal_name": null,
+                  "timeout": false
+                }
+              }
+            },
+            {
+              "process": {
+                "argv": [
+                  "/work/artifacts/blind-patches/results/candidate_10328122ce7c/build/candidate_10328122ce7c/patch-sanitized"
+                ],
+                "returncode": 2,
+                "stdout": "REJECTED\n",
+                "stderr": "",
+                "elapsed_ms": 13,
+                "timeout": false
+              },
+              "finding": {
+                "mechanism": "none",
+                "error_type": null,
+                "function": null,
+                "location": null,
+                "confirmed": false,
+                "termination": {
+                  "exit_code": 2,
+                  "signal": null,
+                  "signal_name": null,
+                  "timeout": false
+                }
+              }
+            }
+          ],
+          "base_release": {
+            "argv": [
+              "/work/artifacts/blind-patches/results/candidate_10328122ce7c/build/candidate_10328122ce7c/base-release"
+            ],
+            "returncode": -11,
+            "stdout": "",
+            "stderr": "",
+            "elapsed_ms": 12,
+            "timeout": false
+          },
+          "patched_release": {
+            "argv": [
+              "/work/artifacts/blind-patches/results/candidate_10328122ce7c/build/candidate_10328122ce7c/patch-release"
+            ],
+            "returncode": 2,
+            "stdout": "REJECTED\n",
+            "stderr": "",
+            "elapsed_ms": 7,
+            "timeout": false
+          },
+          "base_state": "confirmed",
+          "patched_state": "absent",
+          "patched_oracle_pass": true
+        },
+        {
+          "case_id": "reg-alternate-input-7feab1881767",
+          "category": "persisted_regression",
+          "input_hex": "4e554c4c3a70",
+          "expected_patched": {
+            "exit_code": 2,
+            "stdout": "REJECTED\n"
+          },
+          "base_sanitized": [
+            {
+              "process": {
+                "argv": [
+                  "/work/artifacts/blind-patches/results/candidate_10328122ce7c/build/candidate_10328122ce7c/base-sanitized"
+                ],
+                "returncode": 1,
+                "stdout": "",
+                "stderr": "/work/targets/cjsonreal/base.c:413:9: runtime error: null pointer passed as argument 1, which is declared to never be null\n    #0 0x559f485f54a7 in cJSON_SetValuestring /work/targets/cjsonreal/base.c:413\n    #1 0x559f485f59c1 in main /work/targets/cjsonreal/base.c:3162\n    #2 0x7f73bce421c9  (/lib/x86_64-linux-gnu/libc.so.6+0x2a1c9) (BuildId: 8cebda42d140fc2b09639f8b13a5d5f2e617ef09)\n    #3 0x7f73bce4228a in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x2a28a) (BuildId: 8cebda42d140fc2b09639f8b13a5d5f2e617ef09)\n    #4 0x559f485ea504 in _start (/work/artifacts/blind-patches/results/candidate_10328122ce7c/build/candidate_10328122ce7c/base-sanitized+0x10504) (BuildId: 2a83d456d2072c154ffb3a074079a59df97b33e8)\n\n",
+                "elapsed_ms": 25,
+                "timeout": false
+              },
+              "finding": {
+                "mechanism": "UBSan",
+                "error_type": "undefined-behavior: null pointer passed as argument 1, which is declared to never be null",
+                "function": "cJSON_SetValuestring",
+                "location": "/work/targets/cjsonreal/base.c:413",
+                "confirmed": true,
+                "termination": {
+                  "exit_code": 1,
+                  "signal": null,
+                  "signal_name": null,
+                  "timeout": false
+                }
+              }
+            },
+            {
+              "process": {
+                "argv": [
+                  "/work/artifacts/blind-patches/results/candidate_10328122ce7c/build/candidate_10328122ce7c/base-sanitized"
+                ],
+                "returncode": 1,
+                "stdout": "",
+                "stderr": "/work/targets/cjsonreal/base.c:413:9: runtime error: null pointer passed as argument 1, which is declared to never be null\n    #0 0x55f85821d4a7 in cJSON_SetValuestring /work/targets/cjsonreal/base.c:413\n    #1 0x55f85821d9c1 in main /work/targets/cjsonreal/base.c:3162\n    #2 0x7fbeb11ee1c9  (/lib/x86_64-linux-gnu/libc.so.6+0x2a1c9) (BuildId: 8cebda42d140fc2b09639f8b13a5d5f2e617ef09)\n    #3 0x7fbeb11ee28a in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x2a28a) (BuildId: 8cebda42d140fc2b09639f8b13a5d5f2e617ef09)\n    #4 0x55f858212504 in _start (/work/artifacts/blind-patches/results/candidate_10328122ce7c/build/candidate_10328122ce7c/base-sanitized+0x10504) (BuildId: 2a83d456d2072c154ffb3a074079a59df97b33e8)\n\n",
+                "elapsed_ms": 33,
+                "timeout": false
+              },
+              "finding": {
+                "mechanism": "UBSan",
+                "error_type": "undefined-behavior: null pointer passed as argument 1, which is declared to never be null",
+                "function": "cJSON_SetValuestring",
+                "location": "/work/targets/cjsonreal/base.c:413",
+                "confirmed": true,
+                "termination": {
+                  "exit_code": 1,
+                  "signal": null,
+                  "signal_name": null,
+                  "timeout": false
+                }
+              }
+            },
+            {
+              "process": {
+                "argv": [
+                  "/work/artifacts/blind-patches/results/candidate_10328122ce7c/build/candidate_10328122ce7c/base-sanitized"
+                ],
+                "returncode": 1,
+                "stdout": "",
+                "stderr": "/work/targets/cjsonreal/base.c:413:9: runtime error: null pointer passed as argument 1, which is declared to never be null\n    #0 0x564e194484a7 in cJSON_SetValuestring /work/targets/cjsonreal/base.c:413\n    #1 0x564e194489c1 in main /work/targets/cjsonreal/base.c:3162\n    #2 0x7f33bfad81c9  (/lib/x86_64-linux-gnu/libc.so.6+0x2a1c9) (BuildId: 8cebda42d140fc2b09639f8b13a5d5f2e617ef09)\n    #3 0x7f33bfad828a in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x2a28a) (BuildId: 8cebda42d140fc2b09639f8b13a5d5f2e617ef09)\n    #4 0x564e1943d504 in _start (/work/artifacts/blind-patches/results/candidate_10328122ce7c/build/candidate_10328122ce7c/base-sanitized+0x10504) (BuildId: 2a83d456d2072c154ffb3a074079a59df97b33e8)\n\n",
+                "elapsed_ms": 32,
+                "timeout": false
+              },
+              "finding": {
+                "mechanism": "UBSan",
+                "error_type": "undefined-behavior: null pointer passed as argument 1, which is declared to never be null",
+                "function": "cJSON_SetValuestring",
+                "location": "/work/targets/cjsonreal/base.c:413",
+                "confirmed": true,
+                "termination": {
+                  "exit_code": 1,
+                  "signal": null,
+                  "signal_name": null,
+                  "timeout": false
+                }
+              }
+            }
+          ],
+          "patched_sanitized": [
+            {
+              "process": {
+                "argv": [
+                  "/work/artifacts/blind-patches/results/candidate_10328122ce7c/build/candidate_10328122ce7c/patch-sanitized"
+                ],
+                "returncode": 2,
+                "stdout": "REJECTED\n",
+                "stderr": "",
+                "elapsed_ms": 14,
+                "timeout": false
+              },
+              "finding": {
+                "mechanism": "none",
+                "error_type": null,
+                "function": null,
+                "location": null,
+                "confirmed": false,
+                "termination": {
+                  "exit_code": 2,
+                  "signal": null,
+                  "signal_name": null,
+                  "timeout": false
+                }
+              }
+            },
+            {
+              "process": {
+                "argv": [
+                  "/work/artifacts/blind-patches/results/candidate_10328122ce7c/build/candidate_10328122ce7c/patch-sanitized"
+                ],
+                "returncode": 2,
+                "stdout": "REJECTED\n",
+                "stderr": "",
+                "elapsed_ms": 14,
+                "timeout": false
+              },
+              "finding": {
+                "mechanism": "none",
+                "error_type": null,
+                "function": null,
+                "location": null,
+                "confirmed": false,
+                "termination": {
+                  "exit_code": 2,
+                  "signal": null,
+                  "signal_name": null,
+                  "timeout": false
+                }
+              }
+            },
+            {
+              "process": {
+                "argv": [
+                  "/work/artifacts/blind-patches/results/candidate_10328122ce7c/build/candidate_10328122ce7c/patch-sanitized"
+                ],
+                "returncode": 2,
+                "stdout": "REJECTED\n",
+                "stderr": "",
+                "elapsed_ms": 15,
+                "timeout": false
+              },
+              "finding": {
+                "mechanism": "none",
+                "error_type": null,
+                "function": null,
+                "location": null,
+                "confirmed": false,
+                "termination": {
+                  "exit_code": 2,
+                  "signal": null,
+                  "signal_name": null,
+                  "timeout": false
+                }
+              }
+            }
+          ],
+          "base_release": {
+            "argv": [
+              "/work/artifacts/blind-patches/results/candidate_10328122ce7c/build/candidate_10328122ce7c/base-release"
+            ],
+            "returncode": -11,
+            "stdout": "",
+            "stderr": "",
+            "elapsed_ms": 15,
+            "timeout": false
+          },
+          "patched_release": {
+            "argv": [
+              "/work/artifacts/blind-patches/results/candidate_10328122ce7c/build/candidate_10328122ce7c/patch-release"
+            ],
+            "returncode": 2,
+            "stdout": "REJECTED\n",
+            "stderr": "",
+            "elapsed_ms": 6,
+            "timeout": false
+          },
+          "base_state": "confirmed",
+          "patched_state": "absent",
+          "patched_oracle_pass": true
+        },
+        {
+          "case_id": "reg-upstream-poc-cdc92270f196",
+          "category": "persisted_regression",
+          "input_hex": "4e554c4c3a61",
+          "expected_patched": {
+            "exit_code": 2,
+            "stdout": "REJECTED\n"
+          },
+          "base_sanitized": [
+            {
+              "process": {
+                "argv": [
+                  "/work/artifacts/blind-patches/results/candidate_10328122ce7c/build/candidate_10328122ce7c/base-sanitized"
+                ],
+                "returncode": 1,
+                "stdout": "",
+                "stderr": "/work/targets/cjsonreal/base.c:413:9: runtime error: null pointer passed as argument 1, which is declared to never be null\n    #0 0x55f0474e74a7 in cJSON_SetValuestring /work/targets/cjsonreal/base.c:413\n    #1 0x55f0474e79c1 in main /work/targets/cjsonreal/base.c:3162\n    #2 0x7f61bb87d1c9  (/lib/x86_64-linux-gnu/libc.so.6+0x2a1c9) (BuildId: 8cebda42d140fc2b09639f8b13a5d5f2e617ef09)\n    #3 0x7f61bb87d28a in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x2a28a) (BuildId: 8cebda42d140fc2b09639f8b13a5d5f2e617ef09)\n    #4 0x55f0474dc504 in _start (/work/artifacts/blind-patches/results/candidate_10328122ce7c/build/candidate_10328122ce7c/base-sanitized+0x10504) (BuildId: 2a83d456d2072c154ffb3a074079a59df97b33e8)\n\n",
+                "elapsed_ms": 24,
+                "timeout": false
+              },
+              "finding": {
+                "mechanism": "UBSan",
+                "error_type": "undefined-behavior: null pointer passed as argument 1, which is declared to never be null",
+                "function": "cJSON_SetValuestring",
+                "location": "/work/targets/cjsonreal/base.c:413",
+                "confirmed": true,
+                "termination": {
+                  "exit_code": 1,
+                  "signal": null,
+                  "signal_name": null,
+                  "timeout": false
+                }
+              }
+            },
+            {
+              "process": {
+                "argv": [
+                  "/work/artifacts/blind-patches/results/candidate_10328122ce7c/build/candidate_10328122ce7c/base-sanitized"
+                ],
+                "returncode": 1,
+                "stdout": "",
+                "stderr": "/work/targets/cjsonreal/base.c:413:9: runtime error: null pointer passed as argument 1, which is declared to never be null\n    #0 0x5561da8f34a7 in cJSON_SetValuestring /work/targets/cjsonreal/base.c:413\n    #1 0x5561da8f39c1 in main /work/targets/cjsonreal/base.c:3162\n    #2 0x7f461e1a91c9  (/lib/x86_64-linux-gnu/libc.so.6+0x2a1c9) (BuildId: 8cebda42d140fc2b09639f8b13a5d5f2e617ef09)\n    #3 0x7f461e1a928a in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x2a28a) (BuildId: 8cebda42d140fc2b09639f8b13a5d5f2e617ef09)\n    #4 0x5561da8e8504 in _start (/work/artifacts/blind-patches/results/candidate_10328122ce7c/build/candidate_10328122ce7c/base-sanitized+0x10504) (BuildId: 2a83d456d2072c154ffb3a074079a59df97b33e8)\n\n",
+                "elapsed_ms": 25,
+                "timeout": false
+              },
+              "finding": {
+                "mechanism": "UBSan",
+                "error_type": "undefined-behavior: null pointer passed as argument 1, which is declared to never be null",
+                "function": "cJSON_SetValuestring",
+                "location": "/work/targets/cjsonreal/base.c:413",
+                "confirmed": true,
+                "termination": {
+                  "exit_code": 1,
+                  "signal": null,
+                  "signal_name": null,
+                  "timeout": false
+                }
+              }
+            },
+            {
+              "process": {
+                "argv": [
+                  "/work/artifacts/blind-patches/results/candidate_10328122ce7c/build/candidate_10328122ce7c/base-sanitized"
+                ],
+                "returncode": 1,
+                "stdout": "",
+                "stderr": "/work/targets/cjsonreal/base.c:413:9: runtime error: null pointer passed as argument 1, which is declared to never be null\n    #0 0x55f07252c4a7 in cJSON_SetValuestring /work/targets/cjsonreal/base.c:413\n    #1 0x55f07252c9c1 in main /work/targets/cjsonreal/base.c:3162\n    #2 0x7f7ea75491c9  (/lib/x86_64-linux-gnu/libc.so.6+0x2a1c9) (BuildId: 8cebda42d140fc2b09639f8b13a5d5f2e617ef09)\n    #3 0x7f7ea754928a in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x2a28a) (BuildId: 8cebda42d140fc2b09639f8b13a5d5f2e617ef09)\n    #4 0x55f072521504 in _start (/work/artifacts/blind-patches/results/candidate_10328122ce7c/build/candidate_10328122ce7c/base-sanitized+0x10504) (BuildId: 2a83d456d2072c154ffb3a074079a59df97b33e8)\n\n",
+                "elapsed_ms": 36,
+                "timeout": false
+              },
+              "finding": {
+                "mechanism": "UBSan",
+                "error_type": "undefined-behavior: null pointer passed as argument 1, which is declared to never be null",
+                "function": "cJSON_SetValuestring",
+                "location": "/work/targets/cjsonreal/base.c:413",
+                "confirmed": true,
+                "termination": {
+                  "exit_code": 1,
+                  "signal": null,
+                  "signal_name": null,
+                  "timeout": false
+                }
+              }
+            }
+          ],
+          "patched_sanitized": [
+            {
+              "process": {
+                "argv": [
+                  "/work/artifacts/blind-patches/results/candidate_10328122ce7c/build/candidate_10328122ce7c/patch-sanitized"
+                ],
+                "returncode": 2,
+                "stdout": "REJECTED\n",
+                "stderr": "",
+                "elapsed_ms": 21,
+                "timeout": false
+              },
+              "finding": {
+                "mechanism": "none",
+                "error_type": null,
+                "function": null,
+                "location": null,
+                "confirmed": false,
+                "termination": {
+                  "exit_code": 2,
+                  "signal": null,
+                  "signal_name": null,
+                  "timeout": false
+                }
+              }
+            },
+            {
+              "process": {
+                "argv": [
+                  "/work/artifacts/blind-patches/results/candidate_10328122ce7c/build/candidate_10328122ce7c/patch-sanitized"
+                ],
+                "returncode": 2,
+                "stdout": "REJECTED\n",
+                "stderr": "",
+                "elapsed_ms": 14,
+                "timeout": false
+              },
+              "finding": {
+                "mechanism": "none",
+                "error_type": null,
+                "function": null,
+                "location": null,
+                "confirmed": false,
+                "termination": {
+                  "exit_code": 2,
+                  "signal": null,
+                  "signal_name": null,
+                  "timeout": false
+                }
+              }
+            },
+            {
+              "process": {
+                "argv": [
+                  "/work/artifacts/blind-patches/results/candidate_10328122ce7c/build/candidate_10328122ce7c/patch-sanitized"
+                ],
+                "returncode": 2,
+                "stdout": "REJECTED\n",
+                "stderr": "",
+                "elapsed_ms": 13,
+                "timeout": false
+              },
+              "finding": {
+                "mechanism": "none",
+                "error_type": null,
+                "function": null,
+                "location": null,
+                "confirmed": false,
+                "termination": {
+                  "exit_code": 2,
+                  "signal": null,
+                  "signal_name": null,
+                  "timeout": false
+                }
+              }
+            }
+          ],
+          "base_release": {
+            "argv": [
+              "/work/artifacts/blind-patches/results/candidate_10328122ce7c/build/candidate_10328122ce7c/base-release"
+            ],
+            "returncode": -11,
+            "stdout": "",
+            "stderr": "",
+            "elapsed_ms": 14,
+            "timeout": false
+          },
+          "patched_release": {
+            "argv": [
+              "/work/artifacts/blind-patches/results/candidate_10328122ce7c/build/candidate_10328122ce7c/patch-release"
+            ],
+            "returncode": 2,
+            "stdout": "REJECTED\n",
+            "stderr": "",
+            "elapsed_ms": 13,
+            "timeout": false
+          },
+          "base_state": "confirmed",
+          "patched_state": "absent",
+          "patched_oracle_pass": true
+        }
+      ],
+      "functional_tests": [
+        {
+          "case_id": "normal-set",
+          "input_hex": "5345543a6170706c653a6f72616e67650a",
+          "reference": {
+            "exit_code": 0,
+            "stdout": "SET:orange\n"
+          },
+          "base_release": {
+            "argv": [
+              "/work/artifacts/blind-patches/results/candidate_10328122ce7c/build/candidate_10328122ce7c/base-release"
+            ],
+            "returncode": 0,
+            "stdout": "SET:orange\n",
+            "stderr": "",
+            "elapsed_ms": 12,
+            "timeout": false
+          },
+          "patched_release": {
+            "argv": [
+              "/work/artifacts/blind-patches/results/candidate_10328122ce7c/build/candidate_10328122ce7c/patch-release"
+            ],
+            "returncode": 0,
+            "stdout": "SET:orange\n",
+            "stderr": "",
+            "elapsed_ms": 9,
+            "timeout": false
+          },
+          "base_sanitized": {
+            "process": {
+              "argv": [
+                "/work/artifacts/blind-patches/results/candidate_10328122ce7c/build/candidate_10328122ce7c/base-sanitized"
+              ],
+              "returncode": 0,
+              "stdout": "SET:orange\n",
+              "stderr": "",
+              "elapsed_ms": 17,
+              "timeout": false
+            },
+            "finding": {
+              "mechanism": "none",
+              "error_type": null,
+              "function": null,
+              "location": null,
+              "confirmed": false,
+              "termination": {
+                "exit_code": 0,
+                "signal": null,
+                "signal_name": null,
+                "timeout": false
+              }
+            }
+          },
+          "patched_sanitized": {
+            "process": {
+              "argv": [
+                "/work/artifacts/blind-patches/results/candidate_10328122ce7c/build/candidate_10328122ce7c/patch-sanitized"
+              ],
+              "returncode": 0,
+              "stdout": "SET:orange\n",
+              "stderr": "",
+              "elapsed_ms": 14,
+              "timeout": false
+            },
+            "finding": {
+              "mechanism": "none",
+              "error_type": null,
+              "function": null,
+              "location": null,
+              "confirmed": false,
+              "termination": {
+                "exit_code": 0,
+                "signal": null,
+                "signal_name": null,
+                "timeout": false
+              }
+            }
+          },
+          "base_matches_reference": true,
+          "patched_matches_reference": true
+        },
+        {
+          "case_id": "regression-detect",
+          "input_hex": "5345543a6170706c653a68656c6c6f0a",
+          "reference": {
+            "exit_code": 0,
+            "stdout": "SET:hello\n"
+          },
+          "base_release": {
+            "argv": [
+              "/work/artifacts/blind-patches/results/candidate_10328122ce7c/build/candidate_10328122ce7c/base-release"
+            ],
+            "returncode": 0,
+            "stdout": "SET:hello\n",
+            "stderr": "",
+            "elapsed_ms": 6,
+            "timeout": false
+          },
+          "patched_release": {
+            "argv": [
+              "/work/artifacts/blind-patches/results/candidate_10328122ce7c/build/candidate_10328122ce7c/patch-release"
+            ],
+            "returncode": 0,
+            "stdout": "SET:hello\n",
+            "stderr": "",
+            "elapsed_ms": 7,
+            "timeout": false
+          },
+          "base_sanitized": {
+            "process": {
+              "argv": [
+                "/work/artifacts/blind-patches/results/candidate_10328122ce7c/build/candidate_10328122ce7c/base-sanitized"
+              ],
+              "returncode": 0,
+              "stdout": "SET:hello\n",
+              "stderr": "",
+              "elapsed_ms": 14,
+              "timeout": false
+            },
+            "finding": {
+              "mechanism": "none",
+              "error_type": null,
+              "function": null,
+              "location": null,
+              "confirmed": false,
+              "termination": {
+                "exit_code": 0,
+                "signal": null,
+                "signal_name": null,
+                "timeout": false
+              }
+            }
+          },
+          "patched_sanitized": {
+            "process": {
+              "argv": [
+                "/work/artifacts/blind-patches/results/candidate_10328122ce7c/build/candidate_10328122ce7c/patch-sanitized"
+              ],
+              "returncode": 0,
+              "stdout": "SET:hello\n",
+              "stderr": "",
+              "elapsed_ms": 14,
+              "timeout": false
+            },
+            "finding": {
+              "mechanism": "none",
+              "error_type": null,
+              "function": null,
+              "location": null,
+              "confirmed": false,
+              "termination": {
+                "exit_code": 0,
+                "signal": null,
+                "signal_name": null,
+                "timeout": false
+              }
+            }
+          },
+          "base_matches_reference": true,
+          "patched_matches_reference": true
+        },
+        {
+          "case_id": "empty-replacement",
+          "input_hex": "5345543a6170706c653a0a",
+          "reference": {
+            "exit_code": 0,
+            "stdout": "SET:\n"
+          },
+          "base_release": {
+            "argv": [
+              "/work/artifacts/blind-patches/results/candidate_10328122ce7c/build/candidate_10328122ce7c/base-release"
+            ],
+            "returncode": 0,
+            "stdout": "SET:\n",
+            "stderr": "",
+            "elapsed_ms": 6,
+            "timeout": false
+          },
+          "patched_release": {
+            "argv": [
+              "/work/artifacts/blind-patches/results/candidate_10328122ce7c/build/candidate_10328122ce7c/patch-release"
+            ],
+            "returncode": 0,
+            "stdout": "SET:\n",
+            "stderr": "",
+            "elapsed_ms": 6,
+            "timeout": false
+          },
+          "base_sanitized": {
+            "process": {
+              "argv": [
+                "/work/artifacts/blind-patches/results/candidate_10328122ce7c/build/candidate_10328122ce7c/base-sanitized"
+              ],
+              "returncode": 0,
+              "stdout": "SET:\n",
+              "stderr": "",
+              "elapsed_ms": 14,
+              "timeout": false
+            },
+            "finding": {
+              "mechanism": "none",
+              "error_type": null,
+              "function": null,
+              "location": null,
+              "confirmed": false,
+              "termination": {
+                "exit_code": 0,
+                "signal": null,
+                "signal_name": null,
+                "timeout": false
+              }
+            }
+          },
+          "patched_sanitized": {
+            "process": {
+              "argv": [
+                "/work/artifacts/blind-patches/results/candidate_10328122ce7c/build/candidate_10328122ce7c/patch-sanitized"
+              ],
+              "returncode": 0,
+              "stdout": "SET:\n",
+              "stderr": "",
+              "elapsed_ms": 13,
+              "timeout": false
+            },
+            "finding": {
+              "mechanism": "none",
+              "error_type": null,
+              "function": null,
+              "location": null,
+              "confirmed": false,
+              "termination": {
+                "exit_code": 0,
+                "signal": null,
+                "signal_name": null,
+                "timeout": false
+              }
+            }
+          },
+          "base_matches_reference": true,
+          "patched_matches_reference": true
+        },
+        {
+          "case_id": "long-replacement",
+          "input_hex": "5345543a613a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a0a",
+          "reference": {
+            "exit_code": 0,
+            "stdout": "SET:zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz\n"
+          },
+          "base_release": {
+            "argv": [
+              "/work/artifacts/blind-patches/results/candidate_10328122ce7c/build/candidate_10328122ce7c/base-release"
+            ],
+            "returncode": 0,
+            "stdout": "SET:zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz\n",
+            "stderr": "",
+            "elapsed_ms": 8,
+            "timeout": false
+          },
+          "patched_release": {
+            "argv": [
+              "/work/artifacts/blind-patches/results/candidate_10328122ce7c/build/candidate_10328122ce7c/patch-release"
+            ],
+            "returncode": 0,
+            "stdout": "SET:zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz\n",
+            "stderr": "",
+            "elapsed_ms": 6,
+            "timeout": false
+          },
+          "base_sanitized": {
+            "process": {
+              "argv": [
+                "/work/artifacts/blind-patches/results/candidate_10328122ce7c/build/candidate_10328122ce7c/base-sanitized"
+              ],
+              "returncode": 0,
+              "stdout": "SET:zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz\n",
+              "stderr": "",
+              "elapsed_ms": 25,
+              "timeout": false
+            },
+            "finding": {
+              "mechanism": "none",
+              "error_type": null,
+              "function": null,
+              "location": null,
+              "confirmed": false,
+              "termination": {
+                "exit_code": 0,
+                "signal": null,
+                "signal_name": null,
+                "timeout": false
+              }
+            }
+          },
+          "patched_sanitized": {
+            "process": {
+              "argv": [
+                "/work/artifacts/blind-patches/results/candidate_10328122ce7c/build/candidate_10328122ce7c/patch-sanitized"
+              ],
+              "returncode": 0,
+              "stdout": "SET:zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz\n",
+              "stderr": "",
+              "elapsed_ms": 25,
+              "timeout": false
+            },
+            "finding": {
+              "mechanism": "none",
+              "error_type": null,
+              "function": null,
+              "location": null,
+              "confirmed": false,
+              "termination": {
+                "exit_code": 0,
+                "signal": null,
+                "signal_name": null,
+                "timeout": false
+              }
+            }
+          },
+          "base_matches_reference": true,
+          "patched_matches_reference": true
+        },
+        {
+          "case_id": "invalid-command",
+          "input_hex": "4241443a6170706c650a",
+          "reference": {
+            "exit_code": 2,
+            "stdout": "INVALID\n"
+          },
+          "base_release": {
+            "argv": [
+              "/work/artifacts/blind-patches/results/candidate_10328122ce7c/build/candidate_10328122ce7c/base-release"
+            ],
+            "returncode": 2,
+            "stdout": "INVALID\n",
+            "stderr": "",
+            "elapsed_ms": 7,
+            "timeout": false
+          },
+          "patched_release": {
+            "argv": [
+              "/work/artifacts/blind-patches/results/candidate_10328122ce7c/build/candidate_10328122ce7c/patch-release"
+            ],
+            "returncode": 2,
+            "stdout": "INVALID\n",
+            "stderr": "",
+            "elapsed_ms": 6,
+            "timeout": false
+          },
+          "base_sanitized": {
+            "process": {
+              "argv": [
+                "/work/artifacts/blind-patches/results/candidate_10328122ce7c/build/candidate_10328122ce7c/base-sanitized"
+              ],
+              "returncode": 2,
+              "stdout": "INVALID\n",
+              "stderr": "",
+              "elapsed_ms": 13,
+              "timeout": false
+            },
+            "finding": {
+              "mechanism": "none",
+              "error_type": null,
+              "function": null,
+              "location": null,
+              "confirmed": false,
+              "termination": {
+                "exit_code": 2,
+                "signal": null,
+                "signal_name": null,
+                "timeout": false
+              }
+            }
+          },
+          "patched_sanitized": {
+            "process": {
+              "argv": [
+                "/work/artifacts/blind-patches/results/candidate_10328122ce7c/build/candidate_10328122ce7c/patch-sanitized"
+              ],
+              "returncode": 2,
+              "stdout": "INVALID\n",
+              "stderr": "",
+              "elapsed_ms": 13,
+              "timeout": false
+            },
+            "finding": {
+              "mechanism": "none",
+              "error_type": null,
+              "function": null,
+              "location": null,
+              "confirmed": false,
+              "termination": {
+                "exit_code": 2,
+                "signal": null,
+                "signal_name": null,
+                "timeout": false
+              }
+            }
+          },
+          "base_matches_reference": true,
+          "patched_matches_reference": true
+        },
+        {
+          "case_id": "missing-original",
+          "input_hex": "4e554c4c3a0a",
+          "reference": {
+            "exit_code": 2,
+            "stdout": "INVALID\n"
+          },
+          "base_release": {
+            "argv": [
+              "/work/artifacts/blind-patches/results/candidate_10328122ce7c/build/candidate_10328122ce7c/base-release"
+            ],
+            "returncode": 2,
+            "stdout": "INVALID\n",
+            "stderr": "",
+            "elapsed_ms": 7,
+            "timeout": false
+          },
+          "patched_release": {
+            "argv": [
+              "/work/artifacts/blind-patches/results/candidate_10328122ce7c/build/candidate_10328122ce7c/patch-release"
+            ],
+            "returncode": 2,
+            "stdout": "INVALID\n",
+            "stderr": "",
+            "elapsed_ms": 7,
+            "timeout": false
+          },
+          "base_sanitized": {
+            "process": {
+              "argv": [
+                "/work/artifacts/blind-patches/results/candidate_10328122ce7c/build/candidate_10328122ce7c/base-sanitized"
+              ],
+              "returncode": 2,
+              "stdout": "INVALID\n",
+              "stderr": "",
+              "elapsed_ms": 12,
+              "timeout": false
+            },
+            "finding": {
+              "mechanism": "none",
+              "error_type": null,
+              "function": null,
+              "location": null,
+              "confirmed": false,
+              "termination": {
+                "exit_code": 2,
+                "signal": null,
+                "signal_name": null,
+                "timeout": false
+              }
+            }
+          },
+          "patched_sanitized": {
+            "process": {
+              "argv": [
+                "/work/artifacts/blind-patches/results/candidate_10328122ce7c/build/candidate_10328122ce7c/patch-sanitized"
+              ],
+              "returncode": 2,
+              "stdout": "INVALID\n",
+              "stderr": "",
+              "elapsed_ms": 13,
+              "timeout": false
+            },
+            "finding": {
+              "mechanism": "none",
+              "error_type": null,
+              "function": null,
+              "location": null,
+              "confirmed": false,
+              "termination": {
+                "exit_code": 2,
+                "signal": null,
+                "signal_name": null,
+                "timeout": false
+              }
+            }
+          },
+          "base_matches_reference": true,
+          "patched_matches_reference": true
+        }
+      ],
+      "generated_regressions": [],
+      "correlation": {
+        "strength": "function_overlap",
+        "reason": "runtime stack-frame function contains patch changes",
+        "diff": "diff --git a/targets/cjsonreal/base.c b/artifacts/blind-patches/candidates/candidate_10328122ce7c.c\nindex 61c69c4..4b03d8b 100755\n--- a/targets/cjsonreal/base.c\n+++ b/artifacts/blind-patches/candidates/candidate_10328122ce7c.c\n@@ -59 +59 @@\n-#include \"upstream/v1.7.17/cJSON.h\"\n+#include \"upstream/v1.7.18/cJSON.h\"\n@@ -120 +120 @@ CJSON_PUBLIC(double) cJSON_GetNumberValue(const cJSON * const item)\n-#if (CJSON_VERSION_MAJOR != 1) || (CJSON_VERSION_MINOR != 7) || (CJSON_VERSION_PATCH != 17)\n+#if (CJSON_VERSION_MAJOR != 1) || (CJSON_VERSION_MINOR != 7) || (CJSON_VERSION_PATCH != 18)\n@@ -265,0 +266 @@ CJSON_PUBLIC(void) cJSON_Delete(cJSON *item)\n+            item->valuestring = NULL;\n@@ -269,0 +271 @@ CJSON_PUBLIC(void) cJSON_Delete(cJSON *item)\n+            item->string = NULL;\n@@ -399,0 +402 @@ CJSON_PUBLIC(double) cJSON_SetNumberHelper(cJSON *object, double number)\n+/* Note: when passing a NULL valuestring, cJSON_SetValuestring treats this as an error and return NULL */\n@@ -408,2 +411,2 @@ CJSON_PUBLIC(char*) cJSON_SetValuestring(cJSON *object, const char *valuestring)\n-    /* return NULL if the object is corrupted */\n-    if (object->valuestring == NULL)\n+    /* return NULL if the object is corrupted or valuestring is NULL */\n+    if ((object->valuestring == NULL) || (valuestring == NULL))\n@@ -895,0 +899 @@ fail:\n+        output = NULL;\n@@ -1237,0 +1242 @@ static unsigned char *print(const cJSON * const item, cJSON_bool format, const i\n+        buffer->buffer = NULL;\n@@ -1245,0 +1251 @@ fail:\n+        buffer->buffer = NULL;\n@@ -1250,0 +1257 @@ fail:\n+        printed = NULL;\n@@ -1290,0 +1298 @@ CJSON_PUBLIC(char *) cJSON_PrintBuffered(const cJSON *item, int prebuffer, cJSON\n+        p.buffer = NULL;\n@@ -1661,0 +1670,5 @@ static cJSON_bool parse_object(cJSON * const item, parse_buffer * const input_bu\n+        if (cannot_access_at_index(input_buffer, 1))\n+        {\n+            goto fail; /* nothing comes after the comma */\n+        }\n+\n@@ -3128,0 +3142 @@ CJSON_PUBLIC(void) cJSON_free(void *object)\n+    object = NULL;\n",
+        "hunks": [
+          {
+            "base_line": 59,
+            "base_count": 1,
+            "patched_line": 59,
+            "patched_count": 1,
+            "base_function": null,
+            "patched_function": null
+          },
+          {
+            "base_line": 120,
+            "base_count": 1,
+            "patched_line": 120,
+            "patched_count": 1,
+            "base_function": "cJSON_GetNumberValue",
+            "patched_function": "cJSON_GetNumberValue"
+          },
+          {
+            "base_line": 265,
+            "base_count": 0,
+            "patched_line": 266,
+            "patched_count": 1,
+            "base_function": "cJSON_Delete",
+            "patched_function": "cJSON_Delete"
+          },
+          {
+            "base_line": 269,
+            "base_count": 0,
+            "patched_line": 271,
+            "patched_count": 1,
+            "base_function": "cJSON_Delete",
+            "patched_function": "cJSON_Delete"
+          },
+          {
+            "base_line": 399,
+            "base_count": 0,
+            "patched_line": 402,
+            "patched_count": 1,
+            "base_function": "cJSON_SetNumberHelper",
+            "patched_function": "cJSON_SetNumberHelper"
+          },
+          {
+            "base_line": 408,
+            "base_count": 2,
+            "patched_line": 411,
+            "patched_count": 2,
+            "base_function": "cJSON_SetValuestring",
+            "patched_function": "cJSON_SetValuestring"
+          },
+          {
+            "base_line": 895,
+            "base_count": 0,
+            "patched_line": 899,
+            "patched_count": 1,
+            "base_function": "update_offset",
+            "patched_function": "update_offset"
+          },
+          {
+            "base_line": 1237,
+            "base_count": 0,
+            "patched_line": 1242,
+            "patched_count": 1,
+            "base_function": "cJSON_ParseWithLength",
+            "patched_function": "cJSON_ParseWithLength"
+          },
+          {
+            "base_line": 1245,
+            "base_count": 0,
+            "patched_line": 1251,
+            "patched_count": 1,
+            "base_function": "cJSON_ParseWithLength",
+            "patched_function": "cJSON_ParseWithLength"
+          },
+          {
+            "base_line": 1250,
+            "base_count": 0,
+            "patched_line": 1257,
+            "patched_count": 1,
+            "base_function": "cJSON_ParseWithLength",
+            "patched_function": "cJSON_ParseWithLength"
+          },
+          {
+            "base_line": 1290,
+            "base_count": 0,
+            "patched_line": 1298,
+            "patched_count": 1,
+            "base_function": "cJSON_PrintBuffered",
+            "patched_function": "cJSON_PrintBuffered"
+          },
+          {
+            "base_line": 1661,
+            "base_count": 0,
+            "patched_line": 1670,
+            "patched_count": 5,
+            "base_function": "cJSON_PrintPreallocated",
+            "patched_function": "cJSON_PrintPreallocated"
+          },
+          {
+            "base_line": 3128,
+            "base_count": 0,
+            "patched_line": 3142,
+            "patched_count": 1,
+            "base_function": "cJSON_free",
+            "patched_function": "cJSON_free"
+          }
+        ],
+        "base_crash": {
+          "mechanism": "UBSan",
+          "error_type": "undefined-behavior: null pointer passed as argument 1, which is declared to never be null",
+          "function": "cJSON_SetValuestring",
+          "location": "/work/targets/cjsonreal/base.c:413",
+          "confirmed": true,
+          "termination": {
+            "exit_code": 1,
+            "signal": null,
+            "signal_name": null,
+            "timeout": false
+          }
+        },
+        "observed_before": {
+          "argv": [
+            "/work/artifacts/blind-patches/results/candidate_10328122ce7c/build/candidate_10328122ce7c/base-release"
+          ],
+          "returncode": -11,
+          "stdout": "",
+          "stderr": "",
+          "elapsed_ms": 14,
+          "timeout": false
+        },
+        "observed_after": {
+          "argv": [
+            "/work/artifacts/blind-patches/results/candidate_10328122ce7c/build/candidate_10328122ce7c/patch-release"
+          ],
+          "returncode": 2,
+          "stdout": "REJECTED\n",
+          "stderr": "",
+          "elapsed_ms": 7,
+          "timeout": false
+        }
+      },
+      "security_status": "fixed",
+      "functionality_status": "pass",
+      "analysis_complete": true,
+      "exit_code": 0,
+      "status": "PASS"
+    }
+  ],
+  "exit_code": 0,
+  "status": "PASS"
+}
