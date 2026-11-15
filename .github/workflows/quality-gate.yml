@@ -1,26 +1,49 @@
 name: PatchGuard Full Quality Gate
+
 on:
   push:
   pull_request:
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   full-check:
     runs-on: ubuntu-24.04
     timeout-minutes: 40
-    permissions:
-      contents: read
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
-      - name: Unit tests
-        run: python3 -m unittest discover -s tests -v
-      - name: Build image and run official 6-case matrix
+
+      - name: Restore learned security regression corpus
+        uses: actions/cache/restore@v4
+        with:
+          path: regressions
+          key: patchguard-regressions-${{ github.ref }}-${{ github.run_id }}
+          restore-keys: |
+            patchguard-regressions-${{ github.ref }}-
+
+      # Generate the real minimized/replayed regression corpus before loading it.
+      - name: Build image and run official six-scenario matrix
         run: bash tools/docker_run.sh
-      - name: Evaluate 9 unknown variants
+
+      - name: Evaluate nine blind patch variants
         run: python3 tools/blind_patch_test.py
+
+      - name: Run unit tests including generated-regression loading
+        run: python3 -m unittest discover -s tests -v
+
       - name: Independently verify evidence and provenance
         run: python3 tools/quality_gate.py --strict
+
+      - name: Cache validated learned regression corpus for future runs
+        if: success()
+        uses: actions/cache/save@v4
+        with:
+          path: regressions
+          key: patchguard-regressions-${{ github.ref }}-${{ github.run_id }}
+
       - name: Publish evidence even when checks fail
         if: always()
         uses: actions/upload-artifact@v4

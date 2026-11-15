@@ -1,37 +1,50 @@
 name: PatchGuard CI
+
 on:
   push:
   pull_request:
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   verify:
     runs-on: ubuntu-24.04
-    timeout-minutes: 25
+    timeout-minutes: 40
     steps:
-      - uses: actions/checkout@v4
-      - name: Restore dynamically learned regression inputs
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Restore learned security regression corpus
         uses: actions/cache/restore@v4
         with:
           path: regressions
           key: patchguard-regressions-${{ github.ref }}-${{ github.run_id }}
           restore-keys: |
             patchguard-regressions-${{ github.ref }}-
-      - name: Run tests and scenario evaluation in isolated Docker container
-        run: |
-          python3 -m unittest discover -s tests -v
-          chmod +x tools/docker_run.sh
-          tools/docker_run.sh
-      - name: Cache automatically learned regression inputs
-        if: always()
+
+      # The learned regression corpus is produced by the real verification run.
+      # An empty checkout cannot pass a test that expects learned cases.
+      - name: Build and run the six-scenario matrix
+        run: bash tools/docker_run.sh
+
+      - name: Unit and regression-loader tests (after corpus generation)
+        run: python3 -m unittest discover -s tests -v
+
+      - name: Cache validated learned regression corpus for future runs
+        if: success()
         uses: actions/cache/save@v4
         with:
           path: regressions
           key: patchguard-regressions-${{ github.ref }}-${{ github.run_id }}
-      - name: Upload reproducible evidence (even on validation failures)
+
+      - name: Preserve CI evidence
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: patchguard-evidence
-          path: artifacts/ci/
+          name: patchguard-ci-evidence
+          path: |
+            artifacts/ci/report.json
+            artifacts/ci/report.md
           if-no-files-found: warn
